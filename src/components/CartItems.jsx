@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -12,10 +13,10 @@ function CartItems() {
   const maxLength = 80;
 
   const items = [
-    { id: 1, image: '/assets/images/itemcoffe.png', title: 'Coffee' },
-    { id: 2, image: '/assets/images/itemcoffe.png', title: 'Coffee' },
-    { id: 3, image: '/assets/images/itemcoffe.png', title: 'Coffee' },
-    { id: 4, image: '/assets/images/itemcoffe.png', title: 'Coffee' },
+    { id: 1, image: '/assets/images/Coffe1.png', title: 'Coffee' },
+    { id: 2, image: '/assets/images/Coffe1.png', title: 'Coffee' },
+    { id: 3, image: '/assets/images/Coffe1.png', title: 'Coffee' },
+    { id: 4, image: '/assets/images/Coffe1.png', title: 'Coffee' },
   ];
 
   const toggleReadMore = (id) => {
