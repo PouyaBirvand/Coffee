@@ -36,7 +36,7 @@ function CartItems() {
         slideShadows: false,
       }}
       modules={[EffectCoverflow]}
-      className="mt-[3rem] pt-5"
+      className="mt-[1.7rem] pt-5"
     >
       {items.map((item) => (
         <SwiperSlide key={item.id} className="w-[72%] md:w-[80%] transition-all duration-300">
