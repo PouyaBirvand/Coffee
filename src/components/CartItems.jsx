@@ -49,10 +49,10 @@ function CartItems() {
               />
             </div>
             <div>
-              <h1 className="text-soft-cream text-[2.5rem] -mt-2 mb-0  font-extrabold sm:text-3xl">
+              <h1 className="text-soft-cream text-[2.5rem] drop-shadow-2xl -mt-2 mb-0  font-extrabold sm:text-3xl">
                 {item.title}
               </h1>
-              <p className=" text-soft-cream  sm:text-sm ml-1">
+              <p className=" text-soft-cream drop-shadow-2xl sm:text-sm ml-1">
                 {expandedItems[item.id] ? fullText : `${fullText.slice(0, maxLength)}...`}
                 <button 
                   className="text-deep-mahogany ml-1 font-bold uppercase"
