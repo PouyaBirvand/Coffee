@@ -1,6 +1,6 @@
-const menuIcon = new URL('@/assets/images/eva_menu-2-outline.png', import.meta.url).href;
-const searchIcon = new URL('@/assets/images/vector.png', import.meta.url).href;
-const basketIcon = new URL('@/assets/images/lets-icons_basket-alt-3.png', import.meta.url).href;
+import searchIcon from '/assets/images/Vector.png';
+import menuIcon from '/assets/images/eva_menu-2-outline.png';
+import basketIcon from '/assets/images/lets-icons_basket-alt-3.png';
 
 function CoffeHeader() {
   return (
