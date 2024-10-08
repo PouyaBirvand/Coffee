@@ -9,8 +9,8 @@ function CartItems() {
   const [expandedItems, setExpandedItems] = useState({});
 
   const fullText =
-    "sequatur, t Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, aliquam?";
-  const maxLength = 80;
+    "sequatur, t Lorem ipsum dolor sit amet.Lorem ipsum dolor Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet conse sit amet consectetur, adipisicing elit. Et, aliquam?";
+  const maxLength = 100;
 
   const items = [
     { id: 1, image: '/assets/images/Coffe1.png', title: 'Coffee' },
@@ -29,7 +29,7 @@ function CartItems() {
       centeredSlides={true}
       slidesPerView={'auto'}
       coverflowEffect={{
-        rotate: 70,
+        rotate: 60,
         stretch: 0,
         depth: 200,
         modifier: 1,
