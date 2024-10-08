@@ -8,7 +8,7 @@ function CoffeHeader() {
         />
         <div className="flex space-x-4 items-center">
           <img
-            src="/assets/images/vector.png"
+            src="/assets/images/Vector.png"
             alt="searchbar"
             className="w-6 h-6 cursor-pointer"
           />
