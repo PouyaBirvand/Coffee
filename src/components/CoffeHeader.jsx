@@ -1,6 +1,6 @@
-import menuIcon from '/assets/images/eva_menu-2-outline.png';
-import searchIcon from '/assets/images/vector.png';
-import basketIcon from '/assets/images/lets-icons_basket-alt-3.png';
+import menuIcon from '@/assets/images/eva_menu-2-outline.png';
+import searchIcon from '@/assets/images/vector.png';
+import basketIcon from '@/assets/images/lets-icons_basket-alt-3.png';
 
 function CoffeHeader() {
   return (
