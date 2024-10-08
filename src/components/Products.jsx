@@ -1,6 +1,6 @@
 function Products() {
   return (
-    <div className="flex justify-between items-center shadow-md mt-[3rem] bg-warm-wood bg-opacity-60 rounded-[50rem] py-1 px-3 mx-auto w-[70%] md:w-[75%] max-w-md overflow-scroll gap-[0.5rem]">
+    <div className="flex justify-between items-center shadow-md mt-[3.2rem] bg-warm-wood bg-opacity-60 rounded-[50rem] py-1 px-3 mx-auto w-[70%] md:w-[75%] max-w-md overflow-scroll gap-[0.5rem]">
       <img
         src="/public/assets/images/ph_ice-cream-light.png"
         alt="iceCream"
