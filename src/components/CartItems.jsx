@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
-import coffeeImage from '../../assets/images/coffee.png';
+import coffeeImage from '/assets/images/coffee.png';
 
 function CartItems() {
   const [expandedItems, setExpandedItems] = useState({});
