@@ -5,7 +5,7 @@ function BottomNavigation() {
         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
           <div className="bg-dark-cocoa p-2 rounded-full shadow-lg border border-white">
             <img
-              src="/public/assets/images/ion_restaurant-outline.png"
+              src="/public/assets/images/restaurant.png"
               alt="Restaurant icon"
               className="w-10 h-10 cursor-pointer relative z-10"
             />
