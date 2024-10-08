@@ -39,23 +39,23 @@ function CartItems() {
       className="mt-[1.7rem] pt-5"
     >
       {items.map((item) => (
-        <SwiperSlide key={item.id} className="w-[69%] md:w-[80%] transition-all duration-300">
+        <SwiperSlide key={item.id} className="w-[64%] md:w-[80%] transition-all duration-300">
           <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto w-full ">
             <div className="relative -top-7">
               <img
                 src={item.image}
                 alt="coffee"
-                className="m-auto max-w-full h-auto scale-[1.2] mb-10"
+                className="m-auto max-w-full h-auto scale-[1.2]"
               />
             </div>
-            <div className="-mt-12">
-              <h1 className="text-soft-cream text-[2.7rem]  font-serif font-extrabold mb-2 sm:text-3xl">
+            <div>
+              <h1 className="text-soft-cream text-[2.5rem] font-serif font-extrabold mb-2 sm:text-3xl">
                 {item.title}
               </h1>
               <p className=" text-soft-cream  sm:text-sm">
                 {expandedItems[item.id] ? fullText : `${fullText.slice(0, maxLength)}...`}
                 <button 
-                  className="text-deep-mahogany ml-1 font-bold"
+                  className="text-deep-mahogany ml-1 font-bold uppercase"
                   onClick={() => toggleReadMore(item.id)}
                 >
                   {expandedItems[item.id] ? 'Read less' : 'Read more'}
