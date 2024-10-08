@@ -49,7 +49,7 @@ function CartItems() {
               />
             </div>
             <div>
-              <h1 className="text-soft-cream text-[2.5rem] -mt-2 mb-0 font-serif font-extrabold sm:text-3xl">
+              <h1 className="text-soft-cream text-[2.5rem] -mt-2 mb-0  font-extrabold sm:text-3xl">
                 {item.title}
               </h1>
               <p className=" text-soft-cream  sm:text-sm ml-1">

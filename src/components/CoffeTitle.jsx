@@ -6,7 +6,7 @@ function CoffeTitle() {
           <span className="block w-5 h-[2px] bg-deep-mahogany transform rotate-45 mb-2"></span>
           <span className="block w-5 h-[2px] bg-deep-mahogany transform rotate-[20deg]"></span>
         </span>
-        Frisky Coffee
+        Frisky coffee
         <span className="absolute right-[-5%] top-1 space-y-[0.4rem]">
           <span className="block w-5 h-[2px] bg-deep-mahogany transform -rotate-45 mb-2"></span>
           <span className="block w-4 h-[2px] bg-deep-mahogany transform -rotate-[20deg]"></span>
