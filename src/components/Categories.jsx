@@ -1,4 +1,4 @@
-function Products() {
+function Categories() {
   const images = [
     { src: "/assets/images/ph_ice-cream-light.png", alt: "iceCreams" },
     { src: "/assets/images/hugeicons_drink.png", alt: "Drinks" },
@@ -40,4 +40,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Categories;

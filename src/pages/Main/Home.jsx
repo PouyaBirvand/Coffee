@@ -1,21 +1,20 @@
-import BottomNavigation from "../../components/BottomNavigation";
-import CartItems from "../../components/CartItems";
-import CoffeTitle from "../../components/CoffeTitle";
 import Header from "../../components/Header";
-import Products from "../../components/Products";
+import ProductTitle from "../../components/ProductTitle";
+import CartItems from "../../components/CartItems";
+import Categories from "../../components/categories";
+import BottomNavigation from "../../components/BottomNavigation";
+
 
 function Home() {
   return (
     <>
       <Header />
       <main>
-        <CoffeTitle />
+        <ProductTitle />
         <CartItems />
-        <Products />
+        <Categories />
       </main>
-      <nav>
         <BottomNavigation />
-      </nav>
     </>
   );
 }

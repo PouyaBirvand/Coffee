@@ -1,6 +1,6 @@
 function BottomNavigation() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-dark-cocoa z-[999]">
+    <nav className="fixed bottom-0 left-0 right-0 bg-dark-cocoa z-[999]">
       <div className="flex justify-around items-center h-12 relative">
             <div className="relative w-[100px] h-[50px] bg-dark-cocoa rounded-t-[2.6rem] bottom-[0.7rem] -z-50"></div>
         <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 ">
@@ -14,7 +14,7 @@ function BottomNavigation() {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 

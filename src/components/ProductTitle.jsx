@@ -1,4 +1,4 @@
-function CoffeTitle() {
+function ProductTitle() {
   return (
     <div className="relative text-center mt-10">
       <h1 className="inline-block   font-extrabold text-deep-mahogany px-4 relative text-[2.1rem] sm:w-40 lg:text-3xl">
@@ -16,4 +16,4 @@ function CoffeTitle() {
   );
 }
 
-export default CoffeTitle;
+export default ProductTitle;
