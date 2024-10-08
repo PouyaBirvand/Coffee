@@ -2,7 +2,7 @@ import Home from "./pages/Main/Home";
 
 function App() {
   return (
-    <div className="bg-body min-h-screen w-full px-10 md:px-6 pt-8 h-[100vh]  pb-[7rem]">
+    <div className="bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-8 pb-[7rem] no-scroll">
       <Home/>
     </div>
   );
