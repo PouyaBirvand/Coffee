@@ -1,4 +1,4 @@
-import restaurantIcon from '/assets/images/ion_restaurant-outline.png';
+import restaurantIcon from '../../assets/images/ion_restaurant-outline.png';
 
 function BottomNavigation() {
   return (
