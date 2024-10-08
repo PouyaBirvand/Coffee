@@ -1,8 +1,8 @@
-import iceCream from '../../assets/images/ph_ice-cream-light.png';
-import drinks from '../../assets/images/hugeicons_drink.png';
-import icePack from '../../assets/images/hugeicons_soft-drink-01.png';
-import coffee from '../../assets/images/ph_coffee-light.png';
-import pizza from '../../assets/images/fluent_food-pizza-20-regular.png';
+import iceCream from '/../assets/images/ph_ice-cream-light.png';
+import drinks from '/../assets/images/hugeicons_drink.png';
+import icePack from '/../assets/images/hugeicons_soft-drink-01.png';
+import coffee from '/../assets/images/ph_coffee-light.png';
+import pizza from '/../assets/images/fluent_food-pizza-20-regular.png';
 
 function Products() {
   return (
