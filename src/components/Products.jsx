@@ -4,17 +4,17 @@ function Products() {
       <img
         src="/assets/images/ph_ice-cream-light.png"
         alt="iceCream"
-        className="hover:bg-deep-mahogany p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50 backdrop-filter backdrop-blur-sm"
+        className="hover:bg-deep-mahogany bg-soft-cream  p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50"
       />
       <img
         src="/assets/images/hugeicons_drink.png"
         alt="Drinks"
-        className="hover:bg-deep-mahogany p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50 backdrop-filter backdrop-blur-sm"
+        className="hover:bg-deep-mahogany bg-soft-cream p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50"
       />
       <img
         src="/assets/images/hugeicons_soft-drink-01.png"
         alt="icePack"
-        className="hover:bg-deep-mahogany p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50 backdrop-filter backdrop-blur-sm"
+        className="hover:bg-deep-mahogany bg-soft-cream p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50"
       />
       <img
         src="/assets/images/ph_coffee-light.png"
@@ -24,7 +24,7 @@ function Products() {
       <img
         src="/assets/images/fluent_food-pizza-20-regular.png"
         alt="Pizzas"
-        className="hover:bg-deep-mahogany p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50 backdrop-filter backdrop-blur-sm"
+        className="hover:bg-deep-mahogany bg-soft-cream p-2 rounded-full transition duration-300 cursor-pointer bg-custom-2 bg-opacity-50"
       />
     </div>
   );
