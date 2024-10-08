@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
+import coffeeImage from '../../assets/images/coffee.png';
 
 function CartItems() {
   const [expandedItems, setExpandedItems] = useState({});
@@ -12,10 +13,10 @@ function CartItems() {
   const maxLength = 80;
 
   const items = [
-    { id: 1, image: '/assets/images/Coffe1.png', title: 'Coffee' },
-    { id: 2, image: '/assets/images/Coffe1.png', title: 'Coffee' },
-    { id: 3, image: '/assets/images/Coffe1.png', title: 'Coffee' },
-    { id: 4, image: '/assets/images/Coffe1.png', title: 'Coffee' },
+    { id: 1, image: coffeeImage, title: 'Coffee' },
+    { id: 2, image: coffeeImage, title: 'Coffee' },
+    { id: 3, image: coffeeImage, title: 'Coffee' },
+    { id: 4, image: coffeeImage, title: 'Coffee' },
   ];
 
   const toggleReadMore = (id) => {
