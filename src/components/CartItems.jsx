@@ -39,13 +39,13 @@ function CartItems() {
       className="mt-[1.7rem] pt-5"
     >
       {items.map((item) => (
-        <SwiperSlide key={item.id} className="w-[60%] md:w-[70%] transition-all duration-300">
+        <SwiperSlide key={item.id} className="w-[60%] md:w-[75%] transition-all duration-300">
           <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto w-full ">
             <div className="relative -top-7">
               <img
                 src={item.image}
                 alt="coffee"
-                className="m-auto max-w-full h-auto scale-[1.2] md:scale-[1.1]"
+                className="m-auto max-w-full h-auto scale-[1.2]"
               />
             </div>
             <div>
