@@ -1,4 +1,4 @@
-function CoffeHeader() {
+function Header() {
   return (
     <header className="flex justify-between items-center">
       <button aria-label="Menu" className="focus:outline-none">
@@ -28,4 +28,4 @@ function CoffeHeader() {
   );
 }
 
-export default CoffeHeader;
+export default Header;

@@ -1,15 +1,13 @@
 import BottomNavigation from "../../components/BottomNavigation";
 import CartItems from "../../components/CartItems";
-import CoffeHeader from "../../components/CoffeHeader";
 import CoffeTitle from "../../components/CoffeTitle";
+import Header from "../../components/Header";
 import Products from "../../components/Products";
 
 function Home() {
   return (
     <>
-      <header>
-        <CoffeHeader />
-      </header>
+      <Header />
       <main>
         <CoffeTitle />
         <CartItems />
