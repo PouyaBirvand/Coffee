@@ -14,7 +14,7 @@ export default {
         body: "#CBB89D",
       },
       fontFamily: {
-        sans: "Kameron , sans-serif",
+        sans: "Vazirmatn , sans-serif",
       },
       screens: {
         xs: { max: "350px" },
