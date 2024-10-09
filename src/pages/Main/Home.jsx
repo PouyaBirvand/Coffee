@@ -1,8 +1,8 @@
-import Header from "../../components/Header";
-import ProductTitle from "../../components/ProductTitle";
-import CartItems from "../../components/CartItems";
-import Categories from "../../components/categories";
-import BottomNavigation from "../../components/BottomNavigation";
+import Header from "/../components/Header";
+import ProductTitle from "/../components/ProductTitle";
+import CartItems from "/../components/CartItems";
+import BottomNavigation from "/../components/BottomNavigation";
+import Categories from "/../components/Categories";
 
 
 function Home() {
