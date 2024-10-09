@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import LordIcon from './Lordicon';
 
-// eslint-disable-next-line react/prop-types
-function SearchBar({ onClose }) {
+function SearchBar() {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -27,10 +27,17 @@ function SearchBar({ onClose }) {
           className="w-full py-2 focus:outline-none bg-soft-cream placeholder:text-dark-cocoa"
         />
         <button type="submit" className="focus:outline-none ml-2 mb-1">
-          <img src="/assets/images/searchbar.png" alt="Search" />
+        <LordIcon
+                src="https://cdn.lordicon.com/wjyqkiew.json"
+                trigger="loop"
+                stroke="bold"
+                size={40}
+                colors="primary:#412f26,secondary:#412f26"
+              />
         </button>
       </form>
     </motion.div>
+
   );
 }
 

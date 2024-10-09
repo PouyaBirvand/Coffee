@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Menu from "./Menu";
 import SearchBar from "./SearchBar";
+import LordIcon from "./Lordicon";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,11 +51,27 @@ function Header() {
           </div>
         ) : (
           <div className="flex space-x-4 items-center z-10">
-            <button aria-label="Search" className="focus:outline-none" onClick={toggleSearch}>
-              <img src="/assets/images/Vector.png" alt="" className="w-6 h-6 cursor-pointer" />
+            <button
+              aria-label="Search"
+              className="focus:outline-none"
+              onClick={toggleSearch}
+            >
+              <LordIcon
+                src="https://cdn.lordicon.com/wjyqkiew.json"
+                trigger="loop"
+                stroke="bold"
+                size={40}
+                colors="primary:#412f26,secondary:#412f26"
+              />
             </button>
             <button aria-label="Basket" className="focus:outline-none">
-              <img src="/assets/images/lets-icons_basket-alt-3.png" alt="" className="w-9 h-9 cursor-pointer" />
+            <LordIcon
+                src="https://cdn.lordicon.com/ggirntso.json"
+                trigger="loop"
+                stroke="bold"
+                size={45}
+                colors="primary:#412f26,secondary:#412f26"
+              />
             </button>
           </div>
         )}
