@@ -9,7 +9,7 @@ function CartItems() {
   const [expandedItems, setExpandedItems] = useState({});
 
   const fullText =
-    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse sit amet consectetur, adipisicing elit. Et, aliquam?";
+    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse sit amet consectetur?";
   const maxLength = 50;
 
   const items = [
