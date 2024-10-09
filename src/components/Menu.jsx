@@ -107,8 +107,8 @@ const SocialMedia = () => {
       <ul className="flex gap-4 flex-wrap mt-3 -pl-8 justify-center border-b border-opacity-30 pb-6 border-dark-cocoa">
         {items.map((item, index) => (
           <li key={index}>
-            <a className="text-white bg-deep-mahogany opacity-70 py-[0.4rem] px-4 text-xs rounded-3xl flex items-center">
-              <img src={item.icon} alt="" className="w-4 h-4 mr-1 scale-[2.3] relative right-2" />
+            <a className="text-white bg-deep-mahogany opacity-70 py-[0.5rem] px-4 text-xs rounded-3xl flex items-center">
+              <img src={item.icon} alt="" className="w-[1.1rem] h-[1.1rem] mr-2 scale-[2.3] relative right-2" />
               {item.text}
             </a>
           </li>
