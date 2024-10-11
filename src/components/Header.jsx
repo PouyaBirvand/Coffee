@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Menu from "./Menu";
 import SearchBar from "./SearchBar";
-// import LordIcon from '../components/LordIcon';
+import LordIcon from "./Lordicon.jsx";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,22 +56,22 @@ function Header() {
               className="focus:outline-none"
               onClick={toggleSearch}
             >
-              {/* <LordIcon
+              <LordIcon
                 src="https://cdn.lordicon.com/wjyqkiew.json"
                 trigger="loop"
                 stroke="bold"
                 size={40}
                 colors="primary:#412f26,secondary:#412f26"
-              /> */}
+              />
             </button>
             <button aria-label="Basket" className="focus:outline-none">
-            {/* <LordIcon
+            <LordIcon
                 src="https://cdn.lordicon.com/ggirntso.json"
                 trigger="loop"
                 stroke="bold"
                 size={45}
                 colors="primary:#412f26,secondary:#412f26"
-              /> */}
+              />
             </button>
           </div>
         )}
