@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import LordIcon from './Lordicon';
+// import LordIcon from './Lordicon';
 
 function SearchBar() {
   const inputRef = useRef(null);
@@ -27,13 +27,13 @@ function SearchBar() {
           className="w-full py-2 focus:outline-none bg-soft-cream placeholder:text-dark-cocoa"
         />
         <button type="submit" className="focus:outline-none ml-2 mb-1">
-        <LordIcon
+        {/* <LordIcon
                 src="https://cdn.lordicon.com/wjyqkiew.json"
                 trigger="loop"
                 stroke="bold"
                 size={40}
                 colors="primary:#412f26,secondary:#412f26"
-              />
+              /> */}
         </button>
       </form>
     </motion.div>
