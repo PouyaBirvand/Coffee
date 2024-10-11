@@ -1,23 +1,27 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
-
-function CartItems() {
+// eslint-disable-next-line react/prop-types
+function CartItems({ category }) {
   const [expandedItems, setExpandedItems] = useState({});
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    // Here you would typically fetch data based on the category
+    // For this example, we'll just use mock data
+    setItems([
+      { id: 1, image: '/assets/images/Coffee.png', title: category },
+      { id: 2, image: '/assets/images/Coffee.png', title: category },
+      { id: 3, image: '/assets/images/Coffee.png', title: category },
+      { id: 4, image: '/assets/images/Coffee.png', title: category },
+    ]);
+  }, [category]);
 
   const fullText =
     "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse sit amet consectetur?";
   const maxLength = 50;
-
-  const items = [
-    { id: 1, image: '/assets/images/Coffee.png', title: 'Coffee' },
-    { id: 2, image: '/assets/images/Coffee.png', title: 'Coffee' },
-    { id: 3, image: '/assets/images/Coffee.png', title: 'Coffee' },
-    { id: 4, image: '/assets/images/Coffee.png', title: 'Coffee' },
-  ];
 
   const toggleReadMore = (id) => {
     setExpandedItems(prev => ({ ...prev, [id]: !prev[id] }));
@@ -36,15 +40,15 @@ function CartItems() {
         slideShadows: false,
       }}
       modules={[EffectCoverflow]}
-      className="mt-[1.7rem] pt-5"
+      className="mt-[1.5rem] w-[63%] md:w-[78%] lg:w-[75%] transition-all duration-300"
     >
       {items.map((item) => (
-        <SwiperSlide key={item.id} className="w-[63%] md:w-[78%] lg:w-[75%] transition-all duration-300">
+        <SwiperSlide key={item.id} className="pt-5">
           <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto w-full ">
             <div className="relative -top-7">
               <img
                 src={item.image}
-                alt="coffee"
+                alt={item.title}
                 className="m-auto max-w-full h-auto scale-[1.2]"
               />
             </div>
