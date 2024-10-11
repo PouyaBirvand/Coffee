@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import lottie from 'lottie-web';
-import { defineElement } from '@lordicon/element';
+import { defineElement } from 'lord-icon-element';
 
 // Define the lord-icon custom element
 defineElement(lottie.loadAnimation);
