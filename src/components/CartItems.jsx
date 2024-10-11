@@ -44,7 +44,7 @@ function CartItems({ category }) {
     >
       {items.map((item) => (
         <SwiperSlide key={item.id} className="pt-5">
-          <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto w-full ">
+          <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto w-full">
             <div className="relative -top-7">
               <img
                 src={item.image}

@@ -9,7 +9,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
   ];
 
   return (
-    <div className="className=mt-16 xl:mt-10 lg:mt-12 md:mt-10 sm:mt-8 xs:mt-6 mx-auto w-[75%] max-w-2xl xl:max-w-[20rem] lg:max-w-lg md:max-w-md sm:max-w-sm xs:max-w-xs">
+    <div className="className=mt-16 xl:mt-10 lg:mt-12 md:mt-10 sm:mt-8 xs:mt-6 mx-auto w-[80%] max-w-2xl xl:max-w-[18rem] lg:max-w-lg md:max-w-md sm:max-w-sm xs:max-w-xs">
       <div className="bg-warm-wood bg-opacity-60 rounded-full flex justify-between items-center py-1 px-1 xl:px-1 lg:px-2 md:px-1 sm:px-1 xs:px-0.5">
         {images.map((image, index) => (
           <div key={index} onClick={() => onCategoryChange(image.alt)}>
