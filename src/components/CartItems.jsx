@@ -36,12 +36,13 @@ function CartItems({ category }) {
       coverflowEffect={{
         rotate: 40,
         stretch: 0,
-        depth: 200,
+        depth: 300,
         modifier: 1,
         slideShadows: false,
       }}
       modules={[EffectCoverflow]}
       className="mt-[2.2rem] w-[63%] md:w-[78%] lg:w-[75%] transition-all duration-300"
+      spaceBetween={30}
     >
       {items.map((item) => (
         <SwiperSlide key={item.id} className="pt-7">
