@@ -63,6 +63,9 @@ function Header() {
                 size={40}
                 colors="primary:#412f26,secondary:#412f26"
               /> */}
+                  <svg className="w-8 h-8 text-dark-cocoa" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+</svg>
             </button>
             <button aria-label="Basket" className="focus:outline-none">
             {/* <LordIcon
@@ -72,6 +75,10 @@ function Header() {
                 size={45}
                 colors="primary:#412f26,secondary:#412f26"
               /> */}
+              <svg className="w-8 h-8 text-dark-cocoa" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
+</svg>
+
             </button>
           </div>
         )}
