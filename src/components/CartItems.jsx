@@ -21,7 +21,7 @@ function CartItems({ category }) {
   }, [category]);
 
   const fullText =
-    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse sit amet consectetur? conse sit amet consectetur?";
+    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse sit amet consectetur?";
   const maxLength = 70;
 
   const toggleReadMore = (id) => {
