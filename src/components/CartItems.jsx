@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
+
 // eslint-disable-next-line react/prop-types
 function CartItems({ category }) {
   const [expandedItems, setExpandedItems] = useState({});
@@ -20,8 +21,8 @@ function CartItems({ category }) {
   }, [category]);
 
   const fullText =
-    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse sit amet consectetur?";
-  const maxLength = 50;
+    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse sit amet consectetur? conse sit amet consectetur?";
+  const maxLength = 70;
 
   const toggleReadMore = (id) => {
     setExpandedItems(prev => ({ ...prev, [id]: !prev[id] }));
@@ -31,19 +32,19 @@ function CartItems({ category }) {
     <Swiper
       effect={'coverflow'}
       centeredSlides={true}
-      slidesPerView={'auto'}
+      slidesPerView={1}
       coverflowEffect={{
-        rotate: 60,
+        rotate: 40,
         stretch: 0,
         depth: 200,
         modifier: 1,
         slideShadows: false,
       }}
       modules={[EffectCoverflow]}
-      className="mt-[1.5rem] w-[63%] md:w-[78%] lg:w-[75%] transition-all duration-300"
+      className="mt-[2.2rem] w-[63%] md:w-[78%] lg:w-[75%] transition-all duration-300"
     >
       {items.map((item) => (
-        <SwiperSlide key={item.id} className="pt-5">
+        <SwiperSlide key={item.id} className="pt-7">
           <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto w-full">
             <div className="relative -top-7">
               <img

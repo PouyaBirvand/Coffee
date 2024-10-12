@@ -13,7 +13,9 @@ function Homelayout() {
 
   useEffect(() => {
     if (categoryId) {
-      setSelectedCategory(getCategoryName(categoryId));
+      const category = getCategoryName(categoryId);
+      setSelectedCategory(category);
+      navigate(`/${category.replace(/\s+/g, '')}`);
     } else {
       navigate('/Coffee');
     }
@@ -21,12 +23,12 @@ function Homelayout() {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    navigate(`/${category}`);
+    navigate(`/${category.replace(/\s+/g, '')}`);
   };
 
   function getCategoryName(id) {
     const categories = {
-      'iceCreams': 'Ice Creams',
+      'IceCreams': 'Ice Creams',
       'Drinks': 'Drinks',
       'SoftDrinks': 'Soft Drinks',
       'Coffee': 'Coffee',
@@ -36,7 +38,7 @@ function Homelayout() {
   }
 
   return (
-    <div className='bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-5'>
+    <div className='bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-6'>
       <Header />
       <main>
         <ProductTitle />
