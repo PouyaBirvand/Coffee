@@ -31,8 +31,9 @@ function CartItems({ category }) {
   return (
     <Swiper
       effect={'coverflow'}
+      grabCursor={true}
       centeredSlides={true}
-      slidesPerView={1}
+      slidesPerView={1.26}
       coverflowEffect={{
         rotate: 40,
         stretch: 0,
@@ -41,13 +42,13 @@ function CartItems({ category }) {
         slideShadows: false,
       }}
       modules={[EffectCoverflow]}
-      className="mt-[2.2rem] w-[63%] md:w-[78%] lg:w-[75%] transition-all duration-300"
+      className="mt-[2.2rem] w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
       spaceBetween={30}
     >
       {items.map((item) => (
         <SwiperSlide key={item.id} className="pt-7">
-          <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto w-full">
-            <div className="relative -top-7">
+          <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto">
+            <div className="relative -top-8">
               <img
                 src={item.image}
                 alt={item.title}
