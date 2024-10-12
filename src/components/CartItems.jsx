@@ -43,7 +43,7 @@ function CartItems({ category }) {
       }}
       modules={[EffectCoverflow]}
       className="mt-[2.2rem] w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
-      spaceBetween={30}
+      spaceBetween={40}
     >
       {items.map((item) => (
         <SwiperSlide key={item.id} className="pt-7">

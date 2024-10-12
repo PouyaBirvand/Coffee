@@ -38,11 +38,10 @@ function Header() {
           className="focus:outline-none z-10"
           onClick={toggleMenu}
         >
-          <img
-            src="/assets/images/eva_menu-2-outline.png"
-            alt="HamburgerMenu"
-            className="w-8 h-8 cursor-pointer"
-          />
+          <svg className="w-8 h-8 text-dark-cocoa" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M5 7h14M5 12h14M5 17h10"/>
+</svg>
+
         </button>
 
         {isSearchOpen ? (
