@@ -9,7 +9,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
   ];
 
   return (
-    <div className="className=mt-16 xl:mt-16 lg:mt-12 md:mt-10 sm:mt-8 xs:mt-5 mx-auto w-[78%] max-w-2xl xl:max-w-[19.5rem] lg:max-w-lg md:max-w-md sm:max-w-sm xs:max-w-xs">
+    <div className="className= xl:mt-12 lg:mt-12 md:mt-10 sm:mt-8 xs:mt-5 mx-auto w-[78%] max-w-2xl xl:max-w-[19.5rem] lg:max-w-lg md:max-w-md sm:max-w-sm xs:max-w-xs">
       <div className="bg-warm-wood bg-opacity-60 rounded-full flex justify-between items-center py-1 px-1 xl:px-1 lg:px-2 md:px-1 sm:px-1 xs:px-0.5">
         {categories.map((category, index) => (
           <div key={index} onClick={() => onCategoryChange(category.alt)}>
