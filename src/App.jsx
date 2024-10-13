@@ -19,7 +19,3 @@ function App() {
 
 
 export default App;
-
-// <div className="bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-5">
-// <Home/>
-// </div>

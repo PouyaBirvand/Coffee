@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const Menu = ({ closeMenu }) => (
   <>
@@ -20,7 +21,7 @@ const Menu = ({ closeMenu }) => (
     >
       <nav className="p-5 -mt-2">
         <MenuHeader closeMenu={closeMenu} />
-        <QuickAccess />
+        <QuickAccess closeMenu={closeMenu} />
         <SocialMedia />
         <Others />
       </nav>
@@ -30,16 +31,16 @@ const Menu = ({ closeMenu }) => (
 // eslint-disable-next-line react/prop-types
 const MenuHeader = ({ closeMenu }) => (
   <div className="flex items-center space-x-2 border-b border-opacity-30 border-dark-cocoa pb-3 mt-2">
-    <svg  className="w-7 h-7 object-cover text-dark-cocoa" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2 23H10.6787M10.6787 23H10.8213M10.6787 23C8.37047 22.9812 6.16314 22.051 4.53757 20.4121C2.91201 18.7732 1.99992 16.5584 2 14.25V9.15375C2 8.51625 2.51625 8 3.15375 8H18.3462C18.9837 8 19.5 8.51625 19.5 9.15375V9.25M10.8213 23H19.5M10.8213 23C13.1295 22.9812 15.3369 22.051 16.9624 20.4121C18.588 18.7732 19.5001 16.5584 19.5 14.25M19.5 9.25H21.375C22.2038 9.25 22.9987 9.57924 23.5847 10.1653C24.1708 10.7513 24.5 11.5462 24.5 12.375C24.5 13.2038 24.1708 13.9987 23.5847 14.5847C22.9987 15.1708 22.2038 15.5 21.375 15.5H19.5V14.25M19.5 9.25V14.25M15.75 1.75L14.5 4.25M12 1.75L10.75 4.25M8.25 1.75L7 4.25" stroke="#412F26" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
+    <svg className="w-7 h-7 object-cover text-dark-cocoa" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 23H10.6787M10.6787 23H10.8213M10.6787 23C8.37047 22.9812 6.16314 22.051 4.53757 20.4121C2.91201 18.7732 1.99992 16.5584 2 14.25V9.15375C2 8.51625 2.51625 8 3.15375 8H18.3462C18.9837 8 19.5 8.51625 19.5 9.15375V9.25M10.8213 23H19.5M10.8213 23C13.1295 22.9812 15.3369 22.051 16.9624 20.4121C18.588 18.7732 19.5001 16.5584 19.5 14.25M19.5 9.25H21.375C22.2038 9.25 22.9987 9.57924 23.5847 10.1653C24.1708 10.7513 24.5 11.5462 24.5 12.375C24.5 13.2038 24.1708 13.9987 23.5847 14.5847C22.9987 15.1708 22.2038 15.5 21.375 15.5H19.5V14.25M19.5 9.25V14.25M15.75 1.75L14.5 4.25M12 1.75L10.75 4.25M8.25 1.75L7 4.25" stroke="#412F26" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
 
     <h2 className="text-[1.3rem] text-deep-mahogany font-bold text-center relative top-1 tracking-wide">
       Frisky coffee
     </h2>
     <button onClick={closeMenu} className="text-dark-cocoa">
       <svg
-        className="w-6 h-6  relative top-[0.1rem] left-[6.3rem]"
+        className="w-6 h-6 relative top-[0.1rem] left-[6.3rem]"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -58,9 +59,19 @@ const MenuHeader = ({ closeMenu }) => (
     </button>
   </div>
 );
+// eslint-disable-next-line react/prop-types
+const QuickAccess = ({ closeMenu }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState("Coffee");
 
-const QuickAccess = () => {
-  const items = ["shakes", "ice cream", "desserts", "coffee", "food"];
+  const items = [
+    { name: "Soft Drinks", route: "SoftDrinks" },
+    { name: "Ice Cream", route: "IceCreams" },
+    { name: "Drinks", route: "Drinks" },
+    { name: "Coffee", route: "Coffee" },
+    { name: "Pizza", route: "Pizza" }
+  ];
 
   const images = [
     "/assets/images/menusoftdrink.png",
@@ -72,44 +83,54 @@ const QuickAccess = () => {
 
   const activeImages = [
     { src: "/assets/images/hugeicons_soft-drink-01.png", alt: "Soft Drinks" },
-    { src: "/assets/images/ph_ice-cream-light.png", alt: "iceCreams" },
+    { src: "/assets/images/ph_ice-cream-light.png", alt: "Ice Cream" },
     { src: "/assets/images/hugeicons_drink.png", alt: "Drinks" },
     { src: "/assets/images/ph_coffee-light.png", alt: "Coffee" },
     { src: "/assets/images/fluent_food-pizza-20-regular.png", alt: "Pizza" },
   ];
 
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  useEffect(() => {
+    const currentPath = location.pathname.slice(1); // Remove the leading '/'
+    const currentItem = items.find(item => item.route === currentPath);
+    if (currentItem) {
+      setActiveItem(currentItem.name);
+    }
+  }, [location]);
+
+  const handleItemClick = (route, name) => {
+    navigate(`/${route}`);
+    setActiveItem(name);
+    closeMenu();
+  };
 
   return (
     <>
       <p className="mt-1 text-[0.8rem]">Quick access</p>
       <ul className="border-b border-opacity-30 pb-1 border-dark-cocoa">
         {items.map((item, index) => {
-          const isCoffee = item === "coffee";
-          const isActive = hoveredIndex === index || isCoffee;
+          const isActive = activeItem === item.name;
 
           return (
             <li key={index} className="group">
               <a
                 className={`relative flex items-center ml-2 px-4 py-2 ${
-                  isCoffee
+                  isActive
                     ? "bg-dark-cocoa text-white"
                     : "hover:bg-dark-cocoa hover:text-white"
-                } rounded-xl`}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                } rounded-xl cursor-pointer`}
+                onClick={() => handleItemClick(item.route, item.name)}
               >
                 <div
                   className={`absolute w-8 h-[2.5rem] -left-10 bottom-0 rounded-xl bg-dark-cocoa ${
-                    isCoffee ? "" : "opacity-0 group-hover:opacity-100"
+                    isActive ? "" : "opacity-0 group-hover:opacity-100"
                   } transition-opacity duration-[0.3]`}
                 ></div>
                 <img
                   src={isActive ? activeImages[index].src : images[index]}
-                  alt={isActive ? activeImages[index].alt : item}
+                  alt={isActive ? activeImages[index].alt : item.name}
                   className="w-6 h-6 mr-3 object-contain"
                 />
-                <span>{item}</span>
+                <span>{item.name}</span>
               </a>
             </li>
           );
