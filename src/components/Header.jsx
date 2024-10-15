@@ -41,10 +41,10 @@ function Header() {
         >
      <lord-icon
       src="https://cdn.lordicon.com/eouimtlu.json"
-      trigger="loop"
-      delay="1000"
+      trigger="hover"
+      delay="0"
       colors="primary:#412f26"
-      style={{ width: '40px', height: '40px' }}
+      style={{ width: '35px', height: '35px' }}
     />
 
         </button>
@@ -62,19 +62,19 @@ function Header() {
             >
      <lord-icon
       src="https://cdn.lordicon.com/kkvxgpti.json"
-      trigger="loop"
-      delay="1000"
+      trigger="hover"
+      delay="0"
       colors="primary:#412f26"
-      style={{ width: '40px', height: '40px' }}
+      style={{ width: '35px', height: '35px' }}
     />
             </button>
             <button aria-label="Basket" className="focus:outline-none">
             <lord-icon
       src="https://cdn.lordicon.com/evyuuwna.json"
-      trigger="loop"
-      delay="1000"
+      trigger="hover"
+      delay="0"
       colors="primary:#412f26"
-      style={{ width: '40px', height: '40px' }}
+      style={{ width: '35px', height: '35px' }}
     />
               
             </button>

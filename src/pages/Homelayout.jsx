@@ -43,12 +43,10 @@ function Homelayout() {
   };
 
   return (
-    <div className={`bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-6 ${isExpanded ? 'px-0' : 'px-6'}`}>
-      <header className={`${isExpanded ? 'px-6' : '' }`}>
-      <Header/>
-      </header>
+    <div className='bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-6'>
+      <Header />
       <main>
-        <ProductTitle isExpanded={isExpanded} />
+        <ProductTitle />
         <CartItems category={selectedCategory} isExpanded={isExpanded}/>
         {!isExpanded && (
           <Categories onCategoryChange={handleCategoryChange} selectedCategory={selectedCategory} />
