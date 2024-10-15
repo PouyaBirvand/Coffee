@@ -5,7 +5,8 @@ import SearchBar from "./SearchBar";
 
 // import LordIcon from '../components/LordIcon';
 
-function Header() {
+// eslint-disable-next-line react/prop-types
+function Header({ isExpanded , setIsExpanded }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
@@ -34,21 +35,39 @@ function Header() {
   return (
     <header className="relative">
       <div className="flex justify-between items-center p-4">
-        <button
-          aria-label="Menu"
-          className="focus:outline-none z-10"
-          onClick={toggleMenu}
-        >
-     <lord-icon
-      src="https://cdn.lordicon.com/eouimtlu.json"
-      trigger="hover"
-      delay="0"
-      colors="primary:#412f26"
-      style={{ width: '35px', height: '35px' }}
-    />
+        {!isExpanded && (
+          <button
+            aria-label="Menu"
+            className="focus:outline-none z-10"
+            onClick={toggleMenu}
+          >
+            <lord-icon
+              src="https://cdn.lordicon.com/eouimtlu.json"
+              trigger="hover"
+              delay="0"
+              colors="primary:#412f26"
+              style={{ width: "35px", height: "35px" }}
+            />
+          </button>
+        )}
 
-        </button>
+        {isExpanded && (
+          <button
+            aria-label="Arrow"
+            className="focus:outline-none z-10"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <lord-icon
+              src="https://cdn.lordicon.com/vduvxizq.json"
+              trigger="hover"
+              delay="0"
+              colors="primary:#412f26"
+              style={{ width: "35px", height: "35px" }}
+            />
+          </button>
+        )}
 
+        {/* vduvxizq */}
         {isSearchOpen ? (
           <div className="absolute inset-0 z-20" ref={searchRef}>
             <SearchBar onClose={closeSearch} />
@@ -60,23 +79,26 @@ function Header() {
               className="focus:outline-none"
               onClick={toggleSearch}
             >
-     <lord-icon
-      src="https://cdn.lordicon.com/kkvxgpti.json"
-      trigger="hover"
-      delay="0"
-      colors="primary:#412f26"
-      style={{ width: '35px', height: '35px' }}
-    />
+              {isExpanded ? (
+                ""
+              ) : (
+                <lord-icon
+                  src="https://cdn.lordicon.com/kkvxgpti.json"
+                  trigger="hover"
+                  delay="0"
+                  colors="primary:#412f26"
+                  style={{ width: "35px", height: "35px" }}
+                />
+              )}
             </button>
             <button aria-label="Basket" className="focus:outline-none">
-            <lord-icon
-      src="https://cdn.lordicon.com/evyuuwna.json"
-      trigger="hover"
-      delay="0"
-      colors="primary:#412f26"
-      style={{ width: '35px', height: '35px' }}
-    />
-              
+              <lord-icon
+                src="https://cdn.lordicon.com/evyuuwna.json"
+                trigger="hover"
+                delay="0"
+                colors="primary:#412f26"
+                style={{ width: "35px", height: "35px" }}
+              />
             </button>
           </div>
         )}
