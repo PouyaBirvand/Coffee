@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Menu from "./Menu";
 import SearchBar from "./SearchBar";
+
 // import LordIcon from '../components/LordIcon';
 
 function Header() {
@@ -38,22 +39,14 @@ function Header() {
           className="focus:outline-none z-10"
           onClick={toggleMenu}
         >
-          <svg
-            className="w-8 h-8 text-dark-cocoa"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeWidth="2"
-              d="M5 7h14M5 12h14M5 17h10"
-            />
-          </svg>
+     <lord-icon
+      src="https://cdn.lordicon.com/eouimtlu.json"
+      trigger="loop"
+      delay="1000"
+      colors="primary:#412f26"
+      style={{ width: '40px', height: '40px' }}
+    />
+
         </button>
 
         {isSearchOpen ? (
@@ -67,41 +60,23 @@ function Header() {
               className="focus:outline-none"
               onClick={toggleSearch}
             >
-              <svg
-                className="w-8 h-8 text-dark-cocoa"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
-                />
-              </svg>
+     <lord-icon
+      src="https://cdn.lordicon.com/kkvxgpti.json"
+      trigger="loop"
+      delay="1000"
+      colors="primary:#412f26"
+      style={{ width: '40px', height: '40px' }}
+    />
             </button>
             <button aria-label="Basket" className="focus:outline-none">
-              <svg
-                className="w-8 h-8 text-dark-cocoa"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
-                />
-              </svg>
+            <lord-icon
+      src="https://cdn.lordicon.com/evyuuwna.json"
+      trigger="loop"
+      delay="1000"
+      colors="primary:#412f26"
+      style={{ width: '40px', height: '40px' }}
+    />
+              
             </button>
           </div>
         )}

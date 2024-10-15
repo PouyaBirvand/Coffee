@@ -32,41 +32,29 @@ const Menu = ({ closeMenu }) => (
 const MenuHeader = ({ closeMenu }) => (
   <div className="flex items-center space-x-2 border-b border-opacity-30 border-dark-cocoa pb-3 mt-2">
     <svg
-      className="w-7 h-7 object-cover text-dark-cocoa"
-      viewBox="0 0 26 25"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2 23H10.6787M10.6787 23H10.8213M10.6787 23C8.37047 22.9812 6.16314 22.051 4.53757 20.4121C2.91201 18.7732 1.99992 16.5584 2 14.25V9.15375C2 8.51625 2.51625 8 3.15375 8H18.3462C18.9837 8 19.5 8.51625 19.5 9.15375V9.25M10.8213 23H19.5M10.8213 23C13.1295 22.9812 15.3369 22.051 16.9624 20.4121C18.588 18.7732 19.5001 16.5584 19.5 14.25M19.5 9.25H21.375C22.2038 9.25 22.9987 9.57924 23.5847 10.1653C24.1708 10.7513 24.5 11.5462 24.5 12.375C24.5 13.2038 24.1708 13.9987 23.5847 14.5847C22.9987 15.1708 22.2038 15.5 21.375 15.5H19.5V14.25M19.5 9.25V14.25M15.75 1.75L14.5 4.25M12 1.75L10.75 4.25M8.25 1.75L7 4.25"
-        stroke="#412F26"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+          xmlns="http://www.w3.org/2000/svg"
+          width="35"
+          height="35"
+          viewBox="0 0 256 256"
+        >
+          <path
+            fill="#412f26"
+            d="M80 56V24a8 8 0 0 1 16 0v32a8 8 0 0 1-16 0m40 8a8 8 0 0 0 8-8V24a8 8 0 0 0-16 0v32a8 8 0 0 0 8 8m32 0a8 8 0 0 0 8-8V24a8 8 0 0 0-16 0v32a8 8 0 0 0 8 8m96 56v8a40 40 0 0 1-37.51 39.91a96.6 96.6 0 0 1-27 40.09H208a8 8 0 0 1 0 16H32a8 8 0 0 1 0-16h24.54A96.3 96.3 0 0 1 24 136V88a8 8 0 0 1 8-8h176a40 40 0 0 1 40 40m-48-24H40v40a80.27 80.27 0 0 0 45.12 72h69.76A80.27 80.27 0 0 0 200 136Zm32 24a24 24 0 0 0-16-22.62V136a96 96 0 0 1-1.2 15a24 24 0 0 0 17.2-23Z"
+          />
+        </svg>
 
     <h2 className="text-[1.3rem] text-deep-mahogany font-bold text-center relative top-1 tracking-wide">
       Frisky coffee
     </h2>
     <button onClick={closeMenu} className="text-dark-cocoa">
-      <svg
-        className="w-6 h-6 relative top-[0.1rem] left-[6.3rem]"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M6 18 17.94 6M18 18 6.06 6"
-        />
-      </svg>
+
+      <lord-icon
+      src="https://cdn.lordicon.com/nqtddedc.json"
+      trigger="loop"
+      delay="1000"
+      colors="primary:#412f26"
+      style={{ width: '35px', height: '35px' , position: 'relative' , top: '0.2rem' , left: '5.3rem' }}
+    />
     </button>
   </div>
 );
@@ -223,10 +211,45 @@ const QuickAccess = ({ closeMenu }) => {
 
 const SocialMedia = () => {
   const items = [
-    { text: "09122345678", icon: "/assets/images/menuwhatsapp.png" },
-    { text: "@friske_coffee", icon: "/assets/images/menuinstagram.png" },
-    { text: "@friske_coffee", icon: "/assets/images/menutelegram.png" },
-    { text: "@friske_coffee", icon: "/assets/images/menulinkdin.png" },
+    { 
+      text: "09122345678", 
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m11.985 15.408l3.242 3.686c1.2 1.365 1.801 2.048 2.43 1.881c.628-.166.844-1.064 1.275-2.861l2.39-9.968c.665-2.768.997-4.151.259-4.834s-2.017-.175-4.575.84L5.14 8.865c-2.046.813-3.069 1.219-3.134 1.917a1 1 0 0 0 0 .214c.063.699 1.084 1.108 3.128 1.927c.925.371 1.388.557 1.72.912q.056.06.108.124c.306.38.436.88.697 1.876l.489 1.867c.253.97.38 1.456.713 1.522s.622-.336 1.201-1.141zm0 0l-.317-.33c-.362-.378-.543-.566-.543-.8s.18-.423.543-.8l3.573-3.724" color="currentColor"/>
+        </svg>
+      )
+    },
+    { 
+      text: "@friske_coffee", 
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 16a4 4 0 1 0 0-8a4 4 0 0 0 0 8"/>
+            <path d="M3 16V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5Z"/>
+            <path strokeLinecap="round" strokeLinejoin="round" d="m17.5 6.51l.01-.011"/>
+          </g>
+        </svg>
+      )
+    },
+    { 
+      text: "@friske_coffee", 
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m11.985 15.408l3.242 3.686c1.2 1.365 1.801 2.048 2.43 1.881c.628-.166.844-1.064 1.275-2.861l2.39-9.968c.665-2.768.997-4.151.259-4.834s-2.017-.175-4.575.84L5.14 8.865c-2.046.813-3.069 1.219-3.134 1.917a1 1 0 0 0 0 .214c.063.699 1.084 1.108 3.128 1.927c.925.371 1.388.557 1.72.912q.056.06.108.124c.306.38.436.88.697 1.876l.489 1.867c.253.97.38 1.456.713 1.522s.622-.336 1.201-1.141zm0 0l-.317-.33c-.362-.378-.543-.566-.543-.8s.18-.423.543-.8l3.573-3.724" color="currentColor"/>
+        </svg>
+      )
+    },
+    { 
+      text: "@friske_coffee", 
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+          <g fill="currentColor">
+            <path fillRule="evenodd" d="M12.51 8.796v1.697a3.74 3.74 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766c-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483a1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.6 1.6 0 0 1 1.6 1.606" clipRule="evenodd"/>
+            <path d="M7.2 8.809H4V19.5h3.2z"/>
+          </g>
+        </svg>
+      )
+    },
   ];
 
   return (
@@ -235,12 +258,10 @@ const SocialMedia = () => {
       <ul className="flex gap-4 flex-wrap mt-3 -pl-8 justify-center border-b border-opacity-30 pb-6 border-dark-cocoa">
         {items.map((item, index) => (
           <li key={index}>
-            <a className="text-white bg-dark-cocoa opacity-60 py-[0.5rem] px-4 text-xs rounded-3xl flex items-center">
-              <img
-                src={item.icon}
-                alt=""
-                className="w-[1.1rem] h-[1.1rem] mr-2 scale-[2.3] relative right-2"
-              />
+            <a className="text-dark-cocoa bg  py-[0.5rem] px-4 text-xs rounded-3xl flex items-center">
+              {cloneElement(item.icon, {
+                className: "w-[1.1rem] h-[1.1rem] mr-2 scale-[2] relative right-2 text-dark-cocoa"
+              })}
               {item.text}
             </a>
           </li>
@@ -249,6 +270,7 @@ const SocialMedia = () => {
     </>
   );
 };
+
 
 const Others = () => {
   const items = [
@@ -271,6 +293,6 @@ const Others = () => {
       </ul>
     </>
   );
-};
+};  
 
 export default Menu;
