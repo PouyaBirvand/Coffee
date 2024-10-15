@@ -8,6 +8,7 @@ import ProductTitle from "../components/ProductTitle";
 
 function Homelayout() {
   const [selectedCategory, setSelectedCategory] = useState('Coffee');
+  const [isExpanded, setIsExpanded] = useState(false);
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
@@ -37,15 +38,23 @@ function Homelayout() {
     return categories[id] || 'Coffee';
   }
 
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className='bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-6'>
-      <Header />
+    <div className={`bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-6 ${isExpanded ? 'px-0' : 'px-6'}`}>
+      <header className={`${isExpanded ? 'px-6' : '' }`}>
+      <Header/>
+      </header>
       <main>
-        <ProductTitle />
-        <CartItems category={selectedCategory} />
-        <Categories onCategoryChange={handleCategoryChange} selectedCategory={selectedCategory} />
+        <ProductTitle isExpanded={isExpanded} />
+        <CartItems category={selectedCategory} isExpanded={isExpanded}/>
+        {!isExpanded && (
+          <Categories onCategoryChange={handleCategoryChange} selectedCategory={selectedCategory} />
+        )}
       </main>
-      <BottomNavigation />
+      <BottomNavigation isExpanded={isExpanded} toggleExpanded={toggleExpanded} />
     </div>
   );
 }

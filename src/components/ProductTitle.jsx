@@ -1,7 +1,8 @@
-function ProductTitle() {
+// eslint-disable-next-line react/prop-types
+function ProductTitle({isExpanded}) {
   return (
-    <div className="relative text-center mt-4">
-      <h1 className="inline-block font-extrabold text-deep-mahogany px-4 relative text-[2.2rem] sm:w-40 lg:text-3xl">
+    <div className={` relative text-center mt-4 ${isExpanded ? 'relative top-[1rem]' : ''}  `}>
+      <h1 className={`inline-block font-extrabold text-deep-mahogany px-4 relative text-[2.8rem] sm:w-40 lg:text-4xl ${isExpanded ? '!text-[3.8rem] w-[13.5rem] !leading-[4.5rem] md:!text-[2.8rem] md:w-[11rem]' : ''}`}>
         <span className="absolute left-[-5%] top-1 space-y-[0.4rem]">
           <span className="block w-5 h-[2px] bg-deep-mahogany transform rotate-45 mb-2"></span>
           <span className="block w-5 h-[2px] bg-deep-mahogany transform rotate-[20deg]"></span>
