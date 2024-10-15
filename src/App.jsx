@@ -1,10 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import lottie from 'lottie-web';
-import { defineElement } from 'lord-icon-element';
-
-// Define "lord-icon" custom element
-defineElement(lottie.loadAnimation);
 
 const Homepage = lazy(() => import("./pages/Homelayout.jsx"));
 
