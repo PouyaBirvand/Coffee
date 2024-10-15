@@ -27,16 +27,13 @@ function SearchBar() {
           className="w-full py-2 focus:outline-none bg-soft-cream placeholder:text-dark-cocoa"
         />
         <button type="submit" className="focus:outline-none ml-2 mb-1">
-        {/* <LordIcon
-                src="https://cdn.lordicon.com/wjyqkiew.json"
-                trigger="loop"
-                stroke="bold"
-                size={40}
-                colors="primary:#412f26,secondary:#412f26"
-              /> */}
-              <svg className="w-6 h-6 text-dark-cocoa" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-</svg>
+              <lord-icon
+                  src="https://cdn.lordicon.com/kkvxgpti.json"
+                  trigger="loop"
+                  delay="0"
+                  colors="primary:#412f26"
+                  style={{ width: "30px", height: "30px" , position: 'relative' , bottom: '-0.2rem' }}
+                />
 
         </button>
       </form>

@@ -46,7 +46,7 @@ function CartItems({ category , isExpanded }) {
       spaceBetween={40}
     >
       {items.map((item) => (
-        <SwiperSlide key={item.id} className="pt-7">
+        <SwiperSlide key={item.id} className="pt-6">
           <div className="shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5 mx-auto">
             <div className="relative -top-8">
               <img

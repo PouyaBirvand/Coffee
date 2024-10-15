@@ -43,7 +43,7 @@ function Header({ isExpanded , setIsExpanded }) {
           >
             <lord-icon
               src="https://cdn.lordicon.com/eouimtlu.json"
-              trigger="hover"
+              trigger="loop"
               delay="0"
               colors="primary:#412f26"
               style={{ width: "35px", height: "35px" }}
@@ -59,7 +59,7 @@ function Header({ isExpanded , setIsExpanded }) {
           >
             <lord-icon
               src="https://cdn.lordicon.com/vduvxizq.json"
-              trigger="hover"
+              trigger="loop"
               delay="0"
               colors="primary:#412f26"
               style={{ width: "35px", height: "35px" }}
@@ -84,7 +84,7 @@ function Header({ isExpanded , setIsExpanded }) {
               ) : (
                 <lord-icon
                   src="https://cdn.lordicon.com/kkvxgpti.json"
-                  trigger="hover"
+                  trigger="loop"
                   delay="0"
                   colors="primary:#412f26"
                   style={{ width: "35px", height: "35px" }}
@@ -94,7 +94,7 @@ function Header({ isExpanded , setIsExpanded }) {
             <button aria-label="Basket" className="focus:outline-none">
               <lord-icon
                 src="https://cdn.lordicon.com/evyuuwna.json"
-                trigger="hover"
+                trigger="loop"
                 delay="0"
                 colors="primary:#412f26"
                 style={{ width: "35px", height: "35px" }}
