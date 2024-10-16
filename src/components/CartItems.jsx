@@ -38,7 +38,7 @@ function CartItems({ category, isExpanded }) {
           />
         </div>
         {isExpanded && (
-          <div className="fixed bottom-[3.7rem] left-0 right-0 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-11 z-[1000] mx-[5rem]">
+          <div className="fixed bottom-[3.7rem] left-0 right-0 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] mx-[5rem]">
             <h1 className="text-white text-[2.4rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
               {item.title}
             </h1>
