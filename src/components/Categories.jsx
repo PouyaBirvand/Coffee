@@ -15,7 +15,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
           />
         </svg>
       ),
-      alt: "Icecreams",
+      alt: "Ice creams",
     },
     {
       icon: (

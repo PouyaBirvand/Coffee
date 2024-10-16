@@ -51,7 +51,7 @@ function Homelayout() {
     <div className='bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-6'>
       <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
       <main>
-        <ProductTitle />
+        <ProductTitle isExpanded={isExpanded} />
         <CartItems category={selectedCategory} isExpanded={isExpanded}/>
         {!isExpanded && (
           <Categories onCategoryChange={handleCategoryChange} selectedCategory={selectedCategory} />
