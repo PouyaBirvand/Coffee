@@ -11,8 +11,6 @@ function CartItems({ category, isExpanded }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    // Here you would typically fetch data based on the category
-    // For this example, we'll just use mock data
     setItems([
       { id: 1, image: '/assets/images/Coffee.png', title: category, price: 4.99 },
       { id: 2, image: '/assets/images/Coffee.png', title: category, price: 5.99 },
@@ -30,16 +28,16 @@ function CartItems({ category, isExpanded }) {
   };
 
   const renderSlide = (item) => (
-    <SwiperSlide key={item.id} className={`pt-6 ${isExpanded && 'pt-[1.5rem]'}`}>
-      <div className={`${!isExpanded && 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5'} mx-auto`}>
+    <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[1.9rem]' : ''}`}>
+      <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5' : ''} mx-auto`}>
         <div className="relative -top-8">
           <img
             src={item.image}
             alt={item.title}
-            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded && 'scale-[1.5] translate-y-[4rem]'}`}
+            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? 'scale-[1.5] translate-y-[4rem]' : ''}`}
           />
         </div>
-        <div className={`${isExpanded ? 'backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-9 z-[1000] relative' : ''}`}>
+        <div className={`${isExpanded ? 'backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-xl p-9 z-[1000] relative' : ''}`}>
           <h1 className="text-white text-[2.5rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
             {item.title}
           </h1>
@@ -60,6 +58,9 @@ function CartItems({ category, isExpanded }) {
             </p>
           )}
         </div>
+        {isExpanded && (
+          <div className="absolute z-[2000] bottom-[0.1rem] -right-[-5.2rem] transform rotate-180 -translate-x-1/2 w-[5.3rem] h-[1.8rem] border-b-4 border-l-full border-r-4 border-[#CBB89D] bg-[#CBB89D] rounded-b-full"></div>
+        )}
       </div>
     </SwiperSlide>
   );
