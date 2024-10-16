@@ -37,18 +37,13 @@ function Homelayout() {
     };
     return categories[id] || 'Coffee';
   }
-  // Coffee
-// Shake
-// Ice cream
-// Foods
-// Dessert
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
 
   return (
-    <div className='bg-body h-screen overflow-auto scrollbar-hide w-full px-10 md:px-6 pt-6'>
+    <div className='bg-body h-screen overflow-hidden scrollbar-hide w-full px-10 md:px-6 pt-6'>
       <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
       <main>
         <ProductTitle isExpanded={isExpanded} />

@@ -28,38 +28,43 @@ function CartItems({ category, isExpanded }) {
   };
 
   const renderSlide = (item) => (
-    <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[1.9rem]' : ''}`}>
+    <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[1.8rem]' : ''}`}>
       <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5' : ''} mx-auto`}>
         <div className="relative -top-8">
           <img
             src={item.image}
             alt={item.title}
-            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? 'scale-[1.5] translate-y-[4rem]' : ''}`}
+            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? 'scale-[1.5] translate-y-[7.5rem] absloute' : ''}`}
           />
         </div>
-        <div className={`${isExpanded ? 'backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-xl p-9 z-[1000] relative' : ''}`}>
-          <h1 className="text-white text-[2.5rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
-            {item.title}
-          </h1>
-          <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-            {isExpanded ? fullText : `${fullText.slice(0, maxLength)}...`}
-            {!isExpanded && (
+        {isExpanded && (
+          <div className="fixed bottom-[3.7rem] left-0 right-0 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-9 z-[1000] mx-[5rem]">
+            <h1 className="text-white text-[2.4rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
+              {item.title}
+            </h1>
+            <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
+              {fullText.split(' ').slice(0, 8).join(' ') + '...'}
+            </p>
+            <p className="text-white font-bold mt-2 text-3xl">
+              ${item.price.toFixed(2)}
+            </p>
+          </div>
+        )}
+        {!isExpanded && (
+          <div>
+            <h1 className="text-white text-[2.5rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
+              {item.title}
+            </h1>
+            <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
+              {`${fullText.slice(0, maxLength)}...`}
               <button 
                 className="text-deep-mahogany ml-1 font-bold uppercase"
                 onClick={() => toggleReadMore(item.id)}
               >
                 {expandedItems[item.id] ? 'Read less' : 'Read more'}
               </button>
-            )}
-          </p>
-          {isExpanded && (
-            <p className="text-white font-bold mt-2 text-3xl">
-             ${item.price.toFixed(2)}
             </p>
-          )}
-        </div>
-        {isExpanded && (
-          <div className="absolute z-[2000] bottom-[0.1rem] -right-[-5.2rem] transform rotate-180 -translate-x-1/2 w-[5.3rem] h-[1.8rem] border-b-4 border-l-full border-r-4 border-[#CBB89D] bg-[#CBB89D] rounded-b-full"></div>
+          </div>
         )}
       </div>
     </SwiperSlide>
