@@ -15,7 +15,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
           />
         </svg>
       ),
-      alt: "Ice Creams",
+      alt: "Icecreams",
     },
     {
       icon: (
@@ -31,7 +31,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
           />
         </svg>
       ),
-      alt: "Drinks",
+      alt: "Dessert",
     },
     {
       icon: (
@@ -52,7 +52,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
           />
         </svg>
       ),
-      alt: "Soft Drinks",
+      alt: "Shake",
     },
     {
       icon: (
@@ -84,7 +84,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
           />
         </svg>
       ),
-      alt: "Pizza",
+      alt: "Foods",
     },
   ];
 

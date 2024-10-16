@@ -29,14 +29,19 @@ function Homelayout() {
 
   function getCategoryName(id) {
     const categories = {
-      'IceCreams': 'Ice Creams',
-      'Drinks': 'Drinks',
-      'SoftDrinks': 'Soft Drinks',
+      'Icecreams': 'Ice creams',
+      'Dessert': 'Dessert',
+      'Shake': 'Shake',
       'Coffee': 'Coffee',
-      'Pizza': 'Pizza'
+      'Foods': 'Foods'
     };
     return categories[id] || 'Coffee';
   }
+  // Coffee
+// Shake
+// Ice cream
+// Foods
+// Dessert
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
