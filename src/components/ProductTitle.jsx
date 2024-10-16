@@ -2,7 +2,7 @@
 function ProductTitle({isExpanded}) {
   return (
     <div className="relative text-center mt-3 h-[3rem]">
-      <h1 className={`inline-block font-extrabold text-deep-mahogany px-4 leading-[2rem] relative text-[2.6rem] sm:w-40 lg:text-[2rem] ${isExpanded && 'lg:text-[2.5rem] leading-[3rem] mt-5'}`}>
+      <h1 className={`inline-block font-extrabold text-deep-mahogany px-4 leading-[2rem] relative text-[2.6rem] sm:w-40 lg:text-[2rem] ${isExpanded && 'lg:text-[3.5rem] leading-[4rem] mt-1'}`}>
         <span className="absolute left-[-5%] top-1 space-y-[0.4rem]">
           <span className="block w-5 h-[2px] bg-deep-mahogany transform rotate-45 mb-2"></span>
           <span className="block w-5 h-[2px] bg-deep-mahogany transform rotate-[20deg]"></span>
