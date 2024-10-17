@@ -23,13 +23,13 @@ function CartItems({ category, isExpanded }) {
     "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
     const renderSlide = (item) => (
-      <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[5.9rem]' : ''}`}>
+      <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[5.9rem] sm:pt-[8rem]' : ''}`}>
         <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5' : ''} mx-auto`}>
           <div className="relative -top-8">
             <motion.img
               src={item.image}
               alt={item.title}
-              className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? ' fixed left-0 right-0 translate-y-[6.5rem] absloute w-[85%]' : ''}`}
+              className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? ' fixed left-0 right-0 translate-y-[6.5rem] absloute w-[82%]' : ''}`}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1.2 }}
               transition={{ duration: 0.5 }}
@@ -37,7 +37,7 @@ function CartItems({ category, isExpanded }) {
           </div>
           {isExpanded && (
             <motion.div
-              className="fixed left-0 right-0 bottom-14 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] max-w-[80%] mx-auto h-[17em]"
+              className="fixed left-0 right-0 bottom-14 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] max-w-[75%] mx-auto h-[17em] sm:h-[15rem]"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 50 }}
