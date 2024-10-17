@@ -31,7 +31,7 @@ function CartItems({ category, isExpanded }) {
           <img
             src={item.image}
             alt={item.title}
-            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? ' fixed  left-0 right-0 scale-[1.2] translate-y-[7.5rem] absloute w-[90%]' : ''}`}
+            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? ' fixed  left-0 right-0 scale-[1.2] translate-y-[6.5rem] absloute w-[90%]' : ''}`}
           />
         </div>
         {isExpanded && (
