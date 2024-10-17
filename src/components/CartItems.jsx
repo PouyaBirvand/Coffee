@@ -23,7 +23,7 @@ function CartItems({ category, isExpanded }) {
     "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
     const renderSlide = (item) => (
-      <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[8rem]' : ''}`}>
+      <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[5.9rem]' : ''}`}>
         <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-5' : ''} mx-auto`}>
           <div className="relative -top-8">
             <motion.img
