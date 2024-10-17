@@ -2,11 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Menu from "./Menu";
 import SearchBar from "./SearchBar";
+import { useAppContext } from "../context/AppContext";
 
 // import LordIcon from '../components/LordIcon';
 
-// eslint-disable-next-line react/prop-types
-function Header({ isExpanded , setIsExpanded }) {
+function Header() {
+  const { isExpanded , setIsExpanded } = useAppContext()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);

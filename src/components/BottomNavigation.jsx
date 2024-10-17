@@ -1,5 +1,8 @@
-// eslint-disable-next-line react/prop-types
-function BottomNavigation({ isExpanded, toggleExpanded }) {
+import { useAppContext } from "../context/AppContext";
+
+function BottomNavigation() {
+  const { isExpanded, toggleExpanded } = useAppContext()
+
   return (
     <>
       {isExpanded && (

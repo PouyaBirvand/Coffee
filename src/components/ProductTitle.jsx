@@ -1,5 +1,7 @@
-// eslint-disable-next-line react/prop-types
-function ProductTitle({isExpanded}) {
+import { useAppContext } from "../context/AppContext";
+
+function ProductTitle() {
+  const { isExpanded } = useAppContext();
   return (
     <div className="relative text-center mt-3 h-[3rem]">
       <h1 className={`inline-block font-extrabold text-deep-mahogany px-4 leading-[2rem] relative text-[2.6rem] sm:w-40 lg:text-[2rem] ${isExpanded && 'lg:text-[3.5rem] -mt-2 text-[3.5rem] leading-[3.5rem] sm:mt-3 md:!text-[2.8rem]'}`}>

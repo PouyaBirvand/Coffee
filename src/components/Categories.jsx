@@ -1,5 +1,12 @@
-// eslint-disable-next-line react/prop-types
-function Categories({ onCategoryChange, selectedCategory }) {
+import { useAppContext } from "../context/AppContext";
+
+function Categories() {
+  const { selectedCategory, setSelectedCategory } = useAppContext();
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
   const categories = [
     {
       icon: (
@@ -92,7 +99,7 @@ function Categories({ onCategoryChange, selectedCategory }) {
     <div className="xl:mt-10 lg:mt-12 md:mt-10 sm:mt-8 xs:mt-5 mx-auto w-[78%] max-w-2xl xl:max-w-[19.5rem] lg:max-w-lg md:max-w-md sm:max-w-sm xs:max-w-xs">
       <div className="bg-warm-wood bg-opacity-60 rounded-full flex justify-between items-center py-1 px-1 xl:px-1 lg:px-2 md:px-1 sm:px-1 xs:px-0.5">
         {categories.map((category, index) => (
-          <div key={index} onClick={() => onCategoryChange(category.alt)}>
+          <div key={index} onClick={() => handleCategoryChange(category.alt)}>
             <div
               className={`
                 w-12 h-12 xl:w-11 xl:h-11 lg:w-10 lg:h-10 md:w-9 md:h-9 sm:w-8 sm:h-8 xs:w-7 xs:h-7

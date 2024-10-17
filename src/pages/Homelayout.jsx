@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BottomNavigation from "../components/BottomNavigation";
 import CartItems from "../components/CartItems";
 import Categories from "../components/Categories";
 import Header from "../components/Header";
 import ProductTitle from "../components/ProductTitle";
+import { useAppContext } from '../context/AppContext';
 
 function Homelayout() {
-  const [selectedCategory, setSelectedCategory] = useState('Coffee');
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { selectedCategory, setSelectedCategory, isExpanded, setIsExpanded } = useAppContext();
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
@@ -20,12 +20,7 @@ function Homelayout() {
     } else {
       navigate('/Coffee');
     }
-  }, [categoryId, navigate]);
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-    navigate(`/${category.replace(/\s+/g, '')}`);
-  };
+  }, [categoryId, navigate, setSelectedCategory]);
 
   function getCategoryName(id) {
     const categories = {
@@ -49,7 +44,7 @@ function Homelayout() {
         <ProductTitle isExpanded={isExpanded} />
         <CartItems category={selectedCategory} isExpanded={isExpanded}/>
         {!isExpanded && (
-          <Categories onCategoryChange={handleCategoryChange} selectedCategory={selectedCategory} />
+          <Categories />
         )}
       </main>
       <BottomNavigation isExpanded={isExpanded} toggleExpanded={toggleExpanded} />
