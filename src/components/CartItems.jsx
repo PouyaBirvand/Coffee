@@ -20,7 +20,7 @@ function CartItems({ category, isExpanded }) {
   }, [category]);
 
   const fullText =
-    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet  sit amet.Lorem amet conse Lorem amet conse sit amet consectetur m amet conse sit amet c Lorem amet conse sit amet consectetur?";
+    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
 
 
@@ -31,11 +31,11 @@ function CartItems({ category, isExpanded }) {
           <img
             src={item.image}
             alt={item.title}
-            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? 'scale-[1.5] translate-y-[7.5rem] absloute' : ''}`}
+            className={`m-auto max-w-full h-auto scale-[1.2] ${isExpanded ? ' fixed  left-0 right-0 scale-[1.2] translate-y-[7.5rem] absloute w-[90%]' : ''}`}
           />
         </div>
         {isExpanded && (
-          <div className="fixed bottom-[3.6rem] left-0 right-0 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] mx-[4.5rem] h-[20rem]">
+          <div className="fixed left-0 right-0 bottom-14 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] max-w-[80%] mx-auto h-[18em]">
             <h1 className="text-white text-[2.4rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
               {item.title}
             </h1>
