@@ -20,12 +20,9 @@ function CartItems({ category, isExpanded }) {
   }, [category]);
 
   const fullText =
-    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet consectetur Lorem amet conse sit amet consectetur?";
-  const maxLength = 70;
+    "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet  sit amet.Lorem amet conse Lorem amet conse sit amet consectetur m amet conse sit amet c Lorem amet conse sit amet consectetur?";
 
-  const toggleReadMore = (id) => {
-    setExpandedItems(prev => ({ ...prev, [id]: !prev[id] }));
-  };
+
 
   const renderSlide = (item) => (
     <SwiperSlide key={item.id} className={`pt-6 ${isExpanded ? 'pt-[1.8rem]' : ''}`}>
@@ -38,12 +35,12 @@ function CartItems({ category, isExpanded }) {
           />
         </div>
         {isExpanded && (
-          <div className="fixed bottom-[3.6rem] left-0 right-0 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] mx-[3rem]">
+          <div className="fixed bottom-[3.6rem] left-0 right-0 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] mx-[4.5rem] h-[20rem]">
             <h1 className="text-white text-[2.4rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
               {item.title}
             </h1>
             <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-              {fullText.split(' ').slice(0, 8).join(' ') + '...'}
+              {fullText}
             </p>
             <p className="text-white font-bold mt-2 text-3xl">
               ${item.price.toFixed(2)}
@@ -56,13 +53,7 @@ function CartItems({ category, isExpanded }) {
               {item.title}
             </h1>
             <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-              {`${fullText.slice(0, maxLength)}...`}
-              <button 
-                className="text-deep-mahogany ml-1 font-bold uppercase"
-                onClick={() => toggleReadMore(item.id)}
-              >
-                {expandedItems[item.id] ? 'Read less' : 'Read more'}
-              </button>
+            {fullText.split(' ').slice(0, 10).join(' ') + '...'}
             </p>
           </div>
         )}
