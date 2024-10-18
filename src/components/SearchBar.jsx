@@ -19,7 +19,7 @@ function SearchBar() {
       transition={{ duration: 0.3 }}
       className="flex items-center bg-soft-cream px-4 py-1 mt-2 w-full rounded-full shadow-md relative z-30"
     >
-      <form className="flex-grow flex items-center px-2  relative top-[0.2rem]">
+      <form className="flex-grow flex items-center px-2 relative top-[0.2rem]">
         <input
           ref={inputRef}
           type="text"

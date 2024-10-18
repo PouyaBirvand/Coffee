@@ -9,7 +9,7 @@ const Menu = ({ closeMenu }) => (
       animate={{ opacity: 0.7 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 bg-black z-[999]"
+      className="fixed inset-0 bg-black z-[1000]"
       onClick={closeMenu}
     />
     <motion.div
@@ -17,7 +17,7 @@ const Menu = ({ closeMenu }) => (
       animate={{ x: 0 }}
       exit={{ x: "-100%" }}
       transition={{ type: "tween", duration: 0.3 }}
-      className="fixed left-0 top-0 h-full w-[21rem] bg-body shadow-md z-[1000] rounded-r-[2.8rem]"
+      className="fixed left-0 top-0 h-full w-[21rem] bg-body shadow-md z-[3000] rounded-r-[2.8rem]"
     >
       <nav className="p-5 -mt-2">
         <MenuHeader closeMenu={closeMenu} />
