@@ -9,6 +9,7 @@ export default {
         "warm-wood": "#806044",
         "deep-mahogany": "#5D2510",
         "dark-cocoa": "#412F26",
+        "translucent-coffee": "#835A36"
       },
       backgroundColor: {
         body: "#CBB89D",

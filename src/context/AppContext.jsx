@@ -7,6 +7,8 @@ export function AppProvider({ children }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [cart, setCart] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   const toggleExpanded = () => {
     setIsExpanded(prev => !prev);
@@ -14,6 +16,9 @@ export function AppProvider({ children }) {
 
   const addToCart = (item) => {
     setCart(prevCart => [...prevCart, item]);
+  };
+  const removeItem = (id) => {
+    setCart(cart.filter(item => item.id !== id));
   };
 
   const value = {
@@ -26,6 +31,8 @@ export function AppProvider({ children }) {
     addToCart,
     currentItem,
     setCurrentItem,
+    setCart,
+    removeItem,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

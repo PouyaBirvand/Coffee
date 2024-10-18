@@ -3,16 +3,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import Menu from "./Menu";
 import SearchBar from "./SearchBar";
 import { useAppContext } from "../context/AppContext";
-import { useNavigate } from "react-router-dom";
-
-// import LordIcon from '../components/LordIcon';
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Header() {
-  const { isExpanded , setIsExpanded } = useAppContext()
+  const { isExpanded, setIsExpanded } = useAppContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -39,10 +38,12 @@ function Header() {
     navigate('/cart');
   };
 
+  const isCartPage = location.pathname === '/cart';
+
   return (
     <header className="relative">
       <div className="flex justify-between items-center p-4">
-        {!isExpanded && (
+        {!isCartPage && !isExpanded && (
           <button
             aria-label="Menu"
             className="focus:outline-none z-10"
@@ -58,12 +59,11 @@ function Header() {
           </button>
         )}
 
-        {isExpanded && (
+        {(isCartPage || isExpanded) && (
           <button
             aria-label="Arrow"
             className="focus:outline-none z-10"
-            onClick={() => setIsExpanded(!isExpanded)}
-            
+            onClick={() => isCartPage ? navigate(-1) : setIsExpanded(!isExpanded)}
           >
             <lord-icon
               src="https://cdn.lordicon.com/vduvxizq.json"
@@ -75,21 +75,18 @@ function Header() {
           </button>
         )}
 
-        {/* vduvxizq */}
-        {isSearchOpen ? (
+        {isSearchOpen && !isCartPage ? (
           <div className="absolute inset-0 z-20" ref={searchRef}>
             <SearchBar onClose={closeSearch} />
           </div>
         ) : (
           <div className="flex space-x-4 items-center z-10">
-            <button
-              aria-label="Search"
-              className="focus:outline-none"
-              onClick={toggleSearch}
-            >
-              {isExpanded ? (
-                ""
-              ) : (
+            {!isCartPage && !isExpanded && (
+              <button
+                aria-label="Search"
+                className="focus:outline-none"
+                onClick={toggleSearch}
+              >
                 <lord-icon
                   src="https://cdn.lordicon.com/kkvxgpti.json"
                   trigger="loop"
@@ -97,17 +94,20 @@ function Header() {
                   colors="primary:#412f26"
                   style={{ width: "35px", height: "35px" }}
                 />
-              )}
-            </button>
-            <button aria-label="Basket" className="focus:outline-none" onClick={goToCart}>
-              <lord-icon
-                src="https://cdn.lordicon.com/evyuuwna.json"
-                trigger="loop"
-                delay="0"
-                colors="primary:#412f26"
-                style={{ width: "35px", height: "35px" }}
-              />
-            </button>
+              </button>
+              
+            )}
+           
+              <button aria-label="Basket" className="focus:outline-none" onClick={goToCart}>
+                <lord-icon
+                  src="https://cdn.lordicon.com/evyuuwna.json"
+                  trigger="loop"
+                  delay="0"
+                  colors="primary:#412f26"
+                  style={{ width: "35px", height: "35px" }}
+                />
+              </button>
+          
           </div>
         )}
       </div>
