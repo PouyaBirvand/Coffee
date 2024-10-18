@@ -1,3 +1,4 @@
+import BottomNavigation from "../components/BottomNavigation";
 import Header from "../components/Header";
 import ProductTitle from "../components/ProductTitle";
 import { useAppContext } from "../context/AppContext";
@@ -41,14 +42,14 @@ function Cart() {
 
   return (
     <>
-      <div className="bg-body min-h-screen w-full px-10 md:px-6 pt-6 pb-40">
+      <div className="bg-body min-h-screen w-full px-10 md:px-6 pt-6">
         <Header />
         <ProductTitle />
         {cart.length === 0 ? (
           <p className="text-dark-cocoa">Your cart is empty.</p>
         ) : (
 <>
-  <div className="-mt-[1.5rem] w-[92%] mx-auto sm:mt-[1rem] h-[30rem] overflow-scroll">
+  <div className="-mt-[1.5rem] w-[92%] mx-auto sm:mt-[1rem] h-[29rem] overflow-scroll relative z-[1]">
     {cart?.map((item) => (
       <div
         key={item.id}
@@ -107,7 +108,7 @@ function Cart() {
     ))}
   </div>
 
-  <div className="fixed bottom-16 left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%]">
+  <div className="fixed bottom-[6.5rem] left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%] z-[1]">
     <div className="w-[95%] mx-auto">
       <div className="flex justify-between text-white mb-1">
         <span className="text-lg">Item Amount:</span>
@@ -130,6 +131,7 @@ function Cart() {
 
         )}
       </div>
+      <BottomNavigation/>
     </>
   );
 }
