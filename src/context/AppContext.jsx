@@ -5,9 +5,15 @@ const AppContext = createContext();
 export function AppProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState('Coffee');
   const [isExpanded, setIsExpanded] = useState(false);
+  const [cart, setCart] = useState([]);
+  const [currentItem, setCurrentItem] = useState(null);
 
   const toggleExpanded = () => {
     setIsExpanded(prev => !prev);
+  };
+
+  const addToCart = (item) => {
+    setCart(prevCart => [...prevCart, item]);
   };
 
   const value = {
@@ -16,6 +22,10 @@ export function AppProvider({ children }) {
     isExpanded,
     setIsExpanded,
     toggleExpanded,
+    cart,
+    addToCart,
+    currentItem,
+    setCurrentItem,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Menu from "./Menu";
 import SearchBar from "./SearchBar";
 import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 // import LordIcon from '../components/LordIcon';
 
@@ -11,6 +12,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
+  const navigate = useNavigate()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -32,6 +34,10 @@ function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isSearchOpen]);
+
+  const goToCart = () => {
+    navigate('/cart');
+  };
 
   return (
     <header className="relative">
@@ -57,6 +63,7 @@ function Header() {
             aria-label="Arrow"
             className="focus:outline-none z-10"
             onClick={() => setIsExpanded(!isExpanded)}
+            
           >
             <lord-icon
               src="https://cdn.lordicon.com/vduvxizq.json"
@@ -92,7 +99,7 @@ function Header() {
                 />
               )}
             </button>
-            <button aria-label="Basket" className="focus:outline-none">
+            <button aria-label="Basket" className="focus:outline-none" onClick={goToCart}>
               <lord-icon
                 src="https://cdn.lordicon.com/evyuuwna.json"
                 trigger="loop"
