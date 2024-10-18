@@ -93,7 +93,7 @@ function Cart() {
         className="mt-6 bg-deep-mahogany text-white px-6 py-2 rounded-full text-lg font-semibold"
       >
         <button onClick={() => navigate('/')}>
-        Start Shopping
+        Back to menu
         </button>
       </motion.button>
     </motion.div>
