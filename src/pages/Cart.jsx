@@ -108,7 +108,7 @@ function Cart() {
     ))}
   </div>
 
-  <div className="fixed bottom-[6.5rem] left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%] z-[1]">
+  <div className="fixed bottom-[7rem] left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%] z-[1] sm:bottom-[5.5rem]">
     <div className="w-[95%] mx-auto">
       <div className="flex justify-between text-white mb-1">
         <span className="text-lg">Item Amount:</span>
