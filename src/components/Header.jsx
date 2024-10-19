@@ -6,7 +6,7 @@ import { useAppContext } from "../context/AppContext";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function Header() {
-  const { isExpanded, setIsExpanded } = useAppContext();
+  const { isExpanded, setIsExpanded, totalItems } = useAppContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
@@ -107,7 +107,11 @@ function Header() {
                   style={{ width: "35px", height: "35px" }}
                 />
               </button>
-          
+              {totalItems > 0 && (
+              <div className="absolute top-2 -right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-[0.65rem] text-center font-bold">
+                {totalItems}
+              </div>
+            )}
           </div>
         )}
       </div>

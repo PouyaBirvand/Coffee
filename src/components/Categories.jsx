@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 
 function Categories() {
   const { selectedCategory, setSelectedCategory } = useAppContext();
+  const navigate = useNavigate();
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+    navigate(`/${category.replace(/\s+/g, '')}`);
   };
-
   const categories = [
     {
       icon: (
