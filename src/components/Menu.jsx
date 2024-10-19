@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { use } from "framer-motion/client";
 import { useState, useEffect, cloneElement } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+
 // eslint-disable-next-line react/prop-types
 const Menu = ({ closeMenu }) => (
   <>
