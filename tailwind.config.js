@@ -17,6 +17,9 @@ export default {
       fontFamily: {
         sans: "Vazirmatn , sans-serif",
       },
+      clipPath: {
+        curved: 'ellipse(50% 50% at 50% 50%)',
+      },
       screens: {
         xs: { max: "350px" },
         sm: { max: "375px" },

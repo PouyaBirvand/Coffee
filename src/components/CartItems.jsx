@@ -5,6 +5,7 @@ import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
+
 // eslint-disable-next-line react/prop-types
 function CartItems({ category, isExpanded }) {
   const [items, setItems] = useState([]);
@@ -13,10 +14,10 @@ function CartItems({ category, isExpanded }) {
 
   useEffect(() => {
     setItems([
-      { id: 1, image: '/assets/images/Coffee.png', title: category, price: 4.99 , discount: 0.05 , fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-      { id: 2, image: '/assets/images/Coffee.png', title: category, price: 5.99 , discount: 0.03 , fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-      { id: 3, image: '/assets/images/Coffee.png', title: category, price: 3.99 , discount: 0.02 , fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-      { id: 4, image: '/assets/images/Coffee.png', title: category, price: 6.99 , fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
+      { id: `${category}-1`, image: '/assets/images/Coffee.png', title: category, price: 4.99, discount: 0.05, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
+      { id: `${category}-2`, image: '/assets/images/Coffee.png', title: category, price: 5.99, discount: 0.03, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
+      { id: `${category}-3`, image: '/assets/images/Coffee.png', title: category, price: 3.99, discount: 0.02, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
+      { id: `${category}-4`, image: '/assets/images/Coffee.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
     ]);
   }, [category]);
 

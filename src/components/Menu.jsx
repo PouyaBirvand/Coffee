@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { use } from "framer-motion/client";
 import { useState, useEffect, cloneElement } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
@@ -330,6 +331,7 @@ const SocialMedia = () => {
 };
 
 const Others = () => {
+  const navigate = useNavigate()
   const items = [
     {
       text: "orders",
@@ -369,6 +371,9 @@ const Others = () => {
           </g>
         </svg>
       ),
+      onclick: () => {
+        navigate("/cart")
+      }
     },
     {
       text: "about us",
@@ -396,20 +401,23 @@ const Others = () => {
 
   return (
     <>
-      <p className="mt-1 pt-1 text-sm">Others</p>
-      <ul className="flex gap-1 flex-col pl-5 border-b border-opacity-30 pb-2 mt-1 border-dark-cocoa">
-        {items.map((item, index) => (
-          <li key={index}>
-            <a className="text-dark-cocoa text-[1.1rem] flex items-center">
-              <span className="w-[2rem] h-[2rem] mr-2 flex items-center justify-center">
-                {item.icon}
-              </span>
-              {item.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </>
+    <p className="mt-1 pt-1 text-sm">Others</p>
+    <ul className="flex gap-1 flex-col pl-5 border-b border-opacity-30 pb-2 mt-1 border-dark-cocoa">
+      {items.map((item, index) => (
+        <li key={index}>
+          <a 
+            className="text-dark-cocoa text-[1.1rem] flex items-center cursor-pointer"
+            onClick={item.onclick}
+          >
+            <span className="w-[2rem] h-[2rem] mr-2 flex items-center justify-center">
+              {item.icon}
+            </span>
+            {item.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </>
   );
 };
 
