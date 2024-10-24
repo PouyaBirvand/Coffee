@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BottomNavigation from "../components/BottomNavigation";
-import CartItems from "../components/CartItems";
+import CartItems from "../components/Products";
 import Categories from "../components/Categories";
 import Header from "../components/Header";
 import ProductTitle from "../components/ProductTitle";
