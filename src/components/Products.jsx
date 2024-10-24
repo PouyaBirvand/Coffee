@@ -5,9 +5,10 @@ import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
+import { productService } from '../services/ProductSerivce';
 
 // eslint-disable-next-line react/prop-types
-function CartItems({ category, isExpanded }) {
+function Products({ category, isExpanded }) {
   const [items, setItems] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const { setCurrentItem } = useAppContext();
@@ -111,4 +112,4 @@ function CartItems({ category, isExpanded }) {
   );
 }
 
-export default CartItems;
+export default Products;

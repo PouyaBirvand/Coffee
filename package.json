@@ -11,6 +11,7 @@
   "dependencies": {
     "@lordicon/element": "^1.10.0",
     "@lordicon/react": "^1.10.0",
+    "axios": "^1.7.7",
     "framer-motion": "^11.11.4",
     "lord-icon-element": "^4.1.2",
     "lottie-web": "^5.12.2",
