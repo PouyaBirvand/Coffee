@@ -25,7 +25,7 @@ function BottomNavigation() {
           <div className="relative w-[100px] h-[52px] bg-dark-cocoa rounded-t-[2.6rem] bottom-[0.7rem] -z-50"></div>
           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
             <div className="bg-dark-cocoa p-2 rounded-full shadow-lg border border-white">
-              <div className="bg-dark-cocoa w-[5rem] h-[3rem] -z-20 absolute -top-2 left-1/2 transform -translate-x-1/2 rounded-t-full"></div>
+              <div className="bg-dark-cocoa w-[4.7rem] h-[3rem] -z-20 absolute -top-2 left-1/2 transform -translate-x-1/2 rounded-t-full"></div>
               {isCartPage ? (
                 <svg
                   width="32"
@@ -80,7 +80,7 @@ function BottomNavigation() {
       stroke="white"
       strokeWidth="12"
       fill="none"
-      className="w-11 h-11 cursor-pointer relative z-12"
+      className="w-10 h-10 cursor-pointer relative z-12"
       onClick={toggleExpanded}
     >
       <g>
