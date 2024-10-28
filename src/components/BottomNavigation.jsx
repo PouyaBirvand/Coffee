@@ -18,14 +18,14 @@ function BottomNavigation() {
   return (
     <>
       {isExpanded && (
-        <div className="fixed bottom-[3.2rem] left-1/2 transform -translate-x-1/2 w-[4.8rem] h-[2.2rem] bg-body rounded-t-full z-[1999]"></div>
+        <div className="fixed bottom-[3.2rem] left-1/2 transform -translate-x-1/2 w-[5rem] h-[2.3rem] bg-body rounded-t-full z-[1999]"></div>
       )}
       <nav className="fixed bottom-0 left-0 right-0 bg-dark-cocoa z-[2000]">
         <div className="flex justify-around items-center h-[3.2rem] relative">
           <div className="relative w-[100px] h-[52px] bg-dark-cocoa rounded-t-[2.6rem] bottom-[0.7rem] -z-50"></div>
           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
             <div className="bg-dark-cocoa p-2 rounded-full shadow-lg border border-white">
-              <div className="bg-dark-cocoa w-[4.5rem] h-[3rem] -z-20 absolute -top-2 left-1/2 transform -translate-x-1/2 rounded-t-full"></div>
+              <div className="bg-dark-cocoa w-[5rem] h-[3rem] -z-20 absolute -top-2 left-1/2 transform -translate-x-1/2 rounded-t-full"></div>
               {isCartPage ? (
                 <svg
                   width="32"
@@ -66,12 +66,35 @@ function BottomNavigation() {
                   </svg>
                 </div>
               ) : (
-                <img
-                  src="/assets/images/ion_restaurant-outline.png"
-                  alt="Restaurant icon"
-                  className="w-10 h-10 cursor-pointer relative z-10"
-                  onClick={toggleExpanded}
-                />
+                // // <img
+                // //   src="/assets/images/ion_restaurant-outline.png"
+                // //   alt="Restaurant icon"
+                // className="w-10 h-10 cursor-pointer relative z-10"
+                // onClick={toggleExpanded}
+                // // />
+                <svg
+      version="1.1"
+      id="_x32_"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      stroke="white"
+      strokeWidth="12"
+      fill="none"
+      className="w-11 h-11 cursor-pointer relative z-12"
+      onClick={toggleExpanded}
+    >
+      <g>
+        <path
+          d="M50.57,55.239C27.758,29.036-13.992,53.833,4.68,95.145c12.438,27.563,36.469,94.922,70.016,143.438 c33.563,48.516,69.328,43.328,105.453,55.078l25.953,13.422l177.547,204.204l35.906-31.234l0.188-0.156 c-5.25-6.047-166.719-191.782-230.563-265.204C125.992,142.02,61.664,68.004,50.57,55.239z"
+        />
+        <path
+          d="M476.664,93.551l-61.938,71.266c-3.969,4.563-10.859,5.031-15.422,1.063l-2.203-1.906 c-4.531-3.953-5.031-10.844-1.063-15.406l62.234-71.594c10.219-11.734,5.375-22.125-2.219-28.719 c-7.578-6.578-18.531-9.938-28.75,1.813l-62.234,71.594c-3.953,4.547-10.859,5.031-15.406,1.063l-2.188-1.906 c-4.563-3.953-5.047-10.859-1.094-15.406l61.953-71.266c18.297-21.031-12.297-46.375-30.156-25.828 c-21.391,24.594-59.156,68.031-59.156,68.031c-33,37.688-32.5,55.344-27.844,80.078c3.781,19.938,9.328,34.281-11.156,57.844 l-30.234,34.781l31.719,36.453l34.641-39.844c20.469-23.547,35.453-20.047,55.719-19.094c25.156,1.203,42.703-0.766,75.422-38.672 c0,0,37.766-43.469,59.156-68.063C524.305,99.286,494.945,72.536,476.664,93.551z"
+        />
+        <path
+          d="M185.758,322.692L49.102,479.88L85.211,511.286L219.055,357.348L191.508,325.661L185.758,322.692z"
+        />
+      </g>
+    </svg>
               )}
             </div>
           </div>

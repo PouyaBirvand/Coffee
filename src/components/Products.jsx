@@ -5,12 +5,28 @@ import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
+import { categoryService } from '../services/categorySerivce';
 
 // eslint-disable-next-line react/prop-types
 function Products({ category, isExpanded }) {
   const [items, setItems] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const { setCurrentItem } = useAppContext();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+        try {
+            const response = await categoryService.getAll()
+            console.log(response.data);
+            
+            
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+    
+    fetchProducts();
+}, []);
 
   useEffect(() => {
     setItems([
