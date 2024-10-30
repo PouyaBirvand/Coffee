@@ -6,6 +6,7 @@ import Categories from "../components/Categories";
 import Header from "../components/Header";
 import ProductTitle from "../components/ProductTitle";
 import { useAppContext } from '../context/AppContext';
+import TableForm from '../components/TableForm';
 
 function Homelayout() {
   const { selectedCategory, setSelectedCategory, isExpanded, setIsExpanded } = useAppContext();
@@ -42,6 +43,7 @@ function Homelayout() {
       <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
       <main>
         <ProductTitle isExpanded={isExpanded} />
+        {/* <TableForm/> */}
         <CartItems category={selectedCategory} isExpanded={isExpanded}/>
         {!isExpanded && (
           <Categories />
