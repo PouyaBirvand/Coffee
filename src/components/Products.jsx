@@ -151,7 +151,7 @@ function Products({ category, isExpanded }) {
         slideShadows: false,
       }}
       modules={[EffectCoverflow]}
-      className="mt-[1.5rem] w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
+      className=" w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
       spaceBetween={40}
       onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
     >
