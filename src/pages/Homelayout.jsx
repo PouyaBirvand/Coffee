@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BottomNavigation from "../components/BottomNavigation";
 import CartItems from "../components/Products";
@@ -12,6 +12,8 @@ function Homelayout() {
   const { selectedCategory, setSelectedCategory, isExpanded, setIsExpanded } = useAppContext();
   const { categoryId } = useParams();
   const navigate = useNavigate();
+
+  
 
   useEffect(() => {
     if (categoryId) {
@@ -38,12 +40,18 @@ function Homelayout() {
     setIsExpanded(!isExpanded);
   };
 
+  const [showForm, setShowForm] = useState(true); // Set to true to show on initial load
+
+  const handleClose = () => {
+    setShowForm(false);
+  };
+
   return (
-    <div className='bg-body h-screen overflow-hidden scrollbar-hide w-full px-10 md:px-6 pt-6'>
+    <div className='bg-body min-h-screen overflow-x-hidden w-full px-4 md:px-10 pt-6'>
       <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
       <main>
         <ProductTitle isExpanded={isExpanded} />
-        {/* <TableForm/> */}
+        <TableForm isVisible={showForm} onClose={handleClose} />
         <CartItems category={selectedCategory} isExpanded={isExpanded}/>
         {!isExpanded && (
           <Categories />
