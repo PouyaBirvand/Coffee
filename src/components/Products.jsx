@@ -86,7 +86,7 @@ function Products({ category, isExpanded }) {
           <motion.img
             src={item.image}
             alt={item.title}
-            className={`m-auto max-h-[12.5rem] sm:max-h-[10rem] md:max-h-[10rem] !scale-[1.3]  object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[6.5rem] absloute w-[82%]' : ''}`}
+            className={`m-auto max-h-[12.5rem] sm:max-h-[10rem] md:max-h-[10rem] !scale-[1.3]  object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[4rem] absloute w-[82%]' : ''}`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1.2 }}
             transition={{ duration: 0.5 }}
