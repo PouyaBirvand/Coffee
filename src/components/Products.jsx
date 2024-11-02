@@ -263,7 +263,7 @@ useEffect(() => {
     "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
   const renderSlide = useCallback((item) =>  (
-    <SwiperSlide key={item.id} className={`pt-12 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
+    <SwiperSlide key={item.id} className={`pt-10 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
       <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3 ' : ''} mx-auto`}>
         <div className="relative -top-4">
           <motion.img
