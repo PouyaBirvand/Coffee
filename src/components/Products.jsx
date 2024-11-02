@@ -22,7 +22,6 @@ function Products({ category, isExpanded }) {
        <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3 ' : ''} mx-auto`}>
 <div className="relative -top-4">
   <motion.img
-    loading='lazy'
     src={item.image}
     alt={item.title}
     fetchPriority={'high'} // اضافه کردن اولویت بالا
