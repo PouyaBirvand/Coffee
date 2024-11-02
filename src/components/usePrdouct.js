@@ -206,6 +206,8 @@ const initialItems = [
     }
   ];
 
+  
+
   const getProductsByCategory = async (category) => {
     await new Promise(resolve => setTimeout(resolve, 300)) // شبیه‌سازی تاخیر شبکه
     const filteredItems = initialItems.filter(item => item.category === category)
@@ -215,6 +217,8 @@ const initialItems = [
   export function useProducts(category) {
     return useQuery({
       queryKey: ['products', category],
-      queryFn: () => getProductsByCategory(category)
-    })
+      queryFn: () => getProductsByCategory(category),
+      staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+      cacheTime: 1000 * 60 * 30, // Keep in cache for 30 minutes
+    });
   }
