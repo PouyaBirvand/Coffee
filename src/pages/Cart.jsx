@@ -200,7 +200,7 @@ function Cart() {
               animate={{ opacity: 1, y: 0 }}
               className="fixed bottom-[9rem] left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%] z-[1] sm:bottom-[5.5rem]"
             >
-              <div className="w-[95%] mx-auto h-[104px]">
+              <div className="w-[95%] mx-auto ">
                 <div className="flex justify-between text-white mb-1">
                   <span className="text-lg">Item Amount:</span>
                   <motion.span
@@ -225,7 +225,7 @@ function Cart() {
                     </motion.span>
                   </div>
                 )}
-                <div className="flex justify-between items-center text-deep-mahogany text-lg font-bold mb-2 border-t-2 pt-2 border-deep-mahogany border-opacity-50">
+                <div className="flex justify-between items-center text-deep-mahogany text-lg font-bold  border-t-2 pt-2 border-deep-mahogany border-opacity-50">
                  <div className="flex items-center gap-1">
                  <svg
                     fill="#5D2510"

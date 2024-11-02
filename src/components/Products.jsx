@@ -39,50 +39,218 @@ function Products({ category, isExpanded }) {
 
 useEffect(() => {
   const initialItems = [
-    { id: `${category}-1`, image: '/assets/images/Coffee.png', title: category, price: 4.99, discount: 0.05, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-2`, image: '/assets/images/Coffee2.png', title: category, price: 5.99, discount: 0.03, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-3`, image: '/assets/images/Coffee3.png', title: category, price: 3.99, discount: 0.02, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-4`, image: '/assets/images/Coffee4.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-5`, image: '/assets/images/Coffee5.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-6`, image: '/assets/images/Coffee6.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-7`, image: '/assets/images/Dessert.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-8`, image: '/assets/images/Dessert2.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-9`, image: '/assets/images/Dessert3.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-10`, image: '/assets/images/Food.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-11`, image: '/assets/images/Food2.png', title: category, price: 2.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-12`, image: '/assets/images/Food3.png', title: category, price: 3.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-13`, image: '/assets/images/Food4.png', title: category, price: 5.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-14`, image: '/assets/images/Food5.png', title: category, price: 1.29, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-15`, image: '/assets/images/Food6.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-16`, image: '/assets/images/Food7.png', title: category, price: 1.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-18`, image: '/assets/images/Food8.png', title: category, price: 7.9, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-19`, image: '/assets/images/Food9.png', title: category, price: 5.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-20`, image: '/assets/images/Icecream.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-21`, image: '/assets/images/Icecream2.png', title: category, price: 8.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-22`, image: '/assets/images/Icecream3.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-23`, image: '/assets/images/Icecream4.png', title: category, price: 4.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-24`, image: '/assets/images/Icecream5.png', title: category, price: 2.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-25`, image: '/assets/images/Icecream6.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-26`, image: '/assets/images/Icecream7.png', title: category, price: 88.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-27`, image: '/assets/images/Icecream8.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-28`, image: '/assets/images/Icecream9.png', title: category, price: 2.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-29`, image: '/assets/images/shake.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-30`, image: '/assets/images/shake2.png', title: category, price: 6.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-31`, image: '/assets/images/shake3.png', title: category, price: 15.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-32`, image: '/assets/images/shake4.png', title: category, price: 19.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-33`, image: '/assets/images/shake5.png', title: category, price: 62.99, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-34`, image: '/assets/images/shake6.png', title: category, price: 22, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-35`, image: '/assets/images/shake7.png', title: category, price: 22, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-36`, image: '/assets/images/shake8.png', title: category, price: 25.5, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
-    { id: `${category}-37`, image: '/assets/images/shake9.png', title: category, price: 32.1, fullText: 'Our signature espresso is a rich blend of premium coffee beans, roasted to perfection for a bold and intense flavor.' },
+    // Coffee Items
+    {
+      id: 'coffee-1',
+      image: '/assets/images/Coffee.png',
+      title: 'Coffee',
+      price: 4.99,
+      category: 'Coffee',
+      discount: 0.15,
+      fullText: 'Our signature espresso blend with rich, bold flavor and smooth finish'
+    },
+    {
+      id: 'coffee-2',
+      image: '/assets/images/Coffee2.png',
+      title: 'Coffee',
+      price: 5.99,
+      category: 'Coffee',
+      discount: 0.10,
+      fullText: 'Premium dark roast coffee with hints of chocolate and caramel'
+    },
+    {
+      id: 'coffee-3',
+      image: '/assets/images/Coffee3.png',
+      title: 'Coffee',
+      price: 6.99,
+      category: 'Coffee',
+      fullText: 'Smooth medium roast coffee with balanced acidity and body'
+    },
+    {
+      id: 'coffee-4',
+      image: '/assets/images/Coffee4.png',
+      title: 'Coffee',
+      price: 3.99,
+      category: 'Coffee',
+      fullText: 'Classic American coffee, perfectly roasted for everyday enjoyment'
+    },
+    {
+      id: 'coffee-5',
+      image: '/assets/images/Coffee5.png',
+      title: 'Coffee',
+      price: 7.99,
+      category: 'Coffee',
+      fullText: 'Specialty single-origin coffee with unique flavor profile'
+    },
+    {
+      id: 'coffee-6',
+      image: '/assets/images/Coffee6.png',
+      title: 'Coffee',
+      price: 5.49,
+      category: 'Coffee',
+      fullText: 'Rich espresso blend perfect for lattes and cappuccinos'
+    },
 
+    // Dessert Items
+    {
+      id: 'dessert-1',
+      image: '/assets/images/Dessert.png',
+      title: 'Dessert',
+      price: 8.99,
+      category: 'Dessert',
+      fullText: 'Decadent chocolate cake with rich ganache topping'
+    },
+    {
+      id: 'dessert-2',
+      image: '/assets/images/Dessert2.png',
+      title: 'Dessert',
+      price: 6.99,
+      category: 'Dessert',
+      fullText: 'Classic New York style cheesecake with berry compote'
+    },
+    {
+      id: 'dessert-3',
+      image: '/assets/images/Dessert3.png',
+      title: 'Dessert',
+      price: 7.49,
+      category: 'Dessert',
+      fullText: 'Homemade apple pie with vanilla bean ice cream'
+    },
 
+    // Ice Cream Items
+    {
+      id: 'icecream-1',
+      image: '/assets/images/Icecream.png',
+      title: 'Ice creams',
+      price: 4.99,
+      category: 'Ice creams',
+      fullText: 'Premium vanilla bean ice cream'
+    },
+    {
+      id: 'icecream-2',
+      image: '/assets/images/Icecream2.png',
+      title: 'Ice creams',
+      price: 5.99,
+      category: 'Ice creams',
+      fullText: 'Double chocolate chunk ice cream'
+    },
+    {
+      id: 'icecream-3',
+      image: '/assets/images/Icecream3.png',
+      title: 'Ice creams',
+      price: 5.49,
+      category: 'Ice creams',
+      fullText: 'Strawberry swirl ice cream with real fruit'
+    },
+    {
+      id: 'icecream-4',
+      image: '/assets/images/Icecream4.png',
+      title: 'Ice creams',
+      price: 6.99,
+      category: 'Ice creams',
+      fullText: 'Mint chocolate chip ice cream'
+    },
+    {
+      id: 'icecream-5',
+      image: '/assets/images/Icecream5.png',
+      title: 'Ice creams',
+      price: 5.99,
+      category: 'Ice creams',
+      fullText: 'Cookies and cream ice cream delight'
+    },
+
+    // Shake Items
+    {
+      id: 'shake-1',
+      image: '/assets/images/shake.png',
+      title: 'Shake',
+      price: 7.99,
+      category: 'Shake',
+      fullText: 'Classic vanilla milkshake with whipped cream'
+    },
+    {
+      id: 'shake-2',
+      image: '/assets/images/shake2.png',
+      title: 'Shake',
+      price: 8.99,
+      category: 'Shake',
+      fullText: 'Chocolate fudge milkshake with chocolate chips'
+    },
+    {
+      id: 'shake-3',
+      image: '/assets/images/shake3.png',
+      title: 'Shake',
+      price: 8.49,
+      category: 'Shake',
+      fullText: 'Strawberry banana smoothie shake'
+    },
+    {
+      id: 'shake-4',
+      image: '/assets/images/shake4.png',
+      title: 'Shake',
+      price: 9.99,
+      category: 'Shake',
+      fullText: 'Oreo cookie shake with vanilla ice cream'
+    },
+    {
+      id: 'shake-5',
+      image: '/assets/images/shake5.png',
+      title: 'Shake',
+      price: 8.99,
+      category: 'Shake',
+      fullText: 'Caramel butterscotch shake with toffee bits'
+    },
+
+    // Food Items
+    {
+      id: 'food-1',
+      image: '/assets/images/Food.png',
+      title: 'Foods',
+      price: 12.99,
+      category: 'Foods',
+      fullText: 'Grilled chicken sandwich with avocado'
+    },
+    {
+      id: 'food-2',
+      image: '/assets/images/Food2.png',
+      title: 'Foods',
+      price: 14.99,
+      category: 'Foods',
+      fullText: 'Classic cheeseburger with fresh-cut fries'
+    },
+    {
+      id: 'food-3',
+      image: '/assets/images/Food3.png',
+      title: 'Foods',
+      price: 11.99,
+      category: 'Foods',
+      fullText: 'Caesar salad with grilled chicken'
+    },
+    {
+      id: 'food-4',
+      image: '/assets/images/Food4.png',
+      title: 'Foods',
+      price: 13.99,
+      category: 'Foods',
+      fullText: 'Vegetarian pasta with marinara sauce'
+    },
+    {
+      id: 'food-5',
+      image: '/assets/images/Food5.png',
+      title: 'Foods',
+      price: 15.99,
+      category: 'Foods',
+      fullText: 'Grilled salmon with seasonal vegetables'
+    }
   ];
-  
-  setItems(initialItems);
-  setVisibleItems(initialItems.slice(0, 10));
-  preloadImages(initialItems.slice(0, 10));
+
+  const filteredItems = initialItems.filter(item => item.category === category);
+  setItems(filteredItems);
+  setVisibleItems(filteredItems.slice(0, 10));
+  preloadImages(filteredItems.slice(0, 10));
+
 }, [category, preloadImages]);
+
 
 
   useEffect(() => {
@@ -97,12 +265,12 @@ useEffect(() => {
   const renderSlide = useCallback((item) =>  (
     <SwiperSlide key={item.id} className={`pt-11 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
       <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3' : ''} mx-auto`}>
-        <div className="relative -top-8">
+        <div className="relative -top-6">
           <motion.img
             loading='lazy'
             src={item.image}
             alt={item.title}
-            className={`m-auto max-h-[12.5rem] max-w-[100%]  md:max-h-[9rem] !scale-[1.3]  object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[6rem] absloute w-[82%]' : ''}`}
+            className={`m-auto max-h-[12.5rem] max-w-[100%]  md:max-h-[9rem] !scale-[1.35]  object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1.2 }}
             transition={{ duration: 0.5 }}
