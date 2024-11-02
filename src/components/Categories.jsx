@@ -8,6 +8,10 @@ function Categories() {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     navigate(`/${category.replace(/\s+/g, '')}`, { replace: true });
+
+    if (category === selectedCategory) {
+      return;
+    }
   };
   const categories = [
     {

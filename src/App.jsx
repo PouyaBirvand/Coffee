@@ -11,9 +11,11 @@ const Cart = lazy(() => import("./pages/Cart.jsx"));
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5000,
-      cacheTime: 300000, // 5 minutes
+      staleTime: Infinity, // افزایش برای کش بهتر
+      cacheTime: Infinity,
       retry: 1,
+      refetchOnWindowFocus: false, // جلوگیری از درخواست مجدد
+      refetchOnMount: false,
     },
   },
 });

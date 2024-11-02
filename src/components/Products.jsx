@@ -15,12 +15,7 @@ function Products({ category, isExpanded }) {
 
   const fullText = "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
-  const preloadImages = useCallback((imageList) => {
-    imageList.forEach(item => {
-      const img = new Image();
-      img.src = item.image;
-    });
-  }, []);
+
 
   const renderSlide = useCallback((item) => (
     <SwiperSlide key={item.id} className={`pt-8 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
@@ -30,6 +25,7 @@ function Products({ category, isExpanded }) {
           loading='lazy'
           src={item.image}
           alt={item.title}
+          fetchPriority={'high'} // اضافه کردن اولویت بالا
           className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.29] mb-4   object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1.2 }}
@@ -80,9 +76,8 @@ function Products({ category, isExpanded }) {
   useEffect(() => {
     if (items.length > 0) {
       setVisibleItems(items.slice(0, 10));
-      preloadImages(items.slice(0, 10));
     }
-  }, [items, preloadImages]);
+  }, [items]);
 
   useEffect(() => {
     if (items.length > 0) {
@@ -136,6 +131,8 @@ function Products({ category, isExpanded }) {
       centeredSlides={true}
       slidesPerView={1.26}
       key={category}
+      preloadImages={true} // اضافه کردن این گزینه
+      updateOnImagesReady={true} // اضافه کردن این گزینه
       initial="enter"
       animate="center"
       coverflowEffect={{
@@ -158,7 +155,6 @@ function Products({ category, isExpanded }) {
           );
           if (nextItems.length > 0) {
             setVisibleItems(prev => [...prev, ...nextItems]);
-            preloadImages(nextItems);
           }
         }
       }}
