@@ -44,7 +44,7 @@ function Homelayout() {
   const { showForm, handleClose } = useTableForm();
   
   return (
-    <div className='bg-body min-h-screen overflow-x-hidden w-full px-4 md:px-10 pt-6'>
+    <div className='bg-body min-h-screen overflow-x-hidden w-full px-4 md:px-6 pt-6'>
       <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
       <main>
         <ProductTitle isExpanded={isExpanded} />
