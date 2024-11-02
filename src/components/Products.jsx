@@ -334,34 +334,35 @@ useEffect(() => {
 
   return (
     <Swiper
-      effect={'coverflow'}
-      grabCursor={true}
-      centeredSlides={true}
-      slidesPerView={1.26}
-      coverflowEffect={{
-        rotate: 40,
-        stretch: 0,
-        depth: 300,
-        modifier: 1,
-        slideShadows: false,
-      }}
-      modules={[EffectCoverflow]}
-      className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
-      spaceBetween={40}
-      onSlideChange={(swiper) => {
-        setActiveIndex(swiper.activeIndex);
-        if (swiper.activeIndex > visibleItems.length - 3) {
-          const nextItems = items.slice(
-            visibleItems.length,
-            visibleItems.length + 5
-          );
-          if (nextItems.length > 0) {
-            setVisibleItems(prev => [...prev, ...nextItems]);
-            preloadImages(nextItems);
-          }
+    effect={'coverflow'}
+    grabCursor={true}
+    centeredSlides={true}
+    slidesPerView={1.26}
+    coverflowEffect={{
+      rotate: 40,
+      stretch: 0,
+      depth: 300,
+      modifier: 1,
+      slideShadows: false,
+    }}
+    modules={[EffectCoverflow]}
+    className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
+    spaceBetween={40}
+    initialSlide={activeIndex}
+    onSlideChange={(swiper) => {
+      setActiveIndex(swiper.activeIndex);
+      if (swiper.activeIndex > visibleItems.length - 3) {
+        const nextItems = items.slice(
+          visibleItems.length,
+          visibleItems.length + 5
+        );
+        if (nextItems.length > 0) {
+          setVisibleItems(prev => [...prev, ...nextItems]);
+          preloadImages(nextItems);
         }
-      }}
-    >
+      }
+    }}
+  >
       {memoizedItems.map(renderSlide)}
     </Swiper>
   );
