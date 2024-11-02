@@ -263,14 +263,14 @@ useEffect(() => {
     "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
   const renderSlide = useCallback((item) =>  (
-    <SwiperSlide key={item.id} className={`pt-11 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
-      <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3' : ''} mx-auto`}>
-        <div className="relative -top-6">
+    <SwiperSlide key={item.id} className={`pt-12 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
+      <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3 ' : ''} mx-auto`}>
+        <div className="relative -top-4">
           <motion.img
             loading='lazy'
             src={item.image}
             alt={item.title}
-            className={`m-auto max-h-[12.5rem] max-w-[100%]  md:max-h-[9rem] !scale-[1.35]  object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
+            className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.42] mb-4   object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1.2 }}
             transition={{ duration: 0.5 }}
@@ -278,7 +278,7 @@ useEffect(() => {
         </div>
         {isExpanded && (
           <motion.div
-            className="fixed left-0 right-0 bottom-14 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] max-w-[75%] mx-auto h-[17em] sm:h-[15rem]"
+            className="fixed left-0 right-0 bottom-14 backdrop-blur-md bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] max-w-[75%] mx-auto h-[17rem] sm:h-[15rem]"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
@@ -301,11 +301,11 @@ useEffect(() => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-white text-[2.5rem] drop-shadow-2xl -mt-2 mb-0 font-extrabold sm:text-3xl">
+            <h1 className="text-white text-[2.3rem] drop-shadow-2xl  mb-0 font-extrabold sm:text-3xl">
               {item.title}
             </h1>
             <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-              {fullText.split(' ').slice(0, 10).join(' ') + '...'}
+              {fullText.split(' ').slice(0, 17).join(' ') + '...'}
             </p>
           </motion.div>
         )}
