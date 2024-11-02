@@ -4,7 +4,7 @@ import { AppProvider } from "./context/AppContext.jsx";
 import CoffeeLoader from "./components/CoffeeLoader.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useImagePreloader } from './hooks/useImagePreloader';
+import { useImagePreloader } from './hooks/useImagePreloader.js';
 
 const Homepage = lazy(() => import("./pages/Homelayout.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
