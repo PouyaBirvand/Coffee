@@ -37,6 +37,28 @@ function Products({ category, isExpanded }) {
 //     fetchProducts();
 // }, []);
 
+
+const slideVariants = {
+  enter: {
+    opacity: 0,
+    y: 20,
+  },
+  center: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.3
+    }
+  }
+};
+
 useEffect(() => {
   const initialItems = [
     // Coffee Items
@@ -270,7 +292,7 @@ useEffect(() => {
             loading='lazy'
             src={item.image}
             alt={item.title}
-            className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.42] mb-4   object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
+            className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.29] mb-4   object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1.2 }}
             transition={{ duration: 0.5 }}
@@ -338,6 +360,11 @@ useEffect(() => {
     grabCursor={true}
     centeredSlides={true}
     slidesPerView={1.26}
+    key={category}
+    initial="enter"
+    animate="center"
+    exit="exit"
+    variants={slideVariants}
     coverflowEffect={{
       rotate: 40,
       stretch: 0,
