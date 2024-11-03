@@ -19,7 +19,7 @@ function Products({ category, isExpanded }) {
 
   // Optimized renderSlide with better image loading
   const renderSlide = useCallback((item) => (
-    <SwiperSlide key={item.id} className={`pt-8 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
+    <SwiperSlide key={item.id} className={`pt-5 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
        <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3 ' : ''} mx-auto`}>
 <div className="relative -top-4">
   <motion.img
@@ -86,7 +86,7 @@ function Products({ category, isExpanded }) {
     }
   }, [activeIndex, items, setCurrentItem]);
 
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <div className="mt-[1.5rem] w-[95%] md:w-[80%] lg:w-[80%] mx-auto min-h-[400px] bg-warm-wood bg-opacity-20 rounded-2xl flex flex-col items-center justify-center gap-4">
       <div className="relative w-24 h-24">
