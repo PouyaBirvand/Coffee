@@ -4,6 +4,7 @@ import { AppProvider } from "./context/AppContext.jsx";
 import CoffeeLoader from "./components/CoffeeLoader.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useImagePreloader } from "./components/useImagePreloader.jsx";
 
 const Homepage = lazy(() => import("./pages/Homelayout.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
@@ -11,16 +12,18 @@ const Cart = lazy(() => import("./pages/Cart.jsx"));
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity, // افزایش برای کش بهتر
+      staleTime: Infinity,
       cacheTime: Infinity,
-      retry: 1,
-      refetchOnWindowFocus: false, // جلوگیری از درخواست مجدد
+      refetchOnWindowFocus: false,
       refetchOnMount: false,
+      refetchOnReconnect: false,
     },
   },
 });
 
 function App() {
+  useImagePreloader();
+
   return (
     <QueryClientProvider client={queryClient}>
       <AppProvider>

@@ -206,19 +206,34 @@ const initialItems = [
     }
   ];
 
-  
+const categoryCache = new Map();
 
-  const getProductsByCategory = async (category) => {
-    await new Promise(resolve => setTimeout(resolve, 300)) // شبیه‌سازی تاخیر شبکه
-    const filteredItems = initialItems.filter(item => item.category === category)
-    return filteredItems
-  }
-  
-  export function useProducts(category) {
+const getProductsByCategory = (category) => {
+    return initialItems.filter(item => item.category === category);
+};
+
+export function useProducts(category) {
     return useQuery({
-      queryKey: ['products', category],
-      queryFn: () => getProductsByCategory(category),
-      staleTime: Infinity, // افزایش زمان کش
-      cacheTime: Infinity,
+        queryKey: ['products', category],
+        queryFn: async () => {
+            if (categoryCache.has(category)) {
+                return categoryCache.get(category);
+            }
+
+            const products = getProductsByCategory(category);
+            categoryCache.set(category, products);
+
+            products.forEach(product => {
+                const img = new Image();
+                img.src = product.image;
+            });
+
+            return products;
+        },
+        staleTime: Infinity,
+        cacheTime: Infinity,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false
     });
-  }
+}
