@@ -1,205 +1,202 @@
 export const initialItems = [
-    // Coffee Items
-    {
-      id: 'coffee-1',
-      image: '/assets/images/Coffee.png',
-      title: 'Coffee',
-      price: 4.99,
-      category: 'Coffee',
-      discount: 0.15,
-      fullText: 'Our signature espresso blend with rich, bold flavor and smooth finish'
-    },
-    {
-      id: 'coffee-2',
-      image: '/assets/images/Coffee2.png',
-      title: 'Coffee',
-      price: 5.99,
-      category: 'Coffee',
-      discount: 0.10,
-      fullText: 'Premium dark roast coffee with hints of chocolate and caramel'
-    },
-    {
-      id: 'coffee-3',
-      image: '/assets/images/Coffee3.png',
-      title: 'Coffee',
-      price: 6.99,
-      category: 'Coffee',
-      fullText: 'Smooth medium roast coffee with balanced acidity and body'
-    },
-    {
-      id: 'coffee-4',
-      image: '/assets/images/Coffee4.png',
-      title: 'Coffee',
-      price: 3.99,
-      category: 'Coffee',
-      fullText: 'Classic American coffee, perfectly roasted for everyday enjoyment'
-    },
-    {
-      id: 'coffee-5',
-      image: '/assets/images/Coffee5.png',
-      title: 'Coffee',
-      price: 7.99,
-      category: 'Coffee',
-      fullText: 'Specialty single-origin coffee with unique flavor profile'
-    },
-    {
-      id: 'coffee-6',
-      image: '/assets/images/Coffee6.png',
-      title: 'Coffee',
-      price: 5.49,
-      category: 'Coffee',
-      fullText: 'Rich espresso blend perfect for lattes and cappuccinos'
-    },
+  // Coffee Items
+  {
+    id: 'coffee-1',
+    image: '/assets/images/Coffee.png', 
+    title: 'کاپوچینو',
+    price: 4.99,
+    category: 'Coffee',
+    discount: 0.15,
+    fullText: 'نوشیدنی قهوه بر پایه قهوه شیرین شده بدون اسپرسو که با کف شیر بخار تهیه می‌شود. این نوشیدنی گرم و دلچسب با طعمی متعادل از قهوه و شیر، مناسب برای صبحانه و عصرانه است.'
+  },
+  {
+    id: 'coffee-2',
+    image: '/assets/images/Coffee2.png',
+    title: 'ماکیاتو', 
+    price: 5.99,
+    category: 'Coffee',
+    discount: 0.10,
+    fullText: 'نوشیدنی بر پایه ترکیب اسپرسو و شیر که میزان شیر در آن به صورت لکه دیده می‌شود. این قهوه با عطر قوی اسپرسو و طعم ملایم شیر، انتخابی عالی برای قهوه دوستان است.'
+  },
+  {
+    id: 'coffee-3',
+    image: '/assets/images/Coffee3.png',
+    title: 'اسپرسو',
+    price: 6.99,
+    category: 'Coffee',
+    fullText: 'قهوه‌ای که با عبور آب بسیار داغ تحت فشار از روی قهوه آسیاب و فشرده تهیه می‌شود. این نوشیدنی غلیظ و پرکافئین، پایه بسیاری از نوشیدنی‌های قهوه است و طعمی قوی دارد.'
+  },
+  {
+    id: 'coffee-4',
+    image: '/assets/images/Coffee4.png',
+    title: 'لاته',
+    price: 3.99,
+    category: 'Coffee',
+    fullText: 'نوشیدنی قهوه از ترکیب اسپرسو با شیر بخارداده‌شده که رویش با کف شیر پوشانده می‌شود. این نوشیدنی محبوب با طعم ملایم و کرمی، مناسب برای تمام ساعات روز است.'
+  },
+  {
+    id: 'coffee-5',
+    image: '/assets/images/Coffee5.png',
+    title: 'موکا',
+    price: 7.99,
+    category: 'Coffee',
+    fullText: 'نوع شکلاتی کافه لاته که با اسپرسو، شیر داغ و شکلات تهیه می‌شود. این نوشیدنی خوش‌طعم با ترکیب عالی قهوه و شکلات، برای دوستداران طعم‌های شیرین مناسب است.'
+  },
+  {
+    id: 'coffee-6',
+    image: '/assets/images/Coffee6.png',
+    title: 'قهوه ترک',
+    price: 5.49,
+    category: 'Coffee',
+    fullText: 'قهوه‌ای که با جوشاندن پودر قهوه در جزوه مخصوص تهیه می‌شود. این نوشیدنی سنتی با عطر و طعم منحصر به فرد، دارای تفاله است و به روش خاصی سرو می‌شود.'
+  },
 
-    // Dessert Items
-    {
-      id: 'dessert-1',
-      image: '/assets/images/Dessert.png',
-      title: 'Dessert',
-      price: 8.99,
-      category: 'Dessert',
-      fullText: 'Decadent chocolate cake with rich ganache topping'
-    },
-    {
-      id: 'dessert-2',
-      image: '/assets/images/Dessert2.png',
-      title: 'Dessert',
-      price: 6.99,
-      category: 'Dessert',
-      fullText: 'Classic New York style cheesecake with berry compote'
-    },
-    {
-      id: 'dessert-3',
-      image: '/assets/images/Dessert3.png',
-      title: 'Dessert',
-      price: 7.49,
-      category: 'Dessert',
-      fullText: 'Homemade apple pie with vanilla bean ice cream'
-    },
+  // Dessert Items
+  {
+    id: 'dessert-1',
+    image: '/assets/images/Dessert.png',
+    title: 'هات چاکلت',
+    price: 8.99,
+    category: 'Dessert',
+    fullText: 'نوشیدنی داغ و دلچسب که از شکلات مرغوب، شیر گرم و خامه تازه تهیه می‌شود. این نوشیدنی شکلاتی با روکش خامه زده شده و تکه‌های شکلات تزیین می‌شود.'
+  },
+  {
+    id: 'dessert-2',
+    image: '/assets/images/Dessert2.png',
+    title: 'آفوگاتو',
+    price: 6.99,
+    category: 'Dessert',
+    fullText: 'دسر ایتالیایی که از ریختن یک شات اسپرسو داغ روی بستنی وانیلی تهیه می‌شود. تضاد دمای گرم و سرد به همراه طعم قهوه و وانیل، تجربه‌ای منحصر به فرد است.'
+  },
+  {
+    id: 'dessert-3',
+    image: '/assets/images/Dessert3.png',
+    title: 'تیرامیسو',
+    price: 7.49,
+    category: 'Dessert',
+    fullText: 'دسر ایتالیایی خوش‌طعم با لایه‌های بیسکویت لیدی فینگر آغشته به قهوه و لایه‌های خامه مخصوص ماسکارپونه که با پودر کاکائو تزیین می‌شود. این دسر طعمی بی‌نظیر دارد.'
+  },
 
-    // Ice Cream Items
-    {
-      id: 'icecream-1',
-      image: '/assets/images/Icecream.png',
-      title: 'Ice creams',
-      price: 4.99,
-      category: 'Ice creams',
-      fullText: 'Premium vanilla bean ice cream'
-    },
-    {
-      id: 'icecream-2',
-      image: '/assets/images/Icecream2.png',
-      title: 'Ice creams',
-      price: 5.99,
-      category: 'Ice creams',
-      fullText: 'Double chocolate chunk ice cream'
-    },
-    {
-      id: 'icecream-3',
-      image: '/assets/images/Icecream3.png',
-      title: 'Ice creams',
-      price: 5.49,
-      category: 'Ice creams',
-      fullText: 'Strawberry swirl ice cream with real fruit'
-    },
-    {
-      id: 'icecream-4',
-      image: '/assets/images/Icecream4.png',
-      title: 'Ice creams',
-      price: 6.99,
-      category: 'Ice creams',
-      fullText: 'Mint chocolate chip ice cream'
-    },
-    {
-      id: 'icecream-5',
-      image: '/assets/images/Icecream5.png',
-      title: 'Ice creams',
-      price: 5.99,
-      category: 'Ice creams',
-      fullText: 'Cookies and cream ice cream delight'
-    },
+  // Ice Cream Items
+  {
+    id: 'icecream-1',
+    image: '/assets/images/Icecream.png',
+    title: 'بستنی توت فرنگی',
+    price: 4.99,
+    category: 'Ice creams',
+    fullText: 'بستنی خامه‌ای با طعم توت فرنگی تازه که از شیر، خامه و میوه‌های طبیعی تهیه می‌شود. این بستنی خوش‌رنگ با تکه‌های واقعی توت فرنگی و طعمی دلپذیر سرو می‌شود.'
+  },
+  {
+    id: 'icecream-2',
+    image: '/assets/images/Icecream2.png',
+    title: 'بستنی شکلاتی',
+    price: 5.99,
+    category: 'Ice creams',
+    fullText: 'بستنی غنی و خوش‌طعم با شکلات مرغوب که از ترکیب شیر، خامه و پودر کاکائو تهیه می‌شود. این بستنی کرمی با تکه‌های شکلات تلخ و طعمی بی‌نظیر عرضه می‌گردد.'
+  },
+  {
+    id: 'icecream-3',
+    image: '/assets/images/Icecream3.png',
+    title: 'بستنی وانیلی',
+    price: 5.49,
+    category: 'Ice creams',
+    fullText: 'بستنی کلاسیک و محبوب که از ترکیب شیر تازه، خامه و عصاره طبیعی وانیل مرغوب تهیه می‌شود. این بستنی خوش‌طعم با بافتی نرم و لطیف سرو می‌شود.'
+  },
+  {
+    id: 'icecream-4',
+    image: '/assets/images/Icecream4.png',
+    title: 'بستنی فندقی',
+    price: 6.99,
+    category: 'Ice creams',
+    fullText: 'بستنی مخصوص با طعم فندق که از شیر فندق تازه و خامه گیاهی تهیه می‌شود. این بستنی با خرده‌های فندق برشته و روکش شکلاتی تزیین شده و طعمی بی‌نظیر دارد.'
+  },
+  {
+    id: 'icecream-5',
+    image: '/assets/images/Icecream5.png',
+    title: 'بستنی انبه',
+    price: 5.99,
+    category: 'Ice creams',
+    fullText: 'بستنی میوه‌ای خنک و تازه که از ترکیب انبه رسیده، شیر و خامه تهیه می‌شود. این بستنی استوایی با طعم طبیعی میوه و بافتی نرم و لطیف سرو می‌گردد.'
+  },
 
-    // Shake Items
-    {
-      id: 'shake-1',
-      image: '/assets/images/shake.png',
-      title: 'Shake',
-      price: 7.99,
-      category: 'Shake',
-      fullText: 'Classic vanilla milkshake with whipped cream'
-    },
-    {
-      id: 'shake-2',
-      image: '/assets/images/shake2.png',
-      title: 'Shake',
-      price: 8.99,
-      category: 'Shake',
-      fullText: 'Chocolate fudge milkshake with chocolate chips'
-    },
-    {
-      id: 'shake-3',
-      image: '/assets/images/shake3.png',
-      title: 'Shake',
-      price: 8.49,
-      category: 'Shake',
-      fullText: 'Strawberry banana smoothie shake'
-    },
-    {
-      id: 'shake-4',
-      image: '/assets/images/shake4.png',
-      title: 'Shake',
-      price: 9.99,
-      category: 'Shake',
-      fullText: 'Oreo cookie shake with vanilla ice cream'
-    },
-    {
-      id: 'shake-5',
-      image: '/assets/images/shake5.png',
-      title: 'Shake',
-      price: 8.99,
-      category: 'Shake',
-      fullText: 'Caramel butterscotch shake with toffee bits'
-    },
-
-    // Food Items
-    {
-      id: 'food-1',
-      image: '/assets/images/Food.png',
-      title: 'Foods',
-      price: 12.99,
-      category: 'Foods',
-      fullText: 'Grilled chicken sandwich with avocado'
-    },
-    {
-      id: 'food-2',
-      image: '/assets/images/Food2.png',
-      title: 'Foods',
-      price: 14.99,
-      category: 'Foods',
-      fullText: 'Classic cheeseburger with fresh-cut fries'
-    },
-    {
-      id: 'food-3',
-      image: '/assets/images/Food3.png',
-      title: 'Foods',
-      price: 11.99,
-      category: 'Foods',
-      fullText: 'Caesar salad with grilled chicken'
-    },
-    {
-      id: 'food-4',
-      image: '/assets/images/Food4.png',
-      title: 'Foods',
-      price: 13.99,
-      category: 'Foods',
-      fullText: 'Vegetarian pasta with marinara sauce'
-    },
-    {
-      id: 'food-5',
-      image: '/assets/images/Food5.png',
-      title: 'Foods',
-      price: 15.99,
-      category: 'Foods',
-      fullText: 'Grilled salmon with seasonal vegetables'
-    }
-  ];
+  // Shake Items
+  {
+    id: 'shake-1',
+    image: '/assets/images/shake.png',
+    title: 'میلک شیک وانیلی',
+    price: 7.99,
+    category: 'Shake',
+    fullText: 'نوشیدنی خنک و دلچسب که از ترکیب شیر تازه، بستنی وانیلی و خامه تهیه می‌شود. این میلک شیک کلاسیک با خامه زده شده و پودر دارچین تزیین می‌گردد.'
+  },
+  {
+    id: 'shake-2',
+    image: '/assets/images/shake2.png',
+    title: 'میلک شیک شکلات',
+    price: 8.99,
+    category: 'Shake',
+    fullText: 'نوشیدنی خنک و غنی که از ترکیب شیر، بستنی شکلاتی و سس شکلات تهیه می‌شود. این میلک شیک خوش‌طعم با خامه زده شده و تراشه‌های شکلات تزیین می‌گردد.'
+  },
+  {
+    id: 'shake-3',
+    image: '/assets/images/shake3.png',
+    title: 'میلک شیک موز',
+    price: 8.49,
+    category: 'Shake',
+    fullText: 'نوشیدنی مقوی و خوشمزه که از ترکیب موز تازه، شیر، بستنی وانیلی و عسل تهیه می‌شود. این میلک شیک طبیعی با خامه و برش‌های موز تزیین می‌گردد.'
+  },
+  {
+    id: 'shake-4',
+    image: '/assets/images/shake4.png',
+    title: 'میلک شیک نوتلا',
+    price: 9.99,
+    category: 'Shake',
+    fullText: 'نوشیدنی شکلاتی خاص که از ترکیب نوتلا، شیر، بستنی وانیلی و خامه تهیه می‌شود. این میلک شیک لوکس با سس نوتلا و فندق خرد شده تزیین می‌گردد.'
+  },
+  {
+    id: 'shake-5',
+    image: '/assets/images/shake5.png',
+    title: 'میلک شیک طالبی',
+    price: 8.99,
+    category: 'Shake',
+    fullText: 'نوشیدنی خنک تابستانی که از ترکیب طالبی تازه، شیر، بستنی وانیلی و شربت نبات تهیه می‌شود. این میلک شیک خوش‌طعم با خامه و تکه‌های طالبی تزیین می‌گردد.'
+  },    {
+    id: 'food-1', 
+    image: '/assets/images/Food.png',
+    title: 'پاستا',
+    price: 12.99,
+    category: 'Foods',
+    fullText: 'غذای ایتالیایی اصیل که با ماکارونی تازه، سس مخصوص سرآشپز و پنیر پارمزان تهیه می‌شود. این پاستای خوش‌طعم با سبزیجات معطر و ادویه‌جات مخصوص سرو می‌گردد.'
+  },
+  {
+    id: 'food-2',
+    image: '/assets/images/Food2.png', 
+    title: 'چیکن استرگانف',
+    price: 14.99,
+    category: 'Foods',
+    fullText: 'غذای روسی محبوب که از فیله مرغ تازه، قارچ، خامه و سس مخصوص تهیه می‌شود. این غذای لذیذ با برنج زعفرانی یا سیب زمینی سرخ شده سرو می‌گردد.'
+  },
+  {
+    id: 'food-3',
+    image: '/assets/images/Food3.png',
+    title: 'پیتزا',
+    price: 11.99,
+    category: 'Foods',
+    fullText: 'پیتزای ایتالیایی با خمیر تازه دست‌ساز، سس مخصوص، پنیر موزارلا و مواد اولیه مرغوب. این پیتزای خوش‌طعم در فر سنگی پخته شده و با سس‌های مخصوص سرو می‌شود.'
+  },
+  {
+    id: 'food-4',
+    image: '/assets/images/Food4.png',
+    title: 'هات داگ',
+    price: 13.99,
+    category: 'Foods',
+    fullText: 'ساندویچ گرم و لذیذ با سوسیس گوشت مخصوص، نان تازه باگت و سبزیجات تازه. این هات داگ خوشمزه با سس‌های مخصوص، خیارشور و پیاز سرخ شده سرو می‌شود.'
+  },
+  {
+    id: 'food-5',
+    image: '/assets/images/Food5.png',
+    title: 'سوپ',
+    price: 15.99,
+    category: 'Foods',
+    fullText: 'سوپ خانگی غلیظ و مغذی که با ترکیب سبزیجات تازه فصل، مرغ یا گوشت و ادویه‌جات مخصوص تهیه می‌شود. این سوپ گرم با نان تست و جعفری تازه سرو می‌گردد.'
+  }
+];

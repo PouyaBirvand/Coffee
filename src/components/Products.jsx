@@ -15,7 +15,7 @@ function Products({ category, isExpanded }) {
 
 
 
-  const fullText = "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
+  // const fullText = "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
   // Optimized renderSlide with better image loading
   const renderSlide = useCallback((item) => (
@@ -48,7 +48,7 @@ function Products({ category, isExpanded }) {
       {item.title}
     </h1>
     <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-      {fullText}
+      {item.fullText + '...'}
     </p>
     <p className="text-white font-bold mt-2 text-3xl">
       ${item.price.toFixed(2)}
@@ -65,13 +65,13 @@ function Products({ category, isExpanded }) {
       {item.title}
     </h1>
     <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-      {fullText.split(' ').slice(0, 17).join(' ') + '...'}
+      {item.fullText + '...'}
     </p>
   </motion.div>
 )}
 </div> 
     </SwiperSlide>
-  ), [isExpanded, fullText]);
+  ), [isExpanded]);
 
 
   // Optimized memoization
