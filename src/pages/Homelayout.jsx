@@ -7,7 +7,7 @@ import Header from "../components/Header";
 import ProductTitle from "../components/ProductTitle";
 import { useAppContext } from '../context/AppContext';
 import TableForm from '../components/TableForm';
-import { useTableForm } from '../hooks/useTableForm';
+import { useTableForm } from '../components/useTableForm';
 
 function Homelayout() {
   const { selectedCategory, setSelectedCategory, isExpanded, setIsExpanded } = useAppContext();
