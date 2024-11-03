@@ -27,7 +27,7 @@ function Products({ category, isExpanded }) {
     decoding="async"
     width="300"
     height="300"
-    className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.4] mb-4 object-contain relative ${isExpanded && '!max-h-[12rem] md:top-[1.5rem]'}`}
+    className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.4] mb-4 object-contain relative ${isExpanded && '!max-h-[12rem] top-[2rem]'}`}
     style={{
       willChange: 'transform',
       contain: 'layout'
