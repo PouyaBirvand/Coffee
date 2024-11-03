@@ -11,6 +11,25 @@ function Products({ category, isExpanded }) {
   const { data: items = [] } = useProducts(category);
   const [activeIndex, setActiveIndex] = useState(0);
   const { setCurrentItem } = useAppContext();
+  
+// eslint-disable-next-line react/prop-types
+  const ImageWithLoading = ({ src, alt, className }) => {
+    const [isLoading, setIsLoading] = useState(true);
+  
+    return (
+      <div className="relative">
+        {isLoading && (
+          <div className={`${className} animate-pulse bg-gradient-to-r from-gray-300 to-gray-400 rounded-lg`} />
+        )}
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} ${isLoading ? 'hidden' : 'block'}`}
+          onLoad={() => setIsLoading(false)}
+        />
+      </div>
+    );
+  };
 
 
   const fullText = "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
@@ -20,7 +39,7 @@ function Products({ category, isExpanded }) {
     <SwiperSlide key={item.id} className={`pt-8 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
        <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3 ' : ''} mx-auto`}>
 <div className="relative -top-4">
-  <motion.img
+  <ImageWithLoading
     src={item.image}
     alt={item.title}
     loading="eager"
