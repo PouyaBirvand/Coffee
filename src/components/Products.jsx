@@ -23,12 +23,15 @@ function Products({ category, isExpanded }) {
   <motion.img
     src={item.image}
     alt={item.title}
-    fetchPriority={'high'} // اضافه کردن اولویت بالا
-    loading='eager' // اضافه کردن اولویت بالا 
-    className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.29] mb-4   object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1.2 }}
-    transition={{ duration: 0.5 }}
+    loading="eager"
+    decoding="async"
+    width="300"
+    height="300"
+    className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.29] mb-4 object-contain`}
+    style={{
+      willChange: 'transform',
+      contain: 'layout'
+    }}
   />
 </div>
 {isExpanded && (
