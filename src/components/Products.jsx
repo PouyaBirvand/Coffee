@@ -10,7 +10,6 @@ import { useProducts } from '../hooks/usePrdouct';
 function Products({ category, isExpanded }) {
   const { data: items = [], isLoading } = useProducts(category);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [visibleItems, setVisibleItems] = useState([]);
   const { setCurrentItem } = useAppContext();
 
   const fullText = "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
@@ -24,6 +23,7 @@ function Products({ category, isExpanded }) {
     src={item.image}
     alt={item.title}
     fetchPriority={'high'} // اضافه کردن اولویت بالا
+    loading='eager' // اضافه کردن اولویت بالا 
     className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.29] mb-4   object-contain ${isExpanded ? ' fixed left-0 right-0 !scale-[1.9] translate-y-[7rem] absloute w-[82%]' : ''}`}
     initial={{ opacity: 0, scale: 0.8 }}
     animate={{ opacity: 1, scale: 1.2 }}

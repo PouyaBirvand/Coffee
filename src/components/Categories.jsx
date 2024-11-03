@@ -6,12 +6,10 @@ function Categories() {
   const navigate = useNavigate();
 
   const handleCategoryChange = (category) => {
+    if (category === selectedCategory) return;
+    
     setSelectedCategory(category);
     navigate(`/${category.replace(/\s+/g, '')}`, { replace: true });
-
-    if (category === selectedCategory) {
-      return;
-    }
   };
   const categories = [
     {

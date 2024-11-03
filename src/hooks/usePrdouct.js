@@ -206,34 +206,35 @@ const initialItems = [
     }
   ];
 
-const categoryCache = new Map();
-
-const getProductsByCategory = (category) => {
-    return initialItems.filter(item => item.category === category);
-};
-
-export function useProducts(category) {
-    return useQuery({
-        queryKey: ['products', category],
-        queryFn: async () => {
-            if (categoryCache.has(category)) {
-                return categoryCache.get(category);
-            }
-
-            const products = getProductsByCategory(category);
-            categoryCache.set(category, products);
-
-            products.forEach(product => {
-                const img = new Image();
-                img.src = product.image;
-            });
-
-            return products;
-        },
-        staleTime: Infinity,
-        cacheTime: Infinity,
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false
+  const preloadImage = (src) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
     });
-}
+  };
+  
+  const imageCache = new Map();
+  
+  export function useProducts(category) {
+      return useQuery({
+          queryKey: ['products', category],
+          queryFn: async () => {
+              const products = initialItems.filter(item => item.category === category);
+              
+              if (!imageCache.has(category)) {
+                  const imagePromises = products.map(item => preloadImage(item.image));
+                  await Promise.all(imagePromises);
+                  imageCache.set(category, true);
+              }
+              
+              return products;
+          },
+          staleTime: Infinity,
+          cacheTime: Infinity,
+          refetchOnWindowFocus: false,
+          refetchOnMount: false,
+          refetchOnReconnect: false
+      });
+  }
