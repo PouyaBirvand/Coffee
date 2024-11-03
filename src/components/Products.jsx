@@ -8,9 +8,11 @@ import { useAppContext } from '../context/AppContext';
 import { useProducts } from '../hooks/usePrdouct';
 // eslint-disable-next-line react/prop-types
 function Products({ category, isExpanded }) {
-  const { data: items = [] } = useProducts(category);
+  const { data: items = [] , isLoading} = useProducts(category);
   const [activeIndex, setActiveIndex] = useState(0);
   const { setCurrentItem } = useAppContext();
+  
+
 
 
   const fullText = "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
@@ -71,6 +73,7 @@ function Products({ category, isExpanded }) {
     </SwiperSlide>
   ), [isExpanded, fullText]);
 
+
   // Optimized memoization
   const memoizedItems = useMemo(() => 
     isExpanded ? [items[activeIndex]] : items.slice(0, 10)
@@ -82,6 +85,16 @@ function Products({ category, isExpanded }) {
       setCurrentItem(items[activeIndex]);
     }
   }, [activeIndex, items, setCurrentItem]);
+
+  if (isLoading) {
+    return (
+      <div className="mt-[1.5rem] w-[95%] md:w-[80%] lg:w-[80%] mx-auto min-h-[400px] bg-warm-wood bg-opacity-20 rounded-2xl flex items-center justify-center">
+        <div className="text-white text-2xl font-bold animate-pulse">
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
 
   if (isExpanded) {
@@ -110,11 +123,9 @@ function Products({ category, isExpanded }) {
     className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
     spaceBetween={40}
     initialSlide={activeIndex}
-    onSlideChange={(swiper) => {
-      setActiveIndex(swiper.activeIndex);
-    }}
+    onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
   >
-    {isExpanded ? [items[activeIndex]].map(memoizedItems) : items.map(renderSlide)}
+    {memoizedItems.map(renderSlide)}
   </Swiper>
   );
 }
