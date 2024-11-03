@@ -5,7 +5,7 @@ import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
-import { useProducts } from './usePrdouct';
+import { useProducts } from '../hooks/usePrdouct';
 // eslint-disable-next-line react/prop-types
 function Products({ category, isExpanded }) {
   const { data: items = [], isLoading } = useProducts(category);
