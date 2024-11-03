@@ -206,35 +206,16 @@ const initialItems = [
     }
   ];
 
-  const preloadImage = (src) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(img);
-      img.onerror = reject;
-      img.src = src;
-    });
-  };
-  
-  const imageCache = new Map();
-  
   export function useProducts(category) {
-      return useQuery({
-          queryKey: ['products', category],
-          queryFn: async () => {
-              const products = initialItems.filter(item => item.category === category);
-              
-              if (!imageCache.has(category)) {
-                  const imagePromises = products.map(item => preloadImage(item.image));
-                  await Promise.all(imagePromises);
-                  imageCache.set(category, true);
-              }
-              
-              return products;
-          },
-          staleTime: Infinity,
-          cacheTime: Infinity,
-          refetchOnWindowFocus: false,
-          refetchOnMount: false,
-          refetchOnReconnect: false
-      });
-  }
+    return useQuery({
+        queryKey: ['products', category],
+        queryFn: () => {
+            return initialItems.filter(item => item.category === category);
+        },
+        staleTime: Infinity,
+        cacheTime: Infinity,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false
+    });
+}

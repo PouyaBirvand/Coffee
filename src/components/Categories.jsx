@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import { useCallback } from "react";
 
 function Categories() {
   const { selectedCategory, setSelectedCategory } = useAppContext();
   const navigate = useNavigate();
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = useCallback((category) => {
     if (category === selectedCategory) return;
-    
     setSelectedCategory(category);
     navigate(`/${category.replace(/\s+/g, '')}`, { replace: true });
-  };
+  }, [selectedCategory, setSelectedCategory, navigate]);
+
   const categories = [
     {
       icon: (

@@ -8,9 +8,10 @@ import { useAppContext } from '../context/AppContext';
 import { useProducts } from '../hooks/usePrdouct';
 // eslint-disable-next-line react/prop-types
 function Products({ category, isExpanded }) {
-  const { data: items = [], isLoading } = useProducts(category);
+  const { data: items = [] } = useProducts(category);
   const [activeIndex, setActiveIndex] = useState(0);
   const { setCurrentItem } = useAppContext();
+
 
   const fullText = "sequatur, t Lorem ipsum dolor sit amet.Lorem amet conse Lorem amet conse sit amet sit amet consectetur?";
 
@@ -90,33 +91,28 @@ function Products({ category, isExpanded }) {
 
   return (
     <Swiper
-      effect={'coverflow'}
-      grabCursor={true}
-      centeredSlides={true}
-      slidesPerView={1.26}
-      key={category}
-      preloadImages={true}
-      updateOnImagesReady={true}
-      lazy={false}
-      watchSlidesProgress={true}
-      preventInteractionOnTransition={true}
-      coverflowEffect={{
-        rotate: 40,
-        stretch: 0,
-        depth: 300,
-        modifier: 1,
-        slideShadows: false,
-      }}
-      modules={[EffectCoverflow]}
-      className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
-      spaceBetween={40}
-      initialSlide={activeIndex}
-      onSlideChange={(swiper) => {
-        setActiveIndex(swiper.activeIndex);
-      }}
-    >
-      {memoizedItems.map(renderSlide)}
-    </Swiper>
+    effect={'coverflow'}
+    grabCursor={true}
+    centeredSlides={true}
+    slidesPerView={1.26}
+    key={category}
+    coverflowEffect={{
+      rotate: 40,
+      stretch: 0,
+      depth: 300,
+      modifier: 1,
+      slideShadows: false,
+    }}
+    modules={[EffectCoverflow]}
+    className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
+    spaceBetween={40}
+    initialSlide={activeIndex}
+    onSlideChange={(swiper) => {
+      setActiveIndex(swiper.activeIndex);
+    }}
+  >
+    {isExpanded ? [items[activeIndex]].map(memoizedItems) : items.map(renderSlide)}
+  </Swiper>
   );
 }
 

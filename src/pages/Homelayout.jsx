@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BottomNavigation from "../components/BottomNavigation";
 import CartItems from "../components/Products";
@@ -26,16 +26,16 @@ function Homelayout() {
     }
   }, [categoryId, navigate, setSelectedCategory]);
 
-  function getCategoryName(id) {
+  const getCategoryName = useCallback((id) => {
     const categories = {
       'Icecreams': 'Ice creams',
       'Dessert': 'Dessert',
-      'Shake': 'Shake',
+      'Shake': 'Shake', 
       'Coffee': 'Coffee',
       'Foods': 'Foods'
     };
     return categories[id] || 'Coffee';
-  }
+  }, []);
   
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);

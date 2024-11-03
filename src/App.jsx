@@ -4,14 +4,17 @@ import { AppProvider } from "./context/AppContext.jsx";
 import CoffeeLoader from "./components/CoffeeLoader.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-const Homepage = lazy(() => import("./pages/Homelayout.jsx"));
+const Homepage = lazy(() => import("./pages/Homelayout.jsx"), {
+  suspense: true,
+  preload: true
+});
 const Cart = lazy(() => import("./pages/Cart.jsx"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity,
-      cacheTime: Infinity,
+      staleTime: 1000 * 60 * 5, // 5 minutes instead of Infinity
+      cacheTime: 1000 * 60 * 30, // 30 minutes instead of Infinity
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
