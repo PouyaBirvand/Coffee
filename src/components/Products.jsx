@@ -19,7 +19,7 @@ function Products({ category, isExpanded }) {
 
   // Optimized renderSlide with better image loading
   const renderSlide = useCallback((item) => (
-    <SwiperSlide key={item.id} className={`pt-5 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
+    <SwiperSlide key={item.id} className={`pt-12 sm:pt-16 z-0 ${isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''}`}>
        <div className={`relative ${!isExpanded ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3 ' : ''} mx-auto`}>
 <div className="relative -top-4">
   <motion.img
@@ -48,7 +48,7 @@ function Products({ category, isExpanded }) {
       {item.title}
     </h1>
     <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-      {item.fullText + '...'}
+      {item.fullText}
     </p>
     <p className="text-white font-bold mt-2 text-3xl">
       ${item.price.toFixed(2)}
@@ -61,11 +61,11 @@ function Products({ category, isExpanded }) {
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
   >
-    <h1 className="text-white text-[2.3rem] drop-shadow-2xl  mb-0 font-extrabold sm:text-3xl">
+    <h1 className="text-white text-[2rem] drop-shadow-2xl  mb-0 font-extrabold sm:text-3xl">
       {item.title}
     </h1>
     <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
-      {item.fullText + '...'}
+      {item.fullText}
     </p>
   </motion.div>
 )}
