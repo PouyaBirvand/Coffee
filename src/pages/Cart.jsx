@@ -118,11 +118,11 @@ function Cart() {
                       />
                     </div>
                     <div className="flex-grow sm:w-full">
-                      <h2 className="text-3xl font-semibold text-dark-cocoa md:text-2xl sm:text-xl xs:text-lg">
+                      <h2 className="sm:!text-xl text-xl lg:text-sm md:text-sm font-semibold text-dark-cocoa">
                         {item.title}
                       </h2>
                       <div className="flex items-center">
-                        <p className="text-white text-sm mt-1 w-[12rem] md:w-[10rem] sm:w-full sm:text-xs">
+                        <p className="text-white text-xs mt-1 w-[12rem] md:w-[10rem] sm:w-full sm:text-xs">
                           {item.fullText &&
                             item.fullText.split(" ").slice(0, 3).join(" ") +
                               "..."}

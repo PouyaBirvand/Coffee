@@ -61,10 +61,10 @@ function Products({ category, isExpanded }) {
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
   >
-    <h1 className="text-white text-[2rem] drop-shadow-2xl  mb-0 font-extrabold sm:text-3xl">
+    <h1 className="text-white text-2xl drop-shadow-2xl  mb-0 font-extrabold md:text-[1.3rem]">
       {item.title}
     </h1>
-    <p className="text-white drop-shadow-2xl sm:text-sm ml-1">
+    <p className="text-white drop-shadow-2xl text-base ml-1">
       {item.fullText}
     </p>
   </motion.div>
