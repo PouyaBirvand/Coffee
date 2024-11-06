@@ -11,7 +11,10 @@ function Products({ category, isExpanded }) {
   const { data: items = [] , isLoading} = useProducts(category);
   const [activeIndex, setActiveIndex] = useState(0);
   const { setCurrentItem } = useAppContext();
-  
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [category]);
 
 
 
@@ -127,7 +130,7 @@ function Products({ category, isExpanded }) {
     grabCursor={true}
     centeredSlides={true}
     slidesPerView={1.26}
-    key={category}
+    key={category} // This already helps reset the slider
     coverflowEffect={{
       rotate: 40,
       stretch: 0,
@@ -138,7 +141,7 @@ function Products({ category, isExpanded }) {
     modules={[EffectCoverflow]}
     className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
     spaceBetween={40}
-    initialSlide={activeIndex}
+    initialSlide={0} // Ensure this is 0
     onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
   >
     {memoizedItems.map(renderSlide)}
