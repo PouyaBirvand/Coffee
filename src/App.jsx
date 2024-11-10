@@ -4,8 +4,8 @@ import { AppProvider } from "./context/AppContext.jsx";
 import CoffeeLoader from "./components/CoffeeLoader.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { initialItems } from "./components/initialItems.js";
 import { useImagePreloader } from "./hooks/useImagePreloader.js";
+import { initialItems } from "./components/initialItems.js";
 const Homepage = lazy(() => import("./pages/Homelayout.jsx"), {
   suspense: true,
   preload: true
@@ -32,6 +32,8 @@ if ('caches' in window) {
     });
   });
 }
+
+
 
 function App() {
 

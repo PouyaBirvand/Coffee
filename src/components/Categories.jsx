@@ -1,16 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { useCallback } from "react";
+import { CATEGORIES, CATEGORY_NAMES } from "../utils/categoryMapping";
 
 function Categories() {
   const { selectedCategory, setSelectedCategory } = useAppContext();
   const navigate = useNavigate();
 
-  const handleCategoryChange = useCallback((category) => {
-    if (category === selectedCategory) return;
-    setSelectedCategory(category);
-    navigate(`/${category.replace(/\s+/g, '')}`, { replace: true });
-  }, [selectedCategory, setSelectedCategory, navigate]);
+  const handleCategoryChange = useCallback(
+    (categoryId) => {
+      console.log('Clicked category:', categoryId);
+      setSelectedCategory(categoryId);
+      const categoryName = CATEGORY_NAMES[categoryId];
+      navigate(`/${categoryName.replace(/\s+/g, "")}`, { replace: true });
+    },
+    [setSelectedCategory, navigate]
+  );
+  
 
   const categories = [
     {
@@ -28,6 +34,7 @@ function Categories() {
         </svg>
       ),
       alt: "Ice creams",
+      categoryId: CATEGORIES.ICECREAM,
     },
     {
       icon: (
@@ -44,6 +51,7 @@ function Categories() {
         </svg>
       ),
       alt: "Dessert",
+      categoryId: CATEGORIES.DESSERT,
     },
     {
       icon: (
@@ -65,6 +73,7 @@ function Categories() {
         </svg>
       ),
       alt: "Shake",
+      categoryId: CATEGORIES.SHAKE,
     },
     {
       icon: (
@@ -81,6 +90,7 @@ function Categories() {
         </svg>
       ),
       alt: "Coffee",
+      categoryId: CATEGORIES.COFFEE,
     },
     {
       icon: (
@@ -97,21 +107,25 @@ function Categories() {
         </svg>
       ),
       alt: "Foods",
+      categoryId: CATEGORIES.FOODS,
     },
   ];
 
   return (
     <div className="xl:mt-12 lg:mt-12 md:mt-10 sm:mt-8 xs:mt-5 mx-auto w-[80%] max-w-2xl xl:max-w-[20rem] lg:max-w-lg md:max-w-md sm:max-w-sm xs:max-w-xs">
       <div className="bg-warm-wood bg-opacity-60 rounded-full flex justify-between items-center py-1 px-1 xl:px-1 lg:px-2 md:px-1 sm:px-1 xs:px-0.5">
-        {categories.map((category, index) => (
-          <div key={index} onClick={() => handleCategoryChange(category.alt)}>
+        {categories.map((category) => (
+          <div
+            key={category.categoryId}
+            onClick={() => handleCategoryChange(category.categoryId)}
+          >
             <div
               className={`
                 w-11 h-11 xl:w-11 xl:h-11 lg:w-10 lg:h-10 md:w-9 md:h-9 sm:w-8 sm:h-8 xs:w-7 xs:h-7
                 p-2.5 xl:p-2 lg:p-2 md:p-1.5 sm:p-1.5 xs:p-1
                 rounded-full transition duration-300 cursor-pointer flex items-center justify-center
                 ${
-                  selectedCategory === category.alt
+                  selectedCategory === category.categoryId
                     ? "bg-deep-mahogany text-soft-cream"
                     : "bg-soft-cream bg-opacity-50 hover:bg-deep-mahogany hover:text-soft-cream"
                 }

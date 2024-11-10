@@ -1,10 +1,11 @@
 import { createContext, useState, useContext, useEffect } from 'react';
+import { CATEGORIES } from '../utils/categoryMapping';
 
 const AppContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export function AppProvider({ children }) {
-  const [selectedCategory, setSelectedCategory] = useState('Coffee');
+  const [selectedCategory, setSelectedCategory] = useState(4); // یعنی 4
   const [isExpanded, setIsExpanded] = useState(false);
   const [cart, setCart] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);

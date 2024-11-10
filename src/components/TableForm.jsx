@@ -1,25 +1,49 @@
-import { useEffect } from "react";
-// eslint-disable-next-line react/prop-types
-function TableForm({ onClose, isVisible }) {
+import { useEffect, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { cartService } from '../services/cartService';
+
+function TableForm() {
+  const [showForm, setShowForm] = useState(true);
+  const [tableNumber, setTableNumber] = useState("");
+
+  // React Query mutation setup
+  const createCartMutation = useMutation({
+    mutationFn: () => cartService.createCart({ 
+        table_number: tableNumber 
+    }),
+    onSuccess: (response) => {
+        setShowForm(false);
+        console.log("Success response:", response);
+    },
+    onError: (error) => {
+        console.log("Error response data:", error.response?.data);
+    }
+});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitting table number:', tableNumber); // Debug log
+    createCartMutation.mutate();
+  };
+
   useEffect(() => {
-    if (isVisible) {
+    if (showForm) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isVisible]);
+  }, [showForm]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onClose();
+
+
+  const handleCancel = () => {
+    setShowForm(false);
   };
 
-  if (!isVisible) return null;
-
+  if (!showForm) return null;
   return (
     <>
       <div className="fixed inset-0 bg-black/60 z-[2998]" />
@@ -74,6 +98,8 @@ function TableForm({ onClose, isVisible }) {
                   className="bg-translucent-coffee/50 placeholder-dark-cocoa rounded-lg outline-none py-2 xs:py-2 pl-7 w-full xs:text-sm"
                   type="text"
                   placeholder="for example : 12 ..."
+                  value={tableNumber}
+                  onChange={(e) => setTableNumber(e.target.value)}
                 />
               </div>
 
@@ -99,7 +125,7 @@ function TableForm({ onClose, isVisible }) {
               <div className="flex gap-2">
                 <button
                   type="button"
-                  onClick={onClose}
+                  onClick={handleCancel}
                   className="flex-1 bg-translucent-coffee/50 rounded-lg py-2 text-white font-semibold transition  xs:text-sm"
                 >
                   Cancel

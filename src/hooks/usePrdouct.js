@@ -1,17 +1,16 @@
-import { useQuery } from '@tanstack/react-query'
-import { initialItems } from '../components/initialItems';
+import { useQuery } from '@tanstack/react-query';
+import { productService } from '../services/productSerivce';
 
-
-  export function useProducts(category) {
-    return useQuery({
-        queryKey: ['products', category],
-        queryFn: () => {
-            return initialItems.filter(item => item.category === category);
-        },
-        staleTime: Infinity,
-        cacheTime: Infinity,
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false
-    });
+export function useProducts(categoryId) {
+  return useQuery({
+    queryKey: ['products', categoryId],
+    queryFn: async () => {
+      const response = await productService.getAll();
+      // همه اطلاعات رو مستقیماً از API میگیریم
+      const { products, success } = response.data;
+      
+      // فیلتر بر اساس category_id که از API میاد
+      return products.filter(product => product.category_id === categoryId);
+    }
+  });
 }
