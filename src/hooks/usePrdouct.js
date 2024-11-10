@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { productService } from '../services/productSerivce';
+import { categoryService } from '../services/categorySerivce';
 
 export function useProducts(categoryId) {
   return useQuery({
     queryKey: ['products', categoryId],
     queryFn: async () => {
       const response = await productService.getAll();
-      // همه اطلاعات رو مستقیماً از API میگیریم
-      const { products, success } = response.data;
+      console.log('getbycategoriiiiiii',await categoryService.getAll());
       
-      // فیلتر بر اساس category_id که از API میاد
+      const { products } = response.data;
       return products.filter(product => product.category_id === categoryId);
     }
   });

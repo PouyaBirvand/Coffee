@@ -35,10 +35,10 @@ function Header() {
   }, [isSearchOpen]);
 
   const goToCart = () => {
-    navigate('/cart');
+    navigate("/cart");
   };
 
-  const isCartPage = location.pathname === '/cart';
+  const isCartPage = location.pathname === "/cart";
 
   return (
     <header className="relative">
@@ -63,14 +63,20 @@ function Header() {
           <button
             aria-label="Arrow"
             className="focus:outline-none z-10"
-            onClick={() => isCartPage ? navigate(-1) : setIsExpanded(!isExpanded)}
+            onClick={() =>
+              isCartPage ? navigate(-1) : setIsExpanded(!isExpanded)
+            }
           >
             <lord-icon
               src="https://cdn.lordicon.com/vduvxizq.json"
               trigger="loop"
               delay="0"
               colors="primary:#412f26"
-              style={{ width: "35px", height: "35px", transform: "rotate(180deg)" }}
+              style={{
+                width: "35px",
+                height: "35px",
+                transform: "rotate(180deg)",
+              }}
             />
           </button>
         )}
@@ -95,19 +101,22 @@ function Header() {
                   style={{ width: "35px", height: "35px" }}
                 />
               </button>
-              
             )}
-           
-              <button aria-label="Basket" className="focus:outline-none" onClick={goToCart}>
-                <lord-icon
-                  src="https://cdn.lordicon.com/evyuuwna.json"
-                  trigger="loop"
-                  delay="0"
-                  colors="primary:#412f26"
-                  style={{ width: "35px", height: "35px" }}
-                />
-              </button>
-              {totalItems > 0 && (
+
+            <button
+              aria-label="Basket"
+              className="focus:outline-none"
+              onClick={goToCart}
+            >
+              <lord-icon
+                src="https://cdn.lordicon.com/evyuuwna.json"
+                trigger="loop"
+                delay="0"
+                colors="primary:#412f26"
+                style={{ width: "35px", height: "35px" }}
+              />
+            </button>
+            {totalItems > 0 && (
               <div className="absolute top-2 -right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-[0.65rem] text-center font-bold">
                 {totalItems}
               </div>
@@ -117,7 +126,7 @@ function Header() {
       </div>
 
       <AnimatePresence>
-        {isMenuOpen && <Menu closeMenu={closeMenu} />}
+        {isMenuOpen && <Menu isOpen={isMenuOpen} closeMenu={closeMenu} />}
       </AnimatePresence>
 
       <AnimatePresence>
