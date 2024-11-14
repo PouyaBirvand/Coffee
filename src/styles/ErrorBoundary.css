@@ -1,0 +1,215 @@
+.error-canvas {
+    min-height: 100vh;
+    background: #412F26;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Animated Gradient Orbs */
+  .gradient-orbs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .orb {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: orbFloat 20s infinite;
+  }
+  
+  .orb:nth-child(1) {
+    background: linear-gradient(45deg, #835A36, #5D2510);
+    top: -50px;
+    left: -50px;
+  }
+  
+  .orb:nth-child(2) {
+    background: linear-gradient(45deg, #6A6F4C, #806044);
+    top: 50%;
+    right: -100px;
+    animation-delay: -5s;
+  }
+  
+  .orb:nth-child(3) {
+    background: linear-gradient(45deg, #EDE1D2, #CBB89D);
+    bottom: -100px;
+    left: 30%;
+    animation-delay: -10s;
+  }
+  
+  .orb:nth-child(4) {
+    background: linear-gradient(45deg, #412F26, #835A36);
+    top: 20%;
+    left: 20%;
+    animation-delay: -15s;
+  }
+  
+  /* Liquid Wave Animation */
+  .liquid-wave {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .liquid-wave svg {
+    fill: #835A36;
+    animation: waveFlow 3s ease-in-out infinite;
+  }
+  
+  /* Coffee Stream */
+  .coffee-stream {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60%;
+  }
+  
+  .stream-body {
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #EDE1D2 0%, #835A36 100%);
+    filter: blur(1px);
+    animation: streamFlow 2s infinite;
+  }
+  
+  .droplet {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #EDE1D2;
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: dropFall 2s infinite;
+  }
+  
+  /* Glass Card */
+  .glass-card {
+    background: rgba(237, 225, 210, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(237, 225, 210, 0.2);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .card-content {
+    position: relative;
+    z-index: 1;
+    color: #EDE1D2;
+  }
+  
+  /* Animations */
+  @keyframes orbFloat {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+      transform: translate(30px, -50px) rotate(120deg);
+    }
+    66% {
+      transform: translate(-30px, 50px) rotate(240deg);
+    }
+  }
+  
+  @keyframes waveFlow {
+    0%, 100% {
+      d: path("M0,10 Q25,5 50,10 T100,10 V20 H0 Z");
+    }
+    50% {
+      d: path("M0,10 Q25,15 50,10 T100,10 V20 H0 Z");
+    }
+  }
+  
+  @keyframes streamFlow {
+    0%, 100% {
+      transform: scaleY(1) translateX(0);
+    }
+    50% {
+      transform: scaleY(0.8) translateX(2px);
+    }
+  }
+  
+  @keyframes dropFall {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--x, 0), 200px) scale(0);
+      opacity: 0;
+    }
+  }
+  
+  /* Interactive Button */
+  button {
+    position: relative;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .button-liquid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #835A36, #5D2510);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  button:hover .button-liquid {
+    transform: translateY(0);
+  }
+  
+  .button-text {
+    position: relative;
+    z-index: 1;
+    color: #EDE1D2;
+    mix-blend-mode: difference;
+  }
+  
+  /* Aroma Rings */
+  .aroma-rings {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .ring {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #EDE1D2;
+    border-radius: 50%;
+    opacity: 0;
+    animation: ringExpand 3s infinite;
+  }
+  
+  @keyframes ringExpand {
+    0% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+  

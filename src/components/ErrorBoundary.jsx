@@ -1,36 +1,81 @@
-// import { Component } from 'react';
-// import PropTypes from 'prop-types';
+import { Component } from 'react';
+import '../styles/ErrorBoundary.css';
 
-// class ErrorBoundary extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { hasError: false };
-//   }
 
-//   static getDerivedStateFromError() {
-//     return { hasError: true };
-//   }
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
-//   render() {
-//     if (this.state.hasError) {
-//       return (
-//         <div className="flex flex-col items-center justify-center min-h-[400px]">
-//           <h2 className="text-xl font-bold mb-4">مشکلی پیش آمده</h2>
-//           <button 
-//             onClick={() => window.location.reload()}
-//             className="px-4 py-2 bg-[#835a36] text-white rounded-lg"
-//           >
-//             تلاش مجدد 
-//           </button>
-//         </div>
-//       );
-//     }
-//     return this.props.children;
-//   }
-// }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
 
-// ErrorBoundary.propTypes = {
-//   children: PropTypes.node.isRequired
-// };
+  render() {
+    // eslint-disable-next-line react/prop-types
+    const { children } = this.props;
 
-// export default ErrorBoundary;
+    if (this.state.hasError) {
+      return (
+        <div className="error-canvas">
+        {/* Animated Background Gradients */}
+        <div className="gradient-orbs">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="orb"></div>
+          ))}
+        </div>
+
+        {/* Main Coffee Experience */}
+        <div className="coffee-experience">
+          {/* Liquid Wave Effect */}
+          <div className="liquid-wave">
+            <svg viewBox="0 0 100 20">
+              <path d="M0,10 Q25,5 50,10 T100,10 V20 H0 Z"></path>
+            </svg>
+          </div>
+
+          {/* Interactive Coffee Stream */}
+          <div className="coffee-stream">
+            <div className="stream-body"></div>
+            <div className="droplets">
+              {[...Array(15)].map((_, i) => (
+                <span key={i} className="droplet"></span>
+              ))}
+            </div>
+          </div>
+
+          {/* Morphing Coffee Elements */}
+          <div className="coffee-elements">
+            <div className="aroma-rings">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="ring"></div>
+              ))}
+            </div>
+            <div className="coffee-swirl"></div>
+          </div>
+
+          {/* Glass Morphism Card */}
+          <div className="glass-card">
+            <div className="card-content">
+              <h1>Creative Break</h1>
+              <p>Brewing something extraordinary...</p>
+              <button onClick={() => window.location.reload()}>
+                <span className="button-liquid"></span>
+                <span className="button-text">Refresh</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      );
+    }
+
+    return children;
+  }
+}
+
+// Add these styles to your global CSS file
+
+
+export default ErrorBoundary;

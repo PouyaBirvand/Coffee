@@ -1,94 +1,104 @@
-import { createContext, useState, useContext, useEffect } from 'react';
-import { CATEGORIES } from '../utils/categoryMapping';
+import { createContext, useState, useContext, useEffect } from 'react'
+import { cartService } from '../services/cartService'
+import { useCart } from '../hooks/useCart'
 
-const AppContext = createContext();
+const AppContext = createContext()
 
 // eslint-disable-next-line react/prop-types
 export function AppProvider({ children }) {
-  const [selectedCategory, setSelectedCategory] = useState(4); // یعنی 4
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [cart, setCart] = useState([]);
-  const [currentItem, setCurrentItem] = useState(null);
-  const [totalItems, setTotalItems] = useState(0);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [discountedAmount, setDiscountedAmount] = useState(0);
+    // State Management
+    const [selectedCategory, setSelectedCategory] = useState(4)
+    const [isExpanded, setIsExpanded] = useState(false)
+    const [currentItem, setCurrentItem] = useState(null)
+    const [cartItems, setCartItems] = useState([])
+    const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'))
+    const [tableNumber, setTableNumber] = useState(() => localStorage.getItem('tableNumber'))
 
-  useEffect(() => {
-    const newTotalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-    setTotalItems(newTotalItems);
+    // Cart Hook
+    const { cart, isLoading, addItem, updateQuantity, removeItem , deleteCart} = useCart(cartId)
 
-    let amount = 0;
-    let discounted = 0;
-
-    cart.map((item) => {
-      const quantity = item.quantity || 1;
-      const itemTotal = item.price * quantity;
-      amount += itemTotal;
-      discounted += item.discount ? itemTotal * (1 - item.discount) : itemTotal;
-    });
-
-    setTotalAmount(amount);
-    setDiscountedAmount(discounted);
-  }, [cart]);
-
-  const toggleExpanded = () => {
-    setIsExpanded(prev => !prev);
-  };
-
-  const addToCart = (item) => {
-    setCart(prevCart => {
-      const existingItemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
-      
-      if (existingItemIndex !== -1) {
-        const updatedCart = [...prevCart];
-        updatedCart[existingItemIndex] = {
-          ...updatedCart[existingItemIndex],
-          quantity: (updatedCart[existingItemIndex].quantity || 1) + 1
-        };
-        return updatedCart;
-      } else {
-        return [...prevCart, { ...item, quantity: 1 }];
-      }
-    });
-  };
-
-  const removeItem = (id) => {
-    setCart(cart.filter(item => item.id !== id));
-  };
-
-  const updateQuantity = (id, change) => {
-    setCart(
-      cart.map((item) => {
-        if (item.id === id) {
-          const newQuantity = Math.max(1, (item.quantity || 1) + change);
-          return { ...item, quantity: newQuantity };
+    // Cart Initialization
+    const initCart = async () => {
+        if (!cartId) {
+            try {
+                const response = await cartService.create({ 
+                    table_number: "1",
+                    status: "active"
+                })
+                
+                if (response?.data?.id) {
+                    setCartId(response.data.id)
+                    localStorage.setItem('cartId', response.data.id)
+                    return response.data.id
+                }
+            } catch (error) {
+                console.error('Failed to create cart:', error)
+            }
         }
-        return item;
-      })
-    );
-  };
+        return cartId
+    }
 
-  const value = {
-    selectedCategory,
-    setSelectedCategory,
-    isExpanded,
-    setIsExpanded,
-    toggleExpanded,
-    cart,
-    addToCart,
-    currentItem,
-    setCurrentItem,
-    setCart,
-    removeItem,
-    totalItems,
-    totalAmount,
-    discountedAmount,
-    updateQuantity,
-  };
+    // Cart Operations
+    const addToCart = async (product) => {
+        try {
+            let currentCartId = cartId
+            
+            if (!currentCartId) {
+                const storedTableNumber = localStorage.getItem('tableNumber')
+                const cart = await cartService.create({
+                    table_number: storedTableNumber,
+                    status: 'active'
+                })
+                currentCartId = cart.data.id
+                setCartId(currentCartId)
+            }
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+            const response = await cartService.addItem(currentCartId, product)
+            return response
+        } catch (error) {
+            console.error('Add to cart error:', error)
+            throw error
+        }
+    }
+
+    // UI Operations
+    const toggleExpanded = () => {
+        setIsExpanded(prev => !prev)
+    }
+    
+    // Effects
+    useEffect(() => {
+        if (!cartId) {
+            initCart()
+        }
+    }, [])
+
+    // Context Value
+    const contextValue = {
+        cartItems: cart?.items || [],
+        isLoading,
+        addToCart: addItem,
+        updateCartQuantity: updateQuantity,
+        removeFromCart: removeItem,
+        cartId,
+        totalItems: cart?.items?.length || 0,
+        selectedCategory,
+        setSelectedCategory,
+        isExpanded,
+        tableNumber,
+        setIsExpanded,
+        toggleExpanded,
+        currentItem,
+        setCurrentItem,
+        setCartItems,
+        totalAmount: cart?.total || 0,
+        discountedAmount: cart?.discounted_total || 0,
+        deleteCart
+    }
+
+    return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
 }
 
 export function useAppContext() {
-  return useContext(AppContext);
+    return useContext(AppContext)
 }
