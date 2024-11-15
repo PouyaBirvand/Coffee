@@ -7,11 +7,12 @@ export function useCart(cartId) {
     const { data: cart, isLoading } = useQuery({
         queryKey: ['cart', cartId],
         queryFn: async () => {
-            if (!cartId) return null;
+            if (!cartId) return { items: [] };
             const response = await cartService.viewCart(cartId);
-            return response.data;
+            console.log('Cart Response:', response.data); // Add this log
+            return response.data.cart; // Make sure we return the correct data structure
         },
-        enabled: !!cartId
+        enabled: Boolean(cartId)
     });
 
     const addItemMutation = useMutation({

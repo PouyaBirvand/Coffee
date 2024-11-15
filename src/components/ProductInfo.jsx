@@ -1,8 +1,10 @@
 import { motion } from "framer-motion"
 import PropTypes from 'prop-types'
 
-export function ProductInfo({ item, isExpanded }) {
-  const commonClasses = "text-white drop-shadow-2xl"
+// eslint-disable-next-line react/prop-types
+export function ProductInfo({item, isExpanded, isSearchResult}) {
+    const commonClasses = `text-white drop-shadow-2xl ${isSearchResult ? 'search-result' : ''}`;
+
   
   return (
     <motion.div

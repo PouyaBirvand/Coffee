@@ -1,3 +1,5 @@
+import { useMutation, useQuery } from '@tanstack/react-query';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -46,3 +48,16 @@ export default {
   },
   plugins: [],
 };
+
+
+
+// const {error ,} = useQuery({
+//   queryKey: ["products"],
+//   queryFn: () => {
+//     return axios.get("https://dummyjson.com/products");
+//     Success: (data) => {
+//     console.log(data.data.products);
+//   },
+//   onError: (error)
+//   }
+// })

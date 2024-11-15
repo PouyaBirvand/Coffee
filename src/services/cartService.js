@@ -14,7 +14,12 @@ export const cartService = {
       return await api.post(`/carts/${cartId}/items`, payload);
   },
 
-  viewCart: (cartId) => api.get(`/carts/${cartId}`),
+  viewCart: (cartId) => {
+    if (!cartId) {
+        throw new Error('Cart ID is required');
+    }
+    return api.get(`/carts/${cartId}`);
+},
 
   updateQuantity: (cartId, itemId, change) => {
     const endpoint = `/carts/${cartId}/items/${itemId}/${change > 0 ? 'increase' : 'decrease'}`;

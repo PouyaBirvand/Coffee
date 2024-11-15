@@ -3,7 +3,7 @@ import ProductTitle from "../components/ProductTitle";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { cartService } from "../services/cartService";
 import { useCartCalculations } from "../hooks/useCartCalculations";
 import BottomNavigation from "../components/Footer/BottomNavigation";
@@ -12,6 +12,11 @@ function Cart() {
   const navigate = useNavigate();
   const { cartItems, removeFromCart, updateCartQuantity, cartId } =
     useAppContext();
+  const [cartTotals, setCartTotals] = useState({
+    totalPrice: 0,
+    discountedAmount: 0,
+  });
+
   const { totalAmount, discountedAmount } = useCartCalculations(cartItems);
   let formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
@@ -20,14 +25,17 @@ function Cart() {
       const fetchCart = async () => {
         try {
           const response = await cartService.viewCart(cartId);
-          console.log("Cart data:", response.data);
+          setCartTotals({
+            totalPrice: response.data.total_price,
+            discountedAmount: response.data.discounted_amount,
+          });
         } catch (error) {
           console.log("Cart fetch error:", error.response);
         }
       };
       fetchCart();
     }
-  }, [cartId]);
+  }, [cartId, cartItems]);
 
   const handleQuantityUpdate = async (itemId, change) => {
     if (!itemId || !cartId) return;
@@ -239,28 +247,27 @@ function Cart() {
               <div className="w-[95%] mx-auto ">
                 <div className="flex justify-between text-white mb-1">
                   <span className="text-lg">Item Amount:</span>
-                  <motion.span
-                    key={totalAmount}
-                    initial={{ scale: 0.8 }}
-                    animate={{ scale: 1 }}
-                    className="text-2xl"
-                  >
-                    ${formatPrice(totalAmount)}
+                  <motion.span className="text-2xl">
+                    ${formatPrice(cartTotals.totalPrice)}
                   </motion.span>
                 </div>
-                {totalAmount !== discountedAmount && (
-                  <div className="flex justify-between text-green-400 mb-1">
-                    <span className="text-lg">Discount:</span>
-                    <motion.span
-                      key={discountedAmount}
-                      initial={{ scale: 0.8 }}
-                      animate={{ scale: 1 }}
-                      className="text-2xl"
-                    >
-                      -${formatPrice(totalAmount - discountedAmount)}
-                    </motion.span>
-                  </div>
-                )}
+                {cartTotals.discountedAmount &&
+                  cartTotals.totalPrice !== cartTotals.discountedAmount && (
+                    <div className="flex justify-between text-green-400 mb-1">
+                      <span className="text-lg">Discount:</span>
+                      <motion.span
+                        key={cartTotals.discountedAmount}
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        className="text-2xl"
+                      >
+                        -$
+                        {formatPrice(
+                          cartTotals.totalPrice - cartTotals.discountedAmount
+                        )}
+                      </motion.span>
+                    </div>
+                  )}
                 <div className="flex justify-between items-center text-deep-mahogany text-lg font-bold  border-t-2 pt-2 border-deep-mahogany border-opacity-50">
                   <div className="flex items-center gap-1">
                     <svg

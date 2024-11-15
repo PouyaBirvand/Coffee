@@ -18,25 +18,35 @@ import { ProductImage } from "./ProductImage"
 import { ProductInfo } from "./ProductInfo"
 import { LoadingSpinner } from "./LoadingSpinner"
 
-function Products({ categoryId, isExpanded }) {
-  const { data: items = [], isLoading } = useProducts(categoryId)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const { setCurrentItem } = useAppContext()
+// eslint-disable-next-line react/prop-types
+function Products({ categoryId, isExpanded, searchResults }) {
+
+  const { data: items = [], isLoading } = useProducts(categoryId);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { setCurrentItem, currentItem } = useAppContext();
+  const displayItems = searchResults || items;
+
 
   useEffect(() => {
     setActiveIndex(0)
   }, [categoryId])
 
   useEffect(() => {
-    if (items.length > 0) {
-      setCurrentItem(items[activeIndex])
+    if (items.length > 0 && !currentItem) {
+      setCurrentItem(items[activeIndex]);
     }
-  }, [activeIndex, items, setCurrentItem])
+  }, [activeIndex, items, setCurrentItem, currentItem]);
+  
 
   const memoizedItems = useMemo(
-    () => (isExpanded ? [items[activeIndex]] : items.slice(0, 10)),
-    [isExpanded, items, activeIndex]
-  )
+    () => {
+      if (isExpanded && currentItem) {
+        return [currentItem];
+      }
+      return isExpanded ? [items[activeIndex]] : items.slice(0, 10);
+    },
+    [isExpanded, items, activeIndex, currentItem]
+  );
 
   const renderSlide = useCallback(
     (item) => (
@@ -58,9 +68,9 @@ function Products({ categoryId, isExpanded }) {
   if (isExpanded) {
     return (
       <div className="mt-[1.5rem] w-[95%] md:w-[80%] lg:w-[80%] mx-auto">
-        {items[activeIndex] && renderSlide(items[activeIndex])}
+        {currentItem ? renderSlide(currentItem) : items[activeIndex] && renderSlide(items[activeIndex])}
       </div>
-    )
+    );
   }
   
 

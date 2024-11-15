@@ -8,36 +8,38 @@ const AppContext = createContext()
 export function AppProvider({ children }) {
     // State Management
     const [selectedCategory, setSelectedCategory] = useState(4)
-    const [isExpanded, setIsExpanded] = useState(false)
-    const [currentItem, setCurrentItem] = useState(null)
+
     const [cartItems, setCartItems] = useState([])
     const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'))
     const [tableNumber, setTableNumber] = useState(() => localStorage.getItem('tableNumber'))
+    const [searchResults, setSearchResults] = useState(null);
+
+    const [currentItem, setCurrentItem] = useState(null);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     // Cart Hook
     const { cart, isLoading, addItem, updateQuantity, removeItem , deleteCart} = useCart(cartId)
 
     // Cart Initialization
     const initCart = async () => {
-        if (!cartId) {
-            try {
-                const response = await cartService.create({ 
-                    table_number: "1",
-                    status: "active"
-                })
-                
-                if (response?.data?.id) {
-                    setCartId(response.data.id)
-                    localStorage.setItem('cartId', response.data.id)
-                    return response.data.id
-                }
-            } catch (error) {
-                console.error('Failed to create cart:', error)
-            }
+        const existingCartId = localStorage.getItem('cartId');
+        
+        if (existingCartId) {
+            setCartId(existingCartId);
+            return existingCartId;
         }
-        return cartId
+    
+        const response = await cartService.create({ 
+            table_number: tableNumber || "1",
+            status: "active"
+        });
+        
+        const newCartId = response.data.id;
+        setCartId(newCartId);
+        localStorage.setItem('cartId', newCartId);
+        return newCartId;
     }
-
+    
     // Cart Operations
     const addToCart = async (product) => {
         try {
@@ -75,6 +77,10 @@ export function AppProvider({ children }) {
 
     // Context Value
     const contextValue = {
+        currentItem,
+        setCurrentItem,
+        isExpanded,
+        setIsExpanded,
         cartItems: cart?.items || [],
         isLoading,
         addToCart: addItem,
@@ -84,16 +90,16 @@ export function AppProvider({ children }) {
         totalItems: cart?.items?.length || 0,
         selectedCategory,
         setSelectedCategory,
-        isExpanded,
         tableNumber,
-        setIsExpanded,
         toggleExpanded,
-        currentItem,
-        setCurrentItem,
         setCartItems,
         totalAmount: cart?.total || 0,
         discountedAmount: cart?.discounted_total || 0,
-        deleteCart
+        deleteCart,
+        searchResults,
+        setSearchResults,
+        
+
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

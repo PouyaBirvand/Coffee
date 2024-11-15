@@ -1,9 +1,10 @@
 import { motion } from "framer-motion"
 import PropTypes from 'prop-types'
 
-export function ProductImage({ item, isExpanded }) {
+// eslint-disable-next-line react/prop-types
+export function ProductImage({  item, isExpanded, isSearchResult }) {
   return (
-    <div className="relative -top-4">
+    <div className={`relative -top-4 ${isSearchResult ? 'search-item' : ''}`}>
       <motion.img
         src={item.image}
         alt={item.title}
