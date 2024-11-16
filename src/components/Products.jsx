@@ -23,7 +23,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
 
   const { data: items = [], isLoading } = useProducts(categoryId);
   const [activeIndex, setActiveIndex] = useState(0);
-  const { setCurrentItem, currentItem } = useAppContext();
+  const { setCurrentItem, currentItem , selectionSource , setSelectionSource } = useAppContext();
   const displayItems = searchResults || items;
 
 
@@ -32,21 +32,28 @@ function Products({ categoryId, isExpanded, searchResults }) {
   }, [categoryId])
 
   useEffect(() => {
-    if (items.length > 0 && !currentItem) {
+    if (items.length > 0 && selectionSource !== 'search') {
       setCurrentItem(items[activeIndex]);
     }
-  }, [activeIndex, items, setCurrentItem, currentItem]);
+  }, [activeIndex, items, setCurrentItem, selectionSource]);
+  
+  
   
 
   const memoizedItems = useMemo(
     () => {
-      if (isExpanded && currentItem) {
+      if (isExpanded && currentItem && selectionSource === 'search') {
         return [currentItem];
       }
-      return isExpanded ? [items[activeIndex]] : items.slice(0, 10);
+      if (isExpanded) {
+        return [items[activeIndex]];
+      }
+      return displayItems.slice(0, 10);
     },
-    [isExpanded, items, activeIndex, currentItem]
+    [isExpanded, items, activeIndex, currentItem, displayItems, selectionSource]
   );
+  
+  
 
   const renderSlide = useCallback(
     (item) => (
@@ -92,11 +99,16 @@ function Products({ categoryId, isExpanded, searchResults }) {
     className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
     spaceBetween={40}
     initialSlide={0}
-    onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+    onSlideChange={(swiper) => {
+      const newIndex = swiper.activeIndex;
+      setActiveIndex(newIndex);
+      setSelectionSource('products');
+      setCurrentItem(items[newIndex]);
+    }}
   >
     {memoizedItems.map(renderSlide)}
   </Swiper>
-  )
+);
 }
 
 Products.propTypes = {

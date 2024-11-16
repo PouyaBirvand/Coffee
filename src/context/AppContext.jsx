@@ -8,7 +8,7 @@ const AppContext = createContext()
 export function AppProvider({ children }) {
     // State Management
     const [selectedCategory, setSelectedCategory] = useState(4)
-
+    const [selectionSource, setSelectionSource] = useState(null); // 'search' یا 'products'
     const [cartItems, setCartItems] = useState([])
     const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'))
     const [tableNumber, setTableNumber] = useState(() => localStorage.getItem('tableNumber'))
@@ -98,8 +98,8 @@ export function AppProvider({ children }) {
         deleteCart,
         searchResults,
         setSearchResults,
-        
-
+        selectionSource,
+        setSelectionSource
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

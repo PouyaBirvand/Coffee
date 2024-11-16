@@ -16,9 +16,13 @@ export function useCart(cartId) {
     });
 
     const addItemMutation = useMutation({
-        mutationFn: (product) => cartService.addItem(cartId, product),
+        mutationFn: (product) => {
+            console.log('Adding product:', product);
+            return cartService.addItem(cartId, product);
+        },
         onSuccess: () => queryClient.invalidateQueries(['cart', cartId])
     });
+    
 
     const updateQuantityMutation = useMutation({
         mutationFn: ({ itemId, change }) => 

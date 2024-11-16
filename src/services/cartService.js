@@ -7,12 +7,12 @@ export const cartService = {
   }),
   
   addItem: async (cartId, product) => {
-      const payload = {
-          product_id: parseInt(product.id),
-          quantity: 1
-      };
-      return await api.post(`/carts/${cartId}/items`, payload);
-  },
+    console.log('Cart Service - Adding:', { cartId, product });
+    return await api.post(`/carts/${cartId}/items`, {
+        product_id: parseInt(product.id),
+        quantity: 1
+    });
+},
 
   viewCart: (cartId) => {
     if (!cartId) {

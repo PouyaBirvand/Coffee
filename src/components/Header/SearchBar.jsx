@@ -12,15 +12,22 @@ function SearchBar() {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setCurrentItem, setIsExpanded } = useAppContext();
-
-  const handleProductClick = (product) => {
-    setCurrentItem(product);
-    setIsExpanded(true);
-    setQuery(""); // Clear search
-    setResults([]); // Clear results
-    navigate("/"); // Navigate to main product view
-  };
+    const { setCurrentItem, setIsExpanded , setSelectionSource } = useAppContext();
+  
+    const handleProductClick = (product) => {
+      setQuery("");
+      setResults([]);
+      setIsExpanded(false);
+      setSelectionSource('search');
+      
+      setTimeout(() => {
+        setCurrentItem(product);
+        setIsExpanded(true);
+        navigate("/");
+      }, 100);
+    };
+  
+  
 
   const searchProducts = debounce(async (searchQuery) => {
     if (!searchQuery.trim()) {
