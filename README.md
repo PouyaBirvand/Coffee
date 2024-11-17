@@ -1,62 +1,64 @@
-# ☕ Coffee Shop App
+# ☕ Coffee Shop Mobile Menu
 
-A sleek, mobile-only React application for a coffee shop with a modern UI, product browsing, and cart functionality.
+Transform your coffee shop experience with our digital mobile menu! Perfect for customers to browse and order their favorite drinks right from their phones.
 
-## 🌟 Features
+## 📱 Mobile-First Design
+Built exclusively for mobile devices, making ordering as easy as sipping your morning coffee!
 
-🛒 Dynamic product browsing with swipeable carousel
-🔍 Category filtering for easy navigation
-🛍️ Shopping cart with real-time updates
-✨ Smooth animations using Framer Motion
+## ✨ What Makes Us Special
 
-## 🚀 Tech Stack
+- 🚀 Lightning-fast ordering system
+- 🎯 Table-specific QR codes
+- 🎨 Stunning drink visuals
+- 🔍 Smart search feature
+- 🛒 Seamless cart experience
+- 💫 Beautiful animations
 
-- ⚛️ React
-- 🧭 React Router
-- 🌐 Context API
-- 🎭 Framer Motion
-- 🎨 Tailwind CSS
-- 👆 Swiper
+## 🛠️ Built With Love Using
 
-## 📱 Live Demo
+- ⚛️ React 18
+- 🎨 TailwindCSS
+- ✨ Framer Motion
+- 🔄 React Query
+- 🌊 Swiper
+- 📡 Axios
+- 💾 Context API
+- 🔧 Lodash
+- 🎭 Lordicon
+- 📦 Vite
 
-Experience the app: [Coffee Shop App](https://coffee-green-omega.vercel.app/Coffee)
+## 🚀 Quick Start
 
-> 🚧 Note: This project is still under active development. New features and improvements are being added regularly.
+```bash
+git clone https://github.com/PouyaBirvand/Coffee.git
+cd coffee-menu
+npm install
+npm run dev
+```
 
-## 🛠️ Installation
+## 💡 Smart Features
 
-1. Clone the repo:
-2. Navigate to project directory:
-3. Install dependencies:
-4. Start the dev server:
+- 📱 Optimized for all mobile devices
+- 🎯 Easy table number selection
+- 🔍 Quick drink search
+- 🛒 Smart cart management
+- ⚡ Real-time updates
+- 🎨 Interactive animations
+- 🔄 State management with Context API
+- ⚡ Debounced search with Lodash
+- 🎭 Dynamic icons with Lordicon
 
-   
-## 💡 Usage
+## 📸 Preview
+<p align="left">
+<img src="https://s8.uupload.ir/files/1_mp81.png"/>
+</p>
 
-This app is designed for mobile use only. Open the live demo link on your mobile device or use mobile view in your browser's dev tools.
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Check out the [issues page](https://github.com/yourusername/coffee-shop-app/issues).
-
-## 📄 License
-
-This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
-
-## 🙏 Acknowledgements
-
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Swiper](https://swiperjs.com/)
-- [Vercel](https://vercel.com/)
 
 ---
+☕ Perfect for cafes looking to modernize their ordering system!
 
-Made with ❤️ and ☕
-
-
+Made with by Pouya 🦊
 
 
 
