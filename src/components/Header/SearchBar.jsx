@@ -4,6 +4,7 @@ import debounce from "lodash/debounce";
 import api from "../../services/axios";
 import { useAppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { replace } from "lodash";
 
 function SearchBar() {
   const navigate = useNavigate();
@@ -15,17 +16,16 @@ function SearchBar() {
     const { setCurrentItem, setIsExpanded , setSelectionSource } = useAppContext();
   
     const handleProductClick = (product) => {
+      const newProduct = JSON.parse(JSON.stringify(product));
+      setSelectionSource('search');
+      setCurrentItem(newProduct);
+      setIsExpanded(true);
       setQuery("");
       setResults([]);
-      setIsExpanded(false);
-      setSelectionSource('search');
-      
-      setTimeout(() => {
-        setCurrentItem(product);
-        setIsExpanded(true);
-        navigate("/");
-      }, 100);
+      navigate("/") , {replace : true};
     };
+    
+    
   
   
 

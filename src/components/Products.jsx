@@ -26,33 +26,64 @@ function Products({ categoryId, isExpanded, searchResults }) {
   const { setCurrentItem, currentItem , selectionSource , setSelectionSource } = useAppContext();
   const displayItems = searchResults || items;
 
+  const [selectedItemId, setSelectedItemId] = useState(null);
+
+
+
 
   useEffect(() => {
-    setActiveIndex(0)
-  }, [categoryId])
-
-  useEffect(() => {
-    if (items.length > 0 && selectionSource !== 'search') {
-      setCurrentItem(items[activeIndex]);
+    if (selectionSource === 'search') {
+      setActiveIndex(0);
     }
-  }, [activeIndex, items, setCurrentItem, selectionSource]);
+  }, [selectionSource]);
+  
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [categoryId, selectionSource]);
+  
+  useEffect(() => {
+    if (items.length > 0 && selectionSource === 'products') {
+      const newItem = JSON.parse(JSON.stringify(items[activeIndex]));
+      setCurrentItem(newItem);
+    }
+  }, [activeIndex, items, selectionSource]);
+  
+  useEffect(() => {
+    if (items.length > 0 && selectionSource === 'products') {
+      const initialItem = JSON.parse(JSON.stringify(items[0])); // Always start with first item
+      setSelectedItemId(items[0].id);
+      setCurrentItem(initialItem);
+      setActiveIndex(0);
+    }
+  }, [items, selectionSource]); 
+  
+
   
   
   
 
   const memoizedItems = useMemo(
     () => {
+      // When returning from search view to all products
+      if (!isExpanded && selectionSource === 'search') {
+        setSelectionSource('products'); // Reset selection source
+        return displayItems.slice(0, 10); // Show all products
+      }
+      
+      // Current expanded view logic
       if (isExpanded && currentItem && selectionSource === 'search') {
         return [currentItem];
       }
       if (isExpanded) {
         return [items[activeIndex]];
       }
+      
       return displayItems.slice(0, 10);
     },
     [isExpanded, items, activeIndex, currentItem, displayItems, selectionSource]
   );
-  
+
   
 
   const renderSlide = useCallback(
@@ -82,13 +113,13 @@ function Products({ categoryId, isExpanded, searchResults }) {
   
 
   return (
-    <Swiper
+
+<Swiper
     modules={[EffectCoverflow]}
     effect="coverflow"
     grabCursor={true}
     centeredSlides={true}
     slidesPerView={1.26}
-    key={categoryId}
     coverflowEffect={{
       rotate: 40,
       stretch: 0,
@@ -98,16 +129,30 @@ function Products({ categoryId, isExpanded, searchResults }) {
     }}
     className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
     spaceBetween={40}
-    initialSlide={0}
+    initialSlide={activeIndex}
+    key={categoryId}
     onSlideChange={(swiper) => {
       const newIndex = swiper.activeIndex;
       setActiveIndex(newIndex);
-      setSelectionSource('products');
-      setCurrentItem(items[newIndex]);
+      if (items[newIndex]) {
+        const newItem = JSON.parse(JSON.stringify(items[newIndex]));
+        setCurrentItem(newItem);
+        setSelectionSource('products');
+      }
     }}
-  >
+    onInit={(swiper) => {
+      // Ensure initial slide is properly set
+      if (items[0]) {
+        const initialItem = JSON.parse(JSON.stringify(items[0]));
+        setCurrentItem(initialItem);
+        setSelectionSource('products');
+      }
+    }}
+>
     {memoizedItems.map(renderSlide)}
   </Swiper>
+
+
 );
 }
 
@@ -117,3 +162,5 @@ Products.propTypes = {
 }
 
 export default Products
+
+

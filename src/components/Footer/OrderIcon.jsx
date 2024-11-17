@@ -1,5 +1,7 @@
-export const OrderIcon = () => (
+// eslint-disable-next-line react/prop-types
+export const OrderIcon = ({ onClick }) => (
     <svg
+      onClick={onClick}
       width="32"
       height="32"
       viewBox="0 0 32 35"

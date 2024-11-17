@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import api from './axios';
 
 export const cartService = {
@@ -72,3 +73,5 @@ export const cartService = {
 //     removeItem: (cartId, itemId) => api.delete(`/carts/${cartId}/items/${itemId}`),
 //     clear: (cartId) => api.delete(`/carts/${cartId}`)
 // };
+
+

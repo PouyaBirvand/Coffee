@@ -4,8 +4,8 @@ import { OrderIcon } from "./OrderIcon";
 import { RestaurantIcon } from "./RestaurantIcon";
 import { useLocation } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
-
-function BottomNavigation() {
+// eslint-disable-next-line react/prop-types
+function BottomNavigation({ onOrderClick }) {
   const { isExpanded, toggleExpanded, addToCart, currentItem, cartId } = useAppContext();
   const location = useLocation();
   const queryClient = useQueryClient();
@@ -36,8 +36,10 @@ function BottomNavigation() {
             <div className="bg-dark-cocoa p-2 rounded-full shadow-lg border border-white">
               <div className="bg-dark-cocoa w-[4.7rem] h-[3rem] -z-20 absolute -top-2 left-1/2 transform -translate-x-1/2 rounded-t-full" />
               {isCartPage ? (
+                <div onClick={onOrderClick}>
                 <OrderIcon />
-              ) : isExpanded ? (
+              </div>
+                            ) : isExpanded ? (
                 <div className="w-10 h-10 flex items-center justify-center cursor-pointer relative z-10 text-white text-3xl font-bold" onClick={handleAddToCart}>
                   <AddIcon />
                 </div>

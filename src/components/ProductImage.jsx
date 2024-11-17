@@ -3,10 +3,14 @@ import PropTypes from 'prop-types'
 
 // eslint-disable-next-line react/prop-types
 export function ProductImage({  item, isExpanded, isSearchResult }) {
+  const images = (`http://127.0.0.1:8000/storage/images/${item.image}`).replace(/-\d{4}-\d{2}-\d{2}/g, '');
+  console.log(images);
+  
+  
   return (
     <div className={`relative -top-4 ${isSearchResult ? 'search-item' : ''}`}>
       <motion.img
-        src={item.image}
+        src={images}
         alt={item.title}
         loading="eager"
         decoding="async"
