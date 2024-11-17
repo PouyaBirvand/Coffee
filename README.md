@@ -2,8 +2,9 @@
 
 Transform your coffee shop experience with our digital mobile menu! Perfect for customers to browse and order their favorite drinks right from their phones.
 
-## 📱 Mobile-First Design
-Built exclusively for mobile devices, making ordering as easy as sipping your morning coffee!
+##  Mobile-First Design 📱
+
+> 🚧 Note: This project is still under active development. New features and improvements are being added regularly.
 
 ## ✨ What Makes Us Special
 
