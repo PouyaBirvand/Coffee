@@ -108,7 +108,7 @@ function TableForm() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <div className="relative mb-8">
+          <div className="relative mb-8 w-24 h-24 flex justify-center items-center mx-auto">
             <motion.div
               initial={{ scale: 0.5, y: 10 }}
               animate={{ scale: 1, y: 0 }}
