@@ -13,7 +13,7 @@ export default {
       },
       backgroundColor: {
         body: "#CBB89D",
-      },
+      }, 
       fontFamily: {
         sans: "Vazirmatn , sans-serif",
       },
@@ -46,16 +46,3 @@ export default {
   },
   plugins: [],
 };
-
-
-
-// const {error ,} = useQuery({
-//   queryKey: ["products"],
-//   queryFn: () => {
-//     return axios.get("https://dummyjson.com/products");
-//     Success: (data) => {
-//     console.log(data.data.products);
-//   },
-//   onError: (error)
-//   }
-// })

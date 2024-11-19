@@ -1,0 +1,164 @@
+.cafe-loader {
+  background: linear-gradient(135deg, #CBB89D, #8B7355);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cafe-loader::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: ambientLight 15s infinite linear;
+}
+
+.coffee-cup {
+  position: relative;
+  width: 140px;
+  height: 160px;
+  z-index: 2;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+}
+
+.cup-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #EDE1D2, #F5EEE6, #EDE1D2);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px 15px 60px 60px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 30px rgba(65, 47, 38, 0.3),
+    0 15px 25px rgba(65, 47, 38, 0.4),
+    0 5px 10px rgba(65, 47, 38, 0.2);
+}
+
+.coffee {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(131, 90, 54, 0.9),
+    rgba(65, 47, 38, 0.95)
+  );
+  border-radius: 0 0 50px 50px;
+  filter: drop-shadow(0 0 10px rgba(131, 90, 54, 0.3));
+}
+
+.coffee-ripple {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.cup-handle {
+  position: absolute;
+  right: -35px;
+  top: 25%;
+  width: 45px;
+  height: 60px;
+  background: linear-gradient(45deg, #EDE1D2, #F5EEE6);
+  border: 10px solid #EDE1D2;
+  border-radius: 0 25px 25px 0;
+  box-shadow: 
+    0 5px 15px rgba(65, 47, 38, 0.3),
+    inset 0 0 15px rgba(65, 47, 38, 0.2);
+  transform-origin: left center;
+}
+
+.cup-handle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: handleShine 3s infinite;
+}
+
+.steam {
+  position: absolute;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.4)
+  );
+  backdrop-filter: blur(2px);
+  border-radius: 50%;
+  filter: blur(5px);
+}
+
+.coffee-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.coffee-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(131, 90, 54, 0.3),
+    transparent 70%
+  );
+  border-radius: inherit;
+}
+
+.magical-text {
+  margin-top: 40px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #412F26, #835A36, #CBB89D, #835A36, #412F26);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(131, 90, 54, 0.3));
+}
+
+@keyframes handleShine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) rotate(45deg); }
+  100% { transform: translateX(-100%) rotate(45deg); }
+}
+
+@keyframes ambientLight {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .coffee-cup {
+    width: 120px;
+    height: 140px;
+  }
+  
+  .magical-text {
+    font-size: 1.5rem;
+  }
+}

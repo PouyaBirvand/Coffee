@@ -57,21 +57,3 @@ export const cartService = {
   
 };
 
-// import api from './axios';
-
-// export const cartService = {
-//     getAll: () => api.get('/carts'),
-//     create: () => api.post('/carts'),
-//     getById: (cartId) => api.get(`/carts/${cartId}`),
-//     addItem: (cartId, productId, quantity) => api.post(`/carts/${cartId}/items`, {
-//         product_id: productId,
-//         quantity
-//     }),
-//     updateQuantity: (cartId, itemId, quantity) => api.patch(`/carts/${cartId}/items/${itemId}`, {
-//         quantity
-//     }),
-//     removeItem: (cartId, itemId) => api.delete(`/carts/${cartId}/items/${itemId}`),
-//     clear: (cartId) => api.delete(`/carts/${cartId}`)
-// };
-
-

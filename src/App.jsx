@@ -1,15 +1,18 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { AppProvider } from "./context/AppContext.jsx";
-import CoffeeLoader from "./components/CoffeeLoader.jsx";
+import CoffeeLoader from "./ui/Loader/CoffeeLoader.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ErrorBoundary from "./components/ErrorBoundary.jsx";
-const Homepage = lazy(() => import("./pages/Homelayout.jsx"), {
+import ErrorBoundary from "./ui/ErrorBoundary/ErrorBoundary.jsx";
+const Homepage = lazy(() => import("./pages/MenuPage/index.jsx"), {
   suspense: true,
   preload: true,
 });
-const Cart = lazy(() => import("./pages/Cart.jsx"));
+const Cart = lazy(() => import("./pages/CartPage/index.jsx"), {
+  suspense: true,
+  preload: true,
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,10 +27,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-
-  // const imageUrl = "http://127.0.0.1:8000/storage/images/Americano.png";
-
-
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
