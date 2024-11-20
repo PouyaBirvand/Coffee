@@ -20,7 +20,7 @@ export function ProductInfo({item, isExpanded, isSearchResult}) {
         {item.description}
       </p>
       {isExpanded && (
-        <p className="text-white font-bold mt-2 text-3xl">
+        <p className="text-white font-bold mt-2 text-2xl">
   ${parseFloat(item.price).toLocaleString()}
 </p>
       )}

@@ -94,11 +94,11 @@ const OrderFormModal = ({ isOpen, onClose }) => {
                   initial={{ scale: 0.5, y: 10 }}
                   animate={{ scale: 1, y: 0 }}
                   transition={{ type: "spring" }}
-                  className="w-24 h-24 mx-auto"
+                  className="mx-auto w-24 h-24 flex justify-center items-center"
                 >
-                  <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] rotate-12 absolute" />
-                  <div className="w-full h-full bg-dark-cocoa/80 rounded-[1.5rem] -rotate-12 absolute" />
-                  <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] flex items-center justify-center relative">
+                  <div className="w-[6rem] h-[6rem] bg-dark-cocoa rounded-[1.5rem] rotate-12 absolute" />
+                  <div className="w-[6rem] h-[6rem] bg-dark-cocoa/80 rounded-[1.5rem] -rotate-12 absolute" />
+                  <div className="w-[6rem] h-[6rem] bg-dark-cocoa rounded-[1.5rem] flex items-center justify-center relative">
                     <GiftIcon />
                   </div>
                 </motion.div>

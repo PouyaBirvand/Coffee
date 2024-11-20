@@ -64,7 +64,7 @@ const ProductPropType = PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
-    price: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
   });
   

@@ -27,7 +27,7 @@ const CoffeeLoader = () => {
             rotateY: [0, 10, -10, 0],
           }}
           transition={{ 
-            duration: 1.5,
+            duration: 0.3,
             rotateY: {
               duration: 6,
               repeat: Infinity,
