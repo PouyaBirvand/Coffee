@@ -1,82 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import debounce from "lodash/debounce";
-import api from "../../../services/axios";
-import { useAppContext } from "../../../context/AppContext";
-import { useNavigate } from "react-router-dom";
-import { replace } from "lodash";
+import { motion } from 'framer-motion';
+import { useProductSelection } from '../../../hooks/useProductSelection';
+import { useSearchInput } from '../../../hooks/useSearchInput';
+import { useProductSearch } from '../../../hooks/useProductSearch';
+import { SearchResults } from './SearchResualts';
+
 
 function SearchBar() {
-  const navigate = useNavigate();
-  const inputRef = useRef(null);
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-    const { setCurrentItem, setIsExpanded , setSelectionSource } = useAppContext();
-  
-    const handleProductClick = (product) => {
-      const newProduct = JSON.parse(JSON.stringify(product));
-      setSelectionSource('search');
-      setCurrentItem(newProduct);
-      setIsExpanded(true);
-      setQuery("");
-      setResults([]);
-      navigate("/") , {replace : true};
-    };
-    
-    
-  
-  
-
-  const searchProducts = debounce(async (searchQuery) => {
-    if (!searchQuery.trim()) {
-      setResults([]);
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const response = await api.get(`/products/search?query=${searchQuery}`);
-      setResults(response.data.products);
-    } catch (error) {
-      console.log("Search error:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, 300);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
-
-  useEffect(() => {
-    searchProducts(query);
-  }, [query]);
-
-  const containerAnimation = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1, // Controls delay between each item
-      },
-    },
-  };
-
-  const itemAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-      },
-    },
-  };
+  const { results, isLoading, searchProducts, setResults } = useProductSearch();
+  const { query, setQuery, inputRef } = useSearchInput(searchProducts);
+  const { handleProductClick } = useProductSelection(() => {
+    setQuery("");
+    setResults([]);
+  });
 
   return (
     <div className="relative">
@@ -119,52 +54,7 @@ function SearchBar() {
         </form>
       </motion.div>
 
-      <AnimatePresence>
-        {results.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            className="absolute w-full mt-2 bg-soft-cream rounded-2xl shadow-xl max-h-96 overflow-auto z-50"
-          >
-            <motion.div
-              variants={containerAnimation}
-              initial="hidden"
-              animate="show"
-            >
-              {results.map((product) => (
-                <motion.div
-                  key={product.id}
-                  variants={itemAnimation}
-                  onClick={() => handleProductClick(product)}
-                  whileHover={{
-                    backgroundColor: "rgba(131, 90, 54, 0.1)",
-                    scale: 1.02,
-                    transition: { duration: 0.2 },
-                  }}
-                  className="p-4 border-b border-deep-mahogany/10 cursor-pointer"
-                >
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={(`http://127.0.0.1:8000/storage/images/${product.image}`)}
-                      alt={product.title}
-                      className="w-16 h-16 object-contain rounded-lg"
-                    />
-                    <div>
-                      <h3 className="font-semibold text-dark-cocoa">
-                        {product.title}
-                      </h3>
-                      <p className="text-sm text-deep-mahogany">
-                        ${parseFloat(product.price).toLocaleString()}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <SearchResults results={results} onProductClick={handleProductClick} />
     </div>
   );
 }

@@ -17,7 +17,7 @@ export function ProductImage({  item, isExpanded, isSearchResult }) {
         width="300"
         height="300"
         className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.4] mb-4 object-contain relative ${
-          isExpanded && "!max-h-[14rem] top-[2rem]"
+          isExpanded && "!max-h-[14rem] top-[4rem]"
         }`}
         style={{
           willChange: "transform",

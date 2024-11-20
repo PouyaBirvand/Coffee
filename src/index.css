@@ -10,10 +10,3 @@ html, body {
     will-change: transform;
     backface-visibility: hidden;
   }
-  
-  .transform-gpu {
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-  
-  

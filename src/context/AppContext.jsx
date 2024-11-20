@@ -75,6 +75,12 @@ export function AppProvider({ children }) {
         }
     }, [])
 
+    const clearCart = () => {
+        setCartItems([]);
+        setCartId(null);
+        localStorage.removeItem('cartId');
+      };
+
     // Context Value
     const contextValue = {
         currentItem,
@@ -99,7 +105,8 @@ export function AppProvider({ children }) {
         searchResults,
         setSearchResults,
         selectionSource,
-        setSelectionSource
+        setSelectionSource,
+        clearCart
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

@@ -1,23 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../../context/AppContext";
-import { useCallback } from "react";
-import { CATEGORY_NAMES } from "../../../utils/categoryMapping";
 import { categoryIcons } from "./categoryIcons";
 import { CategoryIcon } from "./CategoryIcon";
-
+import { useCategories } from "../../../hooks/useCategories";
 
 function Categories() {
-  const { selectedCategory, setSelectedCategory } = useAppContext();
-  const navigate = useNavigate();
-
-  const handleCategoryChange = useCallback(
-    (categoryId) => {
-      setSelectedCategory(categoryId);
-      const categoryName = CATEGORY_NAMES[categoryId];
-      navigate(`/${categoryName.replace(/\s+/g, "")}`, { replace: true });
-    },
-    [setSelectedCategory, navigate]
-  );
+  const { selectedCategory, handleCategoryChange } = useCategories();
 
   return (
     <div className="mt-8 xl:mt-12 lg:mt-12 md:mt-10 sm:mt-8 xs:mt-5 mx-auto w-[80%] max-w-2xl xl:max-w-[20rem] lg:max-w-lg md:max-w-md sm:max-w-sm xs:max-w-xs">

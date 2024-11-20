@@ -18,6 +18,12 @@ function CartPage() {
 
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
+  const handleOpenOrderModal = () => {
+    if (cartItems && cartItems.length > 0) {
+      setIsOrderModalOpen(true);
+    }
+  };
+
   useEffect(() => {
     if (cartId) {
       const fetchCart = async () => {
@@ -74,7 +80,7 @@ function CartPage() {
         isOpen={isOrderModalOpen}
         onClose={() => setIsOrderModalOpen(false)}
       />
-      <BottomNavigation onOrderClick={() => setIsOrderModalOpen(true)} />
+      <BottomNavigation onOrderClick={handleOpenOrderModal} />
     </>
   );
 }

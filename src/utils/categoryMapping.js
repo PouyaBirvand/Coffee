@@ -7,10 +7,10 @@ export const CATEGORIES = {
   };
   
   export const CATEGORY_NAMES = {
-    1: "Ice creams",
+    1: "Ice cream",
     2: "Dessert",
     3: "Shake",
     4: "Coffee",
-    5: "Foods"
+    5: "Food"
   };
   
