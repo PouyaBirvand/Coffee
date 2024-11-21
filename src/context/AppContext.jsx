@@ -10,7 +10,7 @@ export function AppProvider({ children }) {
     const [selectedCategory, setSelectedCategory] = useState(4)
     const [selectionSource, setSelectionSource] = useState(null); // 'search' یا 'products'
     const [cartItems, setCartItems] = useState([])
-    const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'))
+    const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'));
     const [tableNumber, setTableNumber] = useState(() => localStorage.getItem('tableNumber'))
     const [searchResults, setSearchResults] = useState(null);
 
@@ -21,59 +21,19 @@ export function AppProvider({ children }) {
     const { cart, isLoading, addItem, updateQuantity, removeItem , deleteCart} = useCart(cartId)
 
     // Cart Initialization
-    const initCart = async () => {
-        const existingCartId = localStorage.getItem('cartId');
-        
-        if (existingCartId) {
-            setCartId(existingCartId);
-            return existingCartId;
-        }
-    
-        const response = await cartService.create({ 
-            table_number: tableNumber || "1",
-            status: "active"
-        });
-        
-        const newCartId = response.data.id;
-        setCartId(newCartId);
-        localStorage.setItem('cartId', newCartId);
-        return newCartId;
-    }
+
     
     // Cart Operations
     const addToCart = async (product) => {
-        try {
-            let currentCartId = cartId
-            
-            if (!currentCartId) {
-                const storedTableNumber = localStorage.getItem('tableNumber')
-                const cart = await cartService.create({
-                    table_number: storedTableNumber,
-                    status: 'active'
-                })
-                currentCartId = cart.data.id
-                setCartId(currentCartId)
-            }
-
-            const response = await cartService.addItem(currentCartId, product)
-            return response
-        } catch (error) {
-            console.error('Add to cart error:', error)
-            throw error
+        if (!cartId) {
+            throw new Error('Please select a table first');
         }
-    }
-
+        return addItem(product);
+    };
     // UI Operations
     const toggleExpanded = () => {
         setIsExpanded(prev => !prev)
     }
-    
-    // Effects
-    useEffect(() => {
-        if (!cartId) {
-            initCart()
-        }
-    }, [])
 
     const clearCart = () => {
         setCartItems([]);
@@ -106,7 +66,8 @@ export function AppProvider({ children }) {
         setSearchResults,
         selectionSource,
         setSelectionSource,
-        clearCart
+        clearCart,
+        setCartId
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

@@ -17,10 +17,14 @@ export function useCart(cartId) {
 
     const addItemMutation = useMutation({
         mutationFn: (product) => {
-            console.log('Adding product:', product);
             return cartService.addItem(cartId, product);
         },
-        onSuccess: () => queryClient.invalidateQueries(['cart', cartId])
+        onSuccess: () => {
+            // بلافاصله دیتای جدید رو دریافت کن
+            queryClient.invalidateQueries(['cart', cartId]);
+            // یا از این روش استفاده کن
+            queryClient.refetchQueries(['cart', cartId]);
+        }
     });
     
 

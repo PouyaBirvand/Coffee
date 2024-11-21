@@ -45,35 +45,35 @@ const OrderFormModal = ({ isOpen, onClose }) => {
   const { setCartItems, cartItems, clearCart } = useAppContext(); // Add clearCart
   const { mutate: completeOrder, isLoading } = useCompleteOrder();
   const [isValidated, setIsValidated] = useState(false);
-  const [serverMessage, setServerMessage] = useState('');
+  const [serverMessage, setServerMessage] = useState("");
   const modalRef = useRef(null);
   const queryClient = useQueryClient();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!cartItems?.length || !isOpen) return null;
 
   const handleSubmit = () => {
-    const tableNumber = localStorage.getItem('tableNumber');
-    
+    const tableNumber = localStorage.getItem("tableNumber");
+    setIsSubmitting(true);
+
     completeOrder(tableNumber, {
       onSuccess: (response) => {
         setServerMessage(response.data.message);
         setIsValidated(true);
-        
-        // Complete cart reset
-        localStorage.clear(); // Clear all storage
-        setCartItems([]); 
-        clearCart(); // Add this function to your context
-        queryClient.invalidateQueries();
-        queryClient.resetQueries(['cart']);
-        
+
         setTimeout(() => {
+          localStorage.clear();
+          setCartItems([]);
+          clearCart();
+          queryClient.invalidateQueries();
+          queryClient.resetQueries(["cart"]);
           onClose();
           setIsValidated(false);
-        }, 3000)
-      }
+          setIsSubmitting(false);
+        }, 3000);
+      },
     });
   };
-
 
   const handleDragEnd = (event, info) => {
     if (info.offset.y > 100) {
@@ -86,9 +86,6 @@ const OrderFormModal = ({ isOpen, onClose }) => {
       onClose();
     }
   };
-
-  
-  
 
   if (!isOpen) return null;
 
@@ -158,18 +155,36 @@ const OrderFormModal = ({ isOpen, onClose }) => {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSubmit}
-                disabled={isLoading}
-                className={`w-full ${
-                  isLoading ? "bg-dark-cocoa/70" : "bg-dark-cocoa"
-                } text-white py-4 rounded-xl font-semibold text-lg shadow-xl shadow-dark-cocoa/20`}
+                disabled={isSubmitting}
+                className={`w-full bg-dark-cocoa text-white py-4 rounded-xl font-semibold text-lg shadow-xl shadow-dark-cocoa/20 relative ${
+                  isSubmitting ? "opacity-90" : ""
+                }`}
               >
-                {isLoading ? "Processing..." : "Place Order"}
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 1,
+                        ease: "linear",
+                      }}
+                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                    />
+                    <span>Processing...</span>
+                  </div>
+                ) : (
+                  "Place Order"
+                )}
               </motion.button>
 
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={onClose}
-                className="w-full bg-white/50 text-dark-cocoa py-4 rounded-xl font-medium"
+                disabled={isLoading}
+                className={`w-full bg-white/50 text-dark-cocoa py-4 rounded-xl font-medium ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
                 Cancel
               </motion.button>
@@ -210,7 +225,7 @@ const OrderFormModal = ({ isOpen, onClose }) => {
                 Order Confirmed!
               </h3>
               <p className="text-dark-cocoa/70 text-lg leading-relaxed">
-              {serverMessage}
+                {serverMessage}
               </p>
             </motion.div>
           </motion.div>

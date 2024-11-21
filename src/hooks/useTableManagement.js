@@ -1,24 +1,32 @@
 import { useState, useEffect } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { cartService } from '../services/cartService';
+import { useAppContext } from '../context/AppContext';
 
 export function useTableManagement() {
   const [showForm, setShowForm] = useState(() => !localStorage.getItem('tableNumber'));
   const [tableNumber, setTableNumber] = useState("");
+  const { setCartId } = useAppContext();
+  const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const createCartMutation = useMutation({
     mutationFn: () => cartService.create({ 
-      table_number: tableNumber,
-      status: 'active'
+        table_number: tableNumber,
+        status: 'active'
     }),
     onSuccess: (response) => {
-      setShowForm(false);
-      localStorage.setItem('cartId', response.data.id);
-      localStorage.setItem('tableNumber', tableNumber);
-      localStorage.setItem('formSubmittedAt', Date.now().toString());
+        setShowForm(false);
+        const cartId = response.data.id;
+        localStorage.setItem('cartId', cartId);
+        localStorage.setItem('tableNumber', tableNumber);
+        localStorage.setItem('formSubmittedAt', Date.now().toString());
+        
+        setCartId(cartId);
+        queryClient.invalidateQueries(['cart', cartId]);
     }
-  });
-
+});
   useEffect(() => {
     const formSubmittedAt = localStorage.getItem('formSubmittedAt');
     const tableNumber = localStorage.getItem('tableNumber');
@@ -28,12 +36,17 @@ export function useTableManagement() {
     }
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (tableNumber.trim()) {
-      createCartMutation.mutate();
+  const handleSubmit = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    try {
+        await createCartMutation.mutateAsync();
+    } catch (error) {
+        console.error(error);
+    } finally {
+        setIsLoading(false);
     }
-  };
+};
 
   const handleCancel = () => {
     setShowForm(false);
@@ -45,6 +58,6 @@ export function useTableManagement() {
     setTableNumber,
     handleSubmit,
     handleCancel,
-    isLoading: createCartMutation.isLoading
+    isLoading
   };
 }
