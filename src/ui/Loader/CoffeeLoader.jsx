@@ -4,6 +4,10 @@ import './CoffeeLoader.css';
 
 const CoffeeLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
+  // کاهش تعداد ذرات از 15 به 8
+  const PARTICLES = 8;
+  // کاهش تعداد بخار از 8 به 5
+  const STEAM = 5;
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 3000);
@@ -20,16 +24,15 @@ const CoffeeLoader = () => {
       >
         <motion.div 
           className="coffee-cup"
-          initial={{ scale: 0, rotateX: -45 }}
+          initial={{ scale: 0 }}
           animate={{ 
             scale: 1,
-            rotateX: 0,
-            rotateY: [0, 10, -10, 0],
+            rotateY: [0, 5, -5, 0],
           }}
           transition={{ 
             duration: 0.3,
             rotateY: {
-              duration: 6,
+              duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
             }
@@ -40,52 +43,33 @@ const CoffeeLoader = () => {
               className="coffee"
               animate={{
                 height: ['20%', '80%'],
-                background: ['#835A36', '#412F26', '#835A36']
+                background: ['#835A36', '#412F26']
               }}
               transition={{
-                duration: 2,
-                background: {
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }
+                duration: 2.5,
+                repeat: Infinity,
+                repeatType: "reverse"
               }}
             />
             
-            {[...Array(3)].map((_, i) => (
-              <motion.div 
-                key={i}
-                className="coffee-ripple"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.2, 0.4, 0.2],
-                }}
-                transition={{
-                  duration: 2,
-                  delay: i * 0.4,
-                  repeat: Infinity,
-                }}
-              />
-            ))}
-
-            {[...Array(15)].map((_, i) => (
+            {[...Array(PARTICLES)].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
                 className="coffee-particle"
                 initial={{ 
-                  x: Math.random() * 80 - 40,
-                  y: Math.random() * 50 + 50,
+                  x: Math.random() * 60 - 30,
+                  y: 50,
                   opacity: 0 
                 }}
                 animate={{
                   y: [50, 20],
-                  opacity: [0, 0.8, 0],
-                  scale: [0.5, 1, 0.5]
+                  opacity: [0, 0.8, 0]
                 }}
                 transition={{
-                  duration: 2 + Math.random() * 2,
+                  duration: 2,
                   repeat: Infinity,
-                  delay: i * 0.2
+                  delay: i * 0.3,
+                  repeatDelay: 0.5
                 }}
               />
             ))}
@@ -94,26 +78,8 @@ const CoffeeLoader = () => {
           <motion.div 
             className="cup-handle"
             animate={{
-              scale: [1, 1.05, 1],
-              rotateY: [0, 8, 0],
-              rotateZ: [-2, 2, -2]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            style={{
-              originX: 0,
-              originY: 0.5
-            }}
-          />
-
-          <motion.div
-            className="coffee-glow"
-            animate={{
-              opacity: [0.4, 0.6, 0.4],
-              scale: [0.95, 1.05, 0.95]
+              rotateY: [0, 5, 0],
+              rotateZ: [-1, 1, -1]
             }}
             transition={{
               duration: 4,
@@ -123,21 +89,20 @@ const CoffeeLoader = () => {
           />
 
           <div className="steam-container">
-            {[...Array(8)].map((_, i) => (
+            {[...Array(STEAM)].map((_, i) => (
               <motion.div
                 key={`steam-${i}`}
                 className="steam"
-                initial={{ opacity: 0 }}
                 animate={{
-                  y: [-20, -100],
-                  x: [0, Math.sin(i) * 30],
-                  opacity: [0, 0.8, 0],
-                  scale: [0.5, 1.5, 0.5]
+                  y: [-20, -80],
+                  x: [0, Math.sin(i) * 20],
+                  opacity: [0, 0.6, 0]
                 }}
                 transition={{
-                  duration: 2 + i * 0.2,
+                  duration: 2.5,
                   repeat: Infinity,
-                  delay: i * 0.2,
+                  delay: i * 0.3,
+                  repeatDelay: 0.2
                 }}
               />
             ))}
@@ -150,7 +115,7 @@ const CoffeeLoader = () => {
             backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
           }}
           transition={{
-            duration: 3,
+            duration: 4,
             repeat: Infinity,
             ease: "linear"
           }}
@@ -161,5 +126,6 @@ const CoffeeLoader = () => {
     </AnimatePresence>
   );
 };
+
 
 export default CoffeeLoader;
