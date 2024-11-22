@@ -19,7 +19,7 @@ function CompletedOrderView({ items, formatPrice }) {
       </div>
 
       <motion.div 
-        className="-mt-[2rem] w-[92%] mx-auto sm:mt-[1rem] h-[20rem] sm:h-[17rem] xs:h-[16.5rem] overflow-y-auto relative z-[1]"
+        className="-mt-[2rem] scale-[1.02] w-[92%] mx-auto sm:mt-[1rem] h-[20.5rem] sm:h-[17.6rem] xs:h-[16.5rem] overflow-y-auto relative z-[1]"
       >
         {items.map((item) => (
           <motion.div
@@ -28,7 +28,7 @@ function CompletedOrderView({ items, formatPrice }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="bg-translucent-coffee bg-opacity-40 rounded-2xl p-3 mb-4 flex items-start gap-3 shadow-lg w-full"
+            className="bg-translucent-coffee bg-opacity-40 rounded-2xl p-4 mb-4 flex items-start gap-3 shadow-lg w-full"
           >
             <div className="w-[120px] h-[120px] flex-shrink-0 sm:w-[100px] sm:h-[100px] xs:w-[90px] xs:h-[90px]">
               <motion.img
