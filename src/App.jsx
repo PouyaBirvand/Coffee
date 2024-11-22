@@ -5,6 +5,7 @@ import CoffeeLoader from "./ui/Loader/CoffeeLoader.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ErrorBoundary from "./ui/ErrorBoundary/ErrorBoundary.jsx";
+import { ModalProvider } from "./context/ModalContext.jsx";
 const Homepage = lazy(() => import("./pages/MenuPage/index.jsx"), {
   suspense: true,
   preload: true,
@@ -30,21 +31,23 @@ function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <AppProvider>
-          <BrowserRouter>
-            <Suspense fallback={<CoffeeLoader />}>
-              <Routes>
-                <Route
-                  path="/"
-                  element={<Navigate to="/Coffee" replace={true} />}
-                />
-                <Route path="/:categoryId" element={<Homepage />} />
-                <Route path="/cart" element={<Cart replace />} />
-                <Route path="*" element={<div>404 - Page Not Found</div>} />
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
-        </AppProvider>
+        <ModalProvider>
+          <AppProvider>
+            <BrowserRouter>
+              <Suspense fallback={<CoffeeLoader />}>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<Navigate to="/Coffee" replace={true} />}
+                  />
+                  <Route path="/:categoryId" element={<Homepage />} />
+                  <Route path="/cart" element={<Cart replace />} />
+                  <Route path="*" element={<div>404 - Page Not Found</div>} />
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </AppProvider>
+        </ModalProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ErrorBoundary>

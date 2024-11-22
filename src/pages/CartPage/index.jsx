@@ -10,12 +10,15 @@ import EmptyCart from "../../components/Main/Carts/EmptyCart";
 import CartTotal from "../../components/Main/Carts/CartTotal";
 import CartItemsList from "../../components/Main/Carts/CartItemsList";
 import CompletedOrderView from "../../components/Main/Carts/CompletedOrderView";
+import { useModal } from "../../context/ModalContext";
+import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
 
 function CartPage() {
   const { cartItems, removeFromCart, updateCartQuantity, cartId } = useAppContext();
+  const { showOrderModal, setShowOrderModal } = useModal();
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-  const [orderDetails, setOrderDetails] = useState(null);
+  const {orderDetails , setOrderDetails} = useAppContext()
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
 
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
@@ -114,6 +117,12 @@ function CartPage() {
           <BottomNavigation onOrderClick={handleOpenOrderModal} />
         </>
       )}
+      <OrderConfirmationModal
+        isOpen={showOrderModal}
+        onClose={() => setShowOrderModal(false)}
+        tableNumber={5}
+        estimatedTime={20}
+      />
     </>
   );
 }

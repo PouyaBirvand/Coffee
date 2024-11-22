@@ -1,9 +1,28 @@
-// eslint-disable-next-line react/prop-types
-const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => (
+import PropTypes from 'prop-types';
+import { useModal } from '../../../context/ModalContext';
+import { useAppContext } from '../../../context/AppContext';
+
+const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => {
+  const { handleBackClick } = useModal();
+  const { orderDetails } = useAppContext();
+
+  const handleClick = () => {
+    if (isCartPage) {
+      const isInCompletedView = Boolean(orderDetails?.success);
+      handleBackClick(isInCompletedView);
+      if (!isInCompletedView) {
+        navigate(-1);
+      }
+    } else {
+      setIsExpanded(!isExpanded);
+    }
+  };
+
+  return (
     <button
       aria-label="Arrow"
       className="focus:outline-none z-10"
-      onClick={() => isCartPage ? navigate(-1) : setIsExpanded(!isExpanded)}
+      onClick={handleClick}
     >
       <lord-icon
         src="https://cdn.lordicon.com/vduvxizq.json"
@@ -18,6 +37,13 @@ const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => (
       />
     </button>
   );
-  
-  export default BackButton;
+};
 
+BackButton.propTypes = {
+  isCartPage: PropTypes.bool.isRequired,
+  navigate: PropTypes.func.isRequired,
+  isExpanded: PropTypes.bool.isRequired,
+  setIsExpanded: PropTypes.func.isRequired
+};
+
+export default BackButton;

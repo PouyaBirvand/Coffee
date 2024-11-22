@@ -13,6 +13,7 @@ export function AppProvider({ children }) {
     const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'));
     const [tableNumber, setTableNumber] = useState(() => localStorage.getItem('tableNumber'))
     const [searchResults, setSearchResults] = useState(null);
+    const [orderDetails, setOrderDetails] = useState(null);
 
     const [currentItem, setCurrentItem] = useState(null);
     const [isExpanded, setIsExpanded] = useState(false);
@@ -79,7 +80,9 @@ export function AppProvider({ children }) {
         setSelectionSource,
         clearCart,
         setCartId,
-        refreshCart
+        refreshCart,
+        orderDetails,
+        setOrderDetails
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

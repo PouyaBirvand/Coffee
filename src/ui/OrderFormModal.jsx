@@ -55,7 +55,7 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
 
   if (!cartItems?.length || !isOpen) return null;
 
-  const handleSubmit = () => {
+const handleSubmit = () => {
     const tableNumber = localStorage.getItem("tableNumber");
     setIsSubmitting(true);
 
@@ -109,10 +109,9 @@ setTimeout(() => {
   if (orderResponse) {
     onOrderComplete(orderResponse);
   }
-  onClose();
   setIsValidated(false);
   setIsSubmitting(false);
-}, 3000);
+}, 8000);
 
 
 
