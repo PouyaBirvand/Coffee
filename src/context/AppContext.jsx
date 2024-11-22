@@ -41,6 +41,17 @@ export function AppProvider({ children }) {
         localStorage.removeItem('cartId');
       };
 
+      const refreshCart = async () => {
+        if (cartId) {
+          try {
+            const response = await cartService.viewCart(cartId);
+            setCartItems(response.data.items || []);
+          } catch (error) {
+            console.log("Cart refresh error:", error);
+          }
+        }
+      };
+
     // Context Value
     const contextValue = {
         currentItem,
@@ -67,7 +78,8 @@ export function AppProvider({ children }) {
         selectionSource,
         setSelectionSource,
         clearCart,
-        setCartId
+        setCartId,
+        refreshCart
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

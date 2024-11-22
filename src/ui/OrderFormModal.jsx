@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useCompleteOrder } from "../hooks/useOrderManagement";
 import { useAppContext } from "../context/AppContext";
 import { useQueryClient } from "@tanstack/react-query";
+import { cartService } from "../services/cartService";
 
 const GiftIcon = () => (
   <svg
@@ -41,14 +42,16 @@ const CheckmarkIcon = () => (
 );
 
 // eslint-disable-next-line react/prop-types
-const OrderFormModal = ({ isOpen, onClose }) => {
-  const { setCartItems, cartItems, clearCart } = useAppContext(); // Add clearCart
+const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
+  const { setCartItems, cartItems , setCartId  } = useAppContext(); // Add clearCart
   const { mutate: completeOrder, isLoading } = useCompleteOrder();
   const [isValidated, setIsValidated] = useState(false);
   const [serverMessage, setServerMessage] = useState("");
   const modalRef = useRef(null);
   const queryClient = useQueryClient();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderResponse, setOrderResponse] = useState(null);
+
 
   if (!cartItems?.length || !isOpen) return null;
 
@@ -57,23 +60,62 @@ const OrderFormModal = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
 
     completeOrder(tableNumber, {
-      onSuccess: (response) => {
-        setServerMessage(response.data.message);
-        setIsValidated(true);
+      onSuccess: async (response) => {
+        // Check for successful order completion
+        if (response.data.success && response.data.message === 'order completed successfully') {
+          // Store order details for parent component
+          onOrderComplete(response.data);
+          setServerMessage("Your order has been successfully placed!");
+          setIsValidated(true);
 
-        setTimeout(() => {
-          localStorage.clear();
+          // Clear current cart
+          localStorage.removeItem('cartId');
+          setCartId(null);
           setCartItems([]);
-          clearCart();
-          queryClient.invalidateQueries();
+
+          // Create new cart
+          try {
+            const newCartResponse = await cartService.create({
+              table_number: tableNumber,
+              status: 'active'
+            });
+            
+            if (newCartResponse.data.success) {
+              const newCartId = newCartResponse.data.id;
+              localStorage.setItem('cartId', newCartId);
+              setCartId(newCartId);
+            }
+          } catch (error) {
+            console.error('Error creating new cart:', error);
+          }
+
+          // Reset queries
+          queryClient.invalidateQueries(["cart"]);
           queryClient.resetQueries(["cart"]);
-          onClose();
-          setIsValidated(false);
-          setIsSubmitting(false);
-        }, 3000);
+
+          // Close modal with delay
+          setTimeout(() => {
+            onClose();
+            setIsValidated(false);
+            setIsSubmitting(false);
+          }, 3000);
+        }
       },
     });
-  };
+};
+
+
+setTimeout(() => {
+  if (orderResponse) {
+    onOrderComplete(orderResponse);
+  }
+  onClose();
+  setIsValidated(false);
+  setIsSubmitting(false);
+}, 3000);
+
+
+
 
   const handleDragEnd = (event, info) => {
     if (info.offset.y > 100) {

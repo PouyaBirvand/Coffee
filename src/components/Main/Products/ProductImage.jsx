@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // eslint-disable-next-line react/prop-types
 export function ProductImage({  item, isExpanded, isSearchResult }) {
   const images = (`http://127.0.0.1:8000/storage/images/${item.image}`);
-  console.log(images);
   
   
   return (

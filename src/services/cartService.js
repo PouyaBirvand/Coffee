@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import api from './axios';
 
 export const cartService = {
@@ -53,7 +52,13 @@ export const cartService = {
         console.log('Item removed successfully:', response.data);
         return response;
       });
+  },
+  
+  getCartOrder: async (cartId) => {
+    const response = await api.get(`/carts/${cartId}/viewcartorder`);
+    return response.data;
   }
+
   
 };
 

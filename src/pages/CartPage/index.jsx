@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useAppContext } from "../../context/AppContext";
 import { cartService } from "../../services/cartService";
-
 import Header from "../../components/Header/Index";
 import ProductTitle from "../../components/Header/Logo";
 import BottomNavigation from "../../components/Footer/Index";
@@ -10,19 +9,37 @@ import OrderFormModal from "../../ui/OrderFormModal";
 import EmptyCart from "../../components/Main/Carts/EmptyCart";
 import CartTotal from "../../components/Main/Carts/CartTotal";
 import CartItemsList from "../../components/Main/Carts/CartItemsList";
+import CompletedOrderView from "../../components/Main/Carts/CompletedOrderView";
 
 function CartPage() {
   const { cartItems, removeFromCart, updateCartQuantity, cartId } = useAppContext();
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [completedOrderItems, setCompletedOrderItems] = useState([]);
 
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
-  const handleOpenOrderModal = () => {
-    if (cartItems && cartItems.length > 0) {
-      setIsOrderModalOpen(true);
-    }
+  const handleOrderComplete = (response) => {
+    setCompletedOrderItems([...cartItems]);
+    setOrderDetails(response);
+    setIsOrderModalOpen(false);
   };
+
+  useEffect(() => {
+    const fetchOrderDetails = async () => {
+      if (!cartId) return;
+      try {
+        const response = await cartService.getCartOrder(cartId);
+        if (response.data?.success) {
+          setOrderDetails(response.data);
+        }
+      } catch (error) {
+        console.log("Order not completed yet");
+      }
+    };
+    fetchOrderDetails();
+  }, [cartId]);
 
   useEffect(() => {
     if (cartId) {
@@ -37,6 +54,12 @@ function CartPage() {
       fetchCart();
     }
   }, [cartId, cartItems]);
+
+  const handleOpenOrderModal = () => {
+    if (cartItems?.length > 0) {
+      setIsOrderModalOpen(true);
+    }
+  };
 
   const handleQuantityUpdate = async (itemId, change) => {
     if (!itemId || !cartId) return;
@@ -57,8 +80,13 @@ function CartPage() {
       >
         <Header />
         <ProductTitle />
-        
-        {cartItems.length === 0 ? (
+
+        {orderDetails?.success ? (
+          <CompletedOrderView
+            items={completedOrderItems}
+            formatPrice={formatPrice}
+          />
+        ) : cartItems.length === 0 ? (
           <EmptyCart />
         ) : (
           <>
@@ -68,19 +96,24 @@ function CartPage() {
               onRemove={removeFromCart}
               formatPrice={formatPrice}
             />
-            <CartTotal 
-              totalPrice={cartTotals.totalPrice} 
-              formatPrice={formatPrice} 
+            <CartTotal
+              totalPrice={cartTotals.totalPrice}
+              formatPrice={formatPrice}
             />
           </>
         )}
       </motion.div>
 
-      <OrderFormModal
-        isOpen={isOrderModalOpen}
-        onClose={() => setIsOrderModalOpen(false)}
-      />
-      <BottomNavigation onOrderClick={handleOpenOrderModal} />
+      {!orderDetails?.success && (
+        <>
+          <OrderFormModal
+            isOpen={isOrderModalOpen}
+            onClose={() => setIsOrderModalOpen(false)}
+            onOrderComplete={handleOrderComplete}
+          />
+          <BottomNavigation onOrderClick={handleOpenOrderModal} />
+        </>
+      )}
     </>
   );
 }
