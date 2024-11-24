@@ -16,7 +16,7 @@ export default function CartItem({ item, onQuantityUpdate, onRemove, formatPrice
     >
       <div className="flex-shrink-0 mr-3 sm:mb-3 sm:mr-0 sm:w-full">
         <motion.img
-          src={`http://127.0.0.1:8000/storage/images/${item.product.image}`}
+          src={`http://127.0.0.1:8000/storage/${item.product.image}`}
           alt={item.product.title}
           className="w-[139px] h-[136px] object-contain bg-translucent-coffee bg-opacity-40 rounded-2xl sm:w-full sm:h-[110px] xs:h-[90px] sm:py-1"
           whileHover={{ scale: 1.05 }}
