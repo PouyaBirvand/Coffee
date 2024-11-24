@@ -43,7 +43,7 @@ const Others = () => {
           </svg>
         ),
         onclick: () => {
-          navigate("/cart");
+          navigate("/cart" , {replace: true});
         },
       },
       {

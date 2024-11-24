@@ -29,11 +29,11 @@ function MenuPage() {
         const categoryName = CATEGORY_NAMES[id];
         navigate(`/${categoryName.replace(/\s+/g, "")}`, { replace: true });
       } else {
-        navigate("/Coffee");
+        navigate("/Coffee" , {replace: true});
       }
     } else {
       setSelectedCategory(CATEGORIES.COFFEE);
-      navigate("/Coffee");
+      navigate("/Coffee" , {replace: true});
     }
   }, [categoryId, navigate, setSelectedCategory, getCategoryId]);
 

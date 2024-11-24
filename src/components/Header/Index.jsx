@@ -25,7 +25,7 @@ function Header() {
   const closeMenu = () => setIsMenuOpen(false);
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
   const closeSearch = () => setIsSearchOpen(false);
-  const goToCart = () => navigate("/cart");
+  const goToCart = () => navigate("/cart",{replace: true});
 
   // Outside Click Handler
   useEffect(() => {

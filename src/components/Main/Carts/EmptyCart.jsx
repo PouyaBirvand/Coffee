@@ -81,7 +81,7 @@ export default function EmptyCart() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => navigate("/menu")}
+          onClick={() => navigate("/menu" , {replace: true})}
           className="px-8 py-3 bg-deep-mahogany text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-shadow"
         >
           View Menu

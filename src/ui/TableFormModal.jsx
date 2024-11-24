@@ -157,7 +157,8 @@ function TableForm() {
               whileFocus={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="bg-translucent-coffee/50 placeholder-dark-cocoa rounded-lg outline-none py-3 pl-7 w-full xs:text-sm"
-              type="text"
+              type="tel"
+              pattern="[0-9]*"
               placeholder="for example : 12 ..."
               value={tableNumber}
               onChange={(e) => setTableNumber(e.target.value)}

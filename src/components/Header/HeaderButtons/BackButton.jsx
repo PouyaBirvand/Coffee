@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useModal } from '../../../context/ModalContext';
 import { useAppContext } from '../../../context/AppContext';
+import { replace } from 'react-router-dom';
 
 const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => {
   const { handleBackClick } = useModal();
@@ -11,7 +12,7 @@ const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => {
       const isInCompletedView = Boolean(orderDetails?.success);
       handleBackClick(isInCompletedView);
       if (!isInCompletedView) {
-        navigate(-1);
+        navigate('/' , {replace: true});
       }
     } else {
       setIsExpanded(!isExpanded);

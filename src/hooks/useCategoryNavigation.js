@@ -17,7 +17,7 @@ export const useCategoryNavigation = (categories, closeMenu) => {
   }, [location, categories]);
 
   const handleItemClick = (category) => {
-    navigate(`/${category.name.replace(/\s+/g, "")}`);
+    navigate(`/${category.name.replace(/\s+/g, "")}` , {replace: true});
     setActiveItem(category.name);
     closeMenu();
   };
