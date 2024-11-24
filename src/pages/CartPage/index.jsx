@@ -12,14 +12,16 @@ import CartItemsList from "../../components/Main/Carts/CartItemsList";
 import CompletedOrderView from "../../components/Main/Carts/CompletedOrderView";
 import { useModal } from "../../context/ModalContext";
 import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
+import { useBackButton } from "../../hooks/useBackButton";
 
 function CartPage() {
   const { cartItems, removeFromCart, updateCartQuantity, cartId } = useAppContext();
   const { showOrderModal, setShowOrderModal } = useModal();
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-  const {orderDetails , setOrderDetails} = useAppContext()
+  const {orderDetails , setOrderDetails , tableNumber} = useAppContext()
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
+  useBackButton();
 
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
@@ -120,7 +122,7 @@ function CartPage() {
       <OrderConfirmationModal
         isOpen={showOrderModal}
         onClose={() => setShowOrderModal(false)}
-        tableNumber={5}
+        tableNumber={tableNumber}
         estimatedTime={20}
       />
     </>

@@ -1,9 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-
-// eslint-disable-next-line react/prop-types
-
 const ModalContext = createContext();
 
 export const useModal = () => {
