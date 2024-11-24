@@ -14,7 +14,7 @@ function CompletedOrderView({ items, formatPrice }) {
           Your order has been successfully placed
         </h2>
         <p className="text-deep-mahogany mt-2 sm:mb-2 mb-8 text-sm sm:text-xs">
-          Your order will be ready in 20 minutes
+          Your order will be ready in 10 minutes
         </p>
       </div>
 
