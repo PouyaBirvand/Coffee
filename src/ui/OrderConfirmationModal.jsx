@@ -7,27 +7,13 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
   if (!isOpen) return null;
   const { setCartId } = useAppContext();
 
-  const handleBackToMenu = async () => {
-    try {
-      const newCartResponse = await cartService.create({
-        table_number: tableNumber,
-        status: 'active'
-      });
-      
-      if (newCartResponse.data.success) {
-        const newCartId = newCartResponse.data.id;
-        localStorage.setItem('cartId', newCartId);
-        setCartId(newCartId);
-      }
-
-      onClose();
-      window.location.href = '/';
-      
-    } catch (error) {
-      console.error('Error creating new cart:', error);
-    }
+  const handleBackToMenu = () => {
+    onClose();
+    window.location.href = '/';
   };
 
+  const validTableNumber = Number.isInteger(parseInt(tableNumber)) ? parseInt(tableNumber) : 
+    parseInt(localStorage.getItem('tableNumber'));
 
   return (
     <motion.div
@@ -59,7 +45,7 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
             <div className="flex flex-col xs:flex-row justify-between items-center gap-3 text-dark-cocoa">
               <div className="text-center xs:text-left">
                 <p className="text-sm text-translucent-coffee">Table Number</p>
-                <p className="text-2xl font-bold text-deep-mahogany">#{tableNumber}</p>
+                <p className="text-2xl font-bold text-deep-mahogany">#{validTableNumber}</p>
               </div>
               <div className="h-px xs:h-12 w-full xs:w-px bg-warm-wood/20" />
               <div className="text-center xs:text-left">

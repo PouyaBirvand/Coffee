@@ -59,50 +59,34 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
 
   const handleSubmit = () => {
     const tableNumber = localStorage.getItem("tableNumber");
-    console.log("Submitting order for table:", tableNumber);
-
-    if (!tableNumber) {
-      setServerMessage("Table number is required");
-      return;
-    }
-    setIsSubmitting(true);
+    
     completeOrder(tableNumber, {
       onSuccess: async (response) => {
         if (response.data.success) {
-          // Store order details
           onOrderComplete(response.data);
           setServerMessage("Your order has been successfully placed!");
           setIsValidated(true);
-          setShowOrderModal(true); // Important: This triggers the confirmation modal
-
-          // Clear cart and create new one
-          localStorage.removeItem("cartId");
+          setShowOrderModal(true);
+          
+          // Clear cart only once
+          localStorage.removeItem('cartId');
           setCartId(null);
           setCartItems([]);
-
-          try {
-            const newCartResponse = await cartService.create({
-              table_number: tableNumber,
-              status: "active",
-            });
-
-            if (newCartResponse.data.success) {
-              localStorage.setItem("cartId", newCartResponse.data.id);
-              setCartId(newCartResponse.data.id);
-            }
-          } catch (error) {
-            console.error("Error creating new cart:", error);
+  
+          // Create new cart only here, not in OrderConfirmationModal
+          const newCartResponse = await cartService.create({
+            table_number: tableNumber,
+            status: 'active'
+          });
+          
+          if (newCartResponse.data.success) {
+            localStorage.setItem('cartId', newCartResponse.data.id);
+            setCartId(newCartResponse.data.id);
           }
-
-          // Reset queries and close modal
+  
           queryClient.invalidateQueries(["cart"]);
-          setTimeout(() => {
-            onClose();
-            setIsValidated(false);
-            setIsSubmitting(false);
-          }, 3000);
         }
-      },
+      }
     });
   };
 
