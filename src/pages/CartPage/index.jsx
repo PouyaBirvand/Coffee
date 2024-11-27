@@ -23,6 +23,9 @@ function CartPage() {
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
   useBackButton();
 
+  const validTableNumber = Number.isInteger(parseInt(tableNumber)) ? parseInt(tableNumber) : 1;
+  console.log("Table Number in CartPage:", tableNumber); // Add this line
+
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
   const handleOrderComplete = (response) => {
@@ -119,12 +122,12 @@ function CartPage() {
           <BottomNavigation onOrderClick={handleOpenOrderModal} />
         </>
       )}
-      <OrderConfirmationModal
-        isOpen={showOrderModal}
-        onClose={() => setShowOrderModal(false)}
-        tableNumber={tableNumber}
-        estimatedTime={20}
-      />
+       <OrderConfirmationModal
+      isOpen={showOrderModal}
+      onClose={() => setShowOrderModal(false)}
+      tableNumber={parseInt(tableNumber)}
+      estimatedTime={20}
+    />
     </>
   );
 }

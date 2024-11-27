@@ -11,7 +11,13 @@ export function AppProvider({ children }) {
     const [selectionSource, setSelectionSource] = useState(null); // 'search' یا 'products'
     const [cartItems, setCartItems] = useState([])
     const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'));
-    const [tableNumber, setTableNumber] = useState(() => localStorage.getItem('tableNumber'))
+
+    const [tableNumber, setTableNumber] = useState(() => {
+      const storedNumber = localStorage.getItem('tableNumber');
+      console.log("Initial Table Number in Context:", storedNumber);
+      return storedNumber || null;
+    });
+
     const [searchResults, setSearchResults] = useState(null);
     const [orderDetails, setOrderDetails] = useState(null);
 

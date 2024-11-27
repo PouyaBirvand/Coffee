@@ -4,6 +4,7 @@ import { useCompleteOrder } from "../hooks/useOrderManagement";
 import { useAppContext } from "../context/AppContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { cartService } from "../services/cartService";
+import { useModal } from "../context/ModalContext";
 
 const GiftIcon = () => (
   <svg
@@ -43,7 +44,6 @@ const CheckmarkIcon = () => (
 
 // eslint-disable-next-line react/prop-types
 const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
-  const { setCartItems, cartItems , setCartId  } = useAppContext(); // Add clearCart
   const { mutate: completeOrder, isLoading } = useCompleteOrder();
   const [isValidated, setIsValidated] = useState(false);
   const [serverMessage, setServerMessage] = useState("");
@@ -52,48 +52,50 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderResponse, setOrderResponse] = useState(null);
 
+  const { setCartItems, cartItems, setCartId } = useAppContext();
+  const { setShowOrderModal } = useModal(); // Add this
 
   if (!cartItems?.length || !isOpen) return null;
 
-const handleSubmit = () => {
+  const handleSubmit = () => {
     const tableNumber = localStorage.getItem("tableNumber");
-    setIsSubmitting(true);
+    console.log("Submitting order for table:", tableNumber);
 
+    if (!tableNumber) {
+      setServerMessage("Table number is required");
+      return;
+    }
+    setIsSubmitting(true);
     completeOrder(tableNumber, {
       onSuccess: async (response) => {
-        // Check for successful order completion
-        if (response.data.success && response.data.message === 'order completed successfully') {
-          // Store order details for parent component
+        if (response.data.success) {
+          // Store order details
           onOrderComplete(response.data);
           setServerMessage("Your order has been successfully placed!");
           setIsValidated(true);
+          setShowOrderModal(true); // Important: This triggers the confirmation modal
 
-          // Clear current cart
-          localStorage.removeItem('cartId');
+          // Clear cart and create new one
+          localStorage.removeItem("cartId");
           setCartId(null);
           setCartItems([]);
 
-          // Create new cart
           try {
             const newCartResponse = await cartService.create({
               table_number: tableNumber,
-              status: 'active'
+              status: "active",
             });
-            
+
             if (newCartResponse.data.success) {
-              const newCartId = newCartResponse.data.id;
-              localStorage.setItem('cartId', newCartId);
-              setCartId(newCartId);
+              localStorage.setItem("cartId", newCartResponse.data.id);
+              setCartId(newCartResponse.data.id);
             }
           } catch (error) {
-            console.error('Error creating new cart:', error);
+            console.error("Error creating new cart:", error);
           }
 
-          // Reset queries
+          // Reset queries and close modal
           queryClient.invalidateQueries(["cart"]);
-          queryClient.resetQueries(["cart"]);
-
-          // Close modal with delay
           setTimeout(() => {
             onClose();
             setIsValidated(false);
@@ -102,19 +104,15 @@ const handleSubmit = () => {
         }
       },
     });
-};
+  };
 
-
-setTimeout(() => {
-  if (orderResponse) {
-    onOrderComplete(orderResponse);
-  }
-  setIsValidated(false);
-  setIsSubmitting(false);
-}, 8000);
-
-
-
+  setTimeout(() => {
+    if (orderResponse) {
+      onOrderComplete(orderResponse);
+    }
+    setIsValidated(false);
+    setIsSubmitting(false);
+  }, 8000);
 
   const handleDragEnd = (event, info) => {
     if (info.offset.y > 100) {

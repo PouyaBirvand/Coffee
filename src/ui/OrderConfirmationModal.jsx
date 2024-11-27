@@ -1,8 +1,33 @@
 import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
+import { useAppContext } from "../context/AppContext";
+import { cartService } from "../services/cartService";
 
 const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime }) => {
   if (!isOpen) return null;
+  const { setCartId } = useAppContext();
+
+  const handleBackToMenu = async () => {
+    try {
+      const newCartResponse = await cartService.create({
+        table_number: tableNumber,
+        status: 'active'
+      });
+      
+      if (newCartResponse.data.success) {
+        const newCartId = newCartResponse.data.id;
+        localStorage.setItem('cartId', newCartId);
+        setCartId(newCartId);
+      }
+
+      onClose();
+      window.location.href = '/';
+      
+    } catch (error) {
+      console.error('Error creating new cart:', error);
+    }
+  };
+
 
   return (
     <motion.div
@@ -80,10 +105,7 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
               Stay Here
             </button>
             <button
-              onClick={() => {
-                onClose();
-                window.location.href = '/';
-              }}
+              onClick={handleBackToMenu}
               className="flex-1 px-6 py-3 bg-warm-wood text-soft-cream rounded-lg
                        hover:bg-translucent-coffee transition-all duration-300 text-sm md:text-base
                        shadow-lg hover:shadow-xl"
