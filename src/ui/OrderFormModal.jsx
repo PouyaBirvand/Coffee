@@ -54,7 +54,7 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
   
 
   const { setCartItems, cartItems, setCartId } = useAppContext();
-  const { setShowOrderModal } = useModal(); // Add this
+  const { setShowOrderModal } = useModal();
 
   if (!cartItems?.length || !isOpen) return null;
 

@@ -1,10 +1,9 @@
 import { register } from 'swiper/element/bundle'
-register(); // Register Swiper custom elements
+register();
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow } from 'swiper/modules'
 
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 
@@ -65,13 +64,13 @@ function Products({ categoryId, isExpanded, searchResults }) {
 
   const memoizedItems = useMemo(
     () => {
-      // When returning from search view to all products
+  
       if (!isExpanded && selectionSource === 'search') {
-        setSelectionSource('products'); // Reset selection source
-        return displayItems.slice(0, 10); // Show all products
+        setSelectionSource('products'); 
+        return displayItems.slice(0, 10);
       }
       
-      // Current expanded view logic
+
       if (isExpanded && currentItem && selectionSource === 'search') {
         return [currentItem];
       }
@@ -148,7 +147,6 @@ function Products({ categoryId, isExpanded, searchResults }) {
       }
     }}
     onInit={(swiper) => {
-      // Ensure initial slide is properly set
       if (items[0]) {
         const initialItem = JSON.parse(JSON.stringify(items[0]));
         setCurrentItem(initialItem);

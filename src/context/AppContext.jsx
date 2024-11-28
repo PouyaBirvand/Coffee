@@ -43,10 +43,11 @@ export function AppProvider({ children }) {
     }
 
     const clearCart = () => {
-        setCartItems([]);
-        setCartId(null);
-        localStorage.removeItem('cartId');
-      };
+      setCartItems([]);
+      setCartId(null);
+      setOrderDetails(null); 
+      localStorage.removeItem('cartId');
+  };
 
       const refreshCart = async () => {
         if (cartId) {

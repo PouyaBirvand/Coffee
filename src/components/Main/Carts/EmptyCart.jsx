@@ -19,7 +19,6 @@ export default function EmptyCart() {
       animate="visible"
       className="min-h-[70vh] flex flex-col items-center justify-center p-6"
     >
-      {/* Coffee Steam Animation */}
       <div className="relative">
         <motion.div
           animate={{
@@ -36,7 +35,6 @@ export default function EmptyCart() {
           <div className="w-1 h-8 bg-gradient-to-t from-deep-mahogany/20 to-transparent rounded-full" />
         </motion.div>
 
-        {/* Coffee Cup SVG */}
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -51,7 +49,6 @@ export default function EmptyCart() {
             <path d="M14 1v3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
 
-          {/* Shopping Bag SVG */}
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -88,7 +85,6 @@ export default function EmptyCart() {
         </motion.button>
       </div>
 
-      {/* Coffee Bean SVG Pattern */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden opacity-10">
         <motion.div
           animate={{

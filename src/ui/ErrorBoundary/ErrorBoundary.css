@@ -64,7 +64,6 @@
     animation: waveFlow 3s ease-in-out infinite;
   }
   
-  /* Coffee Stream */
   .coffee-stream {
     position: absolute;
     top: 0;
@@ -91,7 +90,6 @@
     animation: dropFall 2s infinite;
   }
   
-  /* Glass Card */
   .glass-card {
     background: rgba(237, 225, 210, 0.1);
     backdrop-filter: blur(12px);
@@ -108,7 +106,6 @@
     color: #EDE1D2;
   }
   
-  /* Animations */
   @keyframes orbFloat {
     0%, 100% {
       transform: translate(0, 0) rotate(0deg);
@@ -150,7 +147,6 @@
     }
   }
   
-  /* Interactive Button */
   button {
     position: relative;
     padding: 1rem 2rem;
@@ -182,7 +178,6 @@
     mix-blend-mode: difference;
   }
   
-  /* Aroma Rings */
   .aroma-rings {
     position: absolute;
     top: 20%;

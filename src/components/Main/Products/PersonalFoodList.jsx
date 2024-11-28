@@ -32,12 +32,9 @@ export function PersonalFoodsList({ items }) {
     const handleAddToCart = async (item) => {
       try {
         await addToCart(item);
-        setAddedItems(prev => ({ ...prev, [item.id]: true }));
-        
-        // Reset the "Added" state after 2 seconds
-        setTimeout(() => {
+        setAddedItems(prev => ({ ...prev, [item.id]: true }));        
           setAddedItems(prev => ({ ...prev, [item.id]: false }));
-        }, 2000);
+        
       } catch (error) {
         console.error("Failed to add item to cart:", error);
       }
@@ -49,7 +46,7 @@ export function PersonalFoodsList({ items }) {
   
     return (
       <motion.div 
-        className="h-[400px] overflow-y-auto custom-scrollbar px-4 mt-10"
+        className="h-[360px] overflow-y-auto custom-scrollbar px-4 relative top-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

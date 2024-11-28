@@ -1,18 +1,18 @@
 import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
-import { useAppContext } from "../context/AppContext";
-import { cartService } from "../services/cartService";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
 
 const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime }) => {
   if (!isOpen) return null;
-  const { setCartId } = useAppContext();
   const navigate = useNavigate()
+  const {setOrderDetails} = useAppContext()
 
   const handleBackToMenu = () => {
     onClose();
+    setOrderDetails(null); // Add this line
     navigate('/')
-  };
+};
 
   const validTableNumber = Number.isInteger(parseInt(tableNumber)) ? parseInt(tableNumber) : 
     parseInt(localStorage.getItem('tableNumber'));
@@ -32,7 +32,6 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
         exit={{ scale: 0.9, opacity: 0, y: 20 }}
         className="bg-soft-cream w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden"
       >
-        {/* Header Section with Decorative Element */}
         <div className="bg-warm-wood/10 p-6 xs:p-4 relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-olive-green via-warm-wood to-deep-mahogany" />
           <h2 className="text-deep-mahogany font-bold text-center xs:text-xl sm:text-2xl text-[1.6rem]">
@@ -40,9 +39,7 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
           </h2>
         </div>
 
-        {/* Main Content Section */}
         <div className="p-6 xs:p-4 space-y-6">
-          {/* Order Details Card */}
           <div className="bg-warm-wood/5 rounded-xl p-4 border border-warm-wood/20">
             <div className="flex flex-col xs:flex-row justify-between items-center gap-3 text-dark-cocoa">
               <div className="text-center xs:text-left">
@@ -57,7 +54,6 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
             </div>
           </div>
 
-          {/* Information Section */}
           <div className="space-y-4 text-dark-cocoa">
             <p className="leading-relaxed text-sm md:text-base">
               Your order has been successfully placed. Here are your options:
@@ -73,7 +69,6 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
             </ul>
           </div>
 
-          {/* Note Section */}
           <div className="bg-deep-mahogany/5 rounded-lg p-3">
             <p className="text-xs md:text-sm text-translucent-coffee text-center italic">
               This order is now confirmed and cannot be modified
@@ -81,7 +76,6 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
           </div>
         </div>
 
-        {/* Actions Section */}
         <div className="bg-warm-wood/5 p-6 xs:p-4">
           <div className="flex flex-col xs:flex-row gap-3">
             <button

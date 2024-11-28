@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 function RemoveButton({ onRemove }) {
   const [isRemoving, setIsRemoving] = useState(false);
     const lastRemoveTime = useRef(0);
-    const COOLDOWN_TIME = 2000; // 1 ثانیه فاصله بین هر درخواست
+    const COOLDOWN_TIME = 2000; 
 
     const handleRemove = async () => {
         const now = Date.now();

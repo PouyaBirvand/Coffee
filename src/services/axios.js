@@ -9,13 +9,11 @@ const api = axios.create({
     withCredentials: true
 });
 
-// Add request interceptor
 api.interceptors.request.use(request => {
     console.log('API Request:', request);
     return request;
 });
 
-// Add response interceptor
 api.interceptors.response.use(
     response => {
         console.log('API Response Data:', response.data);

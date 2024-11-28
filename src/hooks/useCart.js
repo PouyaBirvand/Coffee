@@ -9,8 +9,8 @@ export function useCart(cartId) {
         queryFn: async () => {
             if (!cartId) return { items: [] };
             const response = await cartService.viewCart(cartId);
-            console.log('Cart Response:', response.data); // Add this log
-            return response.data.cart; // Make sure we return the correct data structure
+            console.log('Cart Response:', response.data); 
+            return response.data.cart; 
         },
         enabled: Boolean(cartId)
     });
@@ -20,9 +20,7 @@ export function useCart(cartId) {
             return cartService.addItem(cartId, product);
         },
         onSuccess: () => {
-            // بلافاصله دیتای جدید رو دریافت کن
             queryClient.invalidateQueries(['cart', cartId]);
-            // یا از این روش استفاده کن
             queryClient.refetchQueries(['cart', cartId]);
         }
     });

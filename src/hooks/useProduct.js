@@ -9,12 +9,10 @@ export function useProducts(categoryId) {
       const response = await productService.getAll();
       const { products } = response.data;
       
-      // For PersonalFoods, return Foods products directly
       if (categoryId === CATEGORIES.PERSONALFOODS) {
         return products.filter(product => product.category_id === CATEGORIES.FOODS);
       }
       
-      // For other categories, return their respective products
       return products.filter(product => product.category_id === categoryId);
     }
   });
