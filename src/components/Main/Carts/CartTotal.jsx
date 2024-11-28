@@ -13,13 +13,13 @@ export default function CartTotal({ totalPrice, formatPrice }) {
         <div className="flex justify-between items-center text-deep-mahogany text-lg font-bold pt-2">
           <div className="flex items-center gap-1">
             {CartIcons.totalAmountIcon}
-            <span className="text-[18px] xs:text-[18px]">Total Amount:</span>
+            <span className="text-[18px] xs:text-[16px]">Total Amount:</span>
           </div>
           <motion.span
             key={totalPrice}
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
-            className="text-[20px] xs:text-[20px]"
+            className="text-[20px] xs:text-[19px]"
           >
             ${formatPrice(totalPrice)}
           </motion.span>

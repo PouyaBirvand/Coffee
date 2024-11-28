@@ -17,6 +17,8 @@ import { useAppContext } from "../../../context/AppContext"
 import { ProductImage } from "./ProductImage"
 import { ProductInfo } from "./ProductInfo"
 import { LoadingSpinner } from "../../../ui/Loader/LoadingSpinner"
+import { CATEGORIES } from '../../../utils/categoryMapping';
+import { PersonalFoodsList } from './PersonalFoodList';
 
 // eslint-disable-next-line react/prop-types
 function Products({ categoryId, isExpanded, searchResults }) {
@@ -27,8 +29,6 @@ function Products({ categoryId, isExpanded, searchResults }) {
   const displayItems = searchResults || items;
 
   const [selectedItemId, setSelectedItemId] = useState(null);
-
-
 
 
   useEffect(() => {
@@ -90,7 +90,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
     (item) => (
       <SwiperSlide
         key={item.id}
-        className={`pt-12 sm:pt-16 z-0 ${isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""}`}
+        className={`pt-12 sm:pt-16 z-0 mb-[3rem] ${isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""}`}
       >
         <div className={`relative ${!isExpanded ? "shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3" : ""} mx-auto`}>
           <ProductImage item={item} isExpanded={isExpanded} />
@@ -109,6 +109,13 @@ function Products({ categoryId, isExpanded, searchResults }) {
         {currentItem ? renderSlide(currentItem) : items[activeIndex] && renderSlide(items[activeIndex])}
       </div>
     );
+  }
+
+ 
+  if (categoryId === CATEGORIES.PERSONALFOODS && !isExpanded) {
+    const foodProducts = items;  // Items are already filtered in useProducts
+    console.log('Food Products:', foodProducts);
+    return <PersonalFoodsList items={foodProducts} />;
   }
   
 

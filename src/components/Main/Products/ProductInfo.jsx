@@ -13,7 +13,7 @@ export function ProductInfo({item, isExpanded, isSearchResult}) {
       transition={{ duration: 0.5 }}
       className={isExpanded ? "fixed left-0 right-0 bottom-14 backdrop-blur-sm bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] max-w-[75%] mx-auto h-[17rem] sm:h-[15rem]" : ""}
     >
-      <h1 className={`${commonClasses} ${isExpanded ? 'text-[1.4rem] -mt-2 mb-5' : 'text-2xl mb-0'} font-extrabold sm:text-[1.3rem]`}>
+      <h1 className={`${commonClasses} ${isExpanded ? 'text-[1.4rem] -mt-2 mb-2' : 'text-2xl mb-0'} font-extrabold sm:text-[1.3rem]`}>
         {item.title}
       </h1>
       <p className={`${commonClasses} ${isExpanded ? 'sm:text-sm' : 'text-base'} ml-1`}>

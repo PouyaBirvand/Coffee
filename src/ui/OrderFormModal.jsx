@@ -51,6 +51,7 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
   const queryClient = useQueryClient();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderResponse, setOrderResponse] = useState(null);
+  
 
   const { setCartItems, cartItems, setCartId } = useAppContext();
   const { setShowOrderModal } = useModal(); // Add this
@@ -63,33 +64,33 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
     completeOrder(tableNumber, {
       onSuccess: async (response) => {
         if (response.data.success) {
-          onOrderComplete(response.data);
-          setServerMessage("Your order has been successfully placed!");
           setIsValidated(true);
-          setShowOrderModal(true);
+          setServerMessage("Your order has been successfully placed!");
           
-          // Clear cart only once
-          localStorage.removeItem('cartId');
-          setCartId(null);
-          setCartItems([]);
+          setTimeout(() => {
+            onOrderComplete(response.data);
+            setShowOrderModal(true);
+            
+            localStorage.removeItem('cartId');
+            setCartId(null);
+            setCartItems([]);
   
-          // Create new cart only here, not in OrderConfirmationModal
-          const newCartResponse = await cartService.create({
-            table_number: tableNumber,
-            status: 'active'
-          });
-          
-          if (newCartResponse.data.success) {
-            localStorage.setItem('cartId', newCartResponse.data.id);
-            setCartId(newCartResponse.data.id);
-          }
+            cartService.create({
+              table_number: tableNumber,
+              status: 'active'
+            }).then(newCartResponse => {
+              if (newCartResponse.data.success) {
+                localStorage.setItem('cartId', newCartResponse.data.id);
+                setCartId(newCartResponse.data.id);
+              }
+            });
   
-          queryClient.invalidateQueries(["cart"]);
+            queryClient.invalidateQueries(["cart"]);
+          }, 2000);
         }
       }
     });
   };
-
   setTimeout(() => {
     if (orderResponse) {
       onOrderComplete(orderResponse);

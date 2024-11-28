@@ -39,20 +39,35 @@ function MenuPage() {
 
   return (
     <div className="bg-body min-h-screen overflow-x-hidden w-full px-4 md:px-6 pt-6">
-      <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
-      <main>
-        <ProductTitle
-          categoryName={CATEGORY_NAMES[selectedCategory]}
+            {/* Header - Fixed Height */}
+            <div className="flex-shrink-0">
+        <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
+        <ProductTitle categoryName={CATEGORY_NAMES[selectedCategory]} isExpanded={isExpanded} />
+      </div>
+
+      {/* Main Content - Flexible Height */}
+      <div className="flex-1 min-h-0 relative">
+        {/* Products Container */}
+        <div className="h-full">
+          <Products categoryId={selectedCategory} isExpanded={isExpanded} />
+        </div>
+
+        {/* Categories - Fixed Position */}
+        {!isExpanded && (
+          <div className="absolute top-[27rem] left-0 right-0">
+            <Categories />
+          </div>
+        )}
+      </div>
+
+      {/* Bottom Navigation - Fixed Height */}
+      <div className="flex-shrink-0">
+        <BottomNavigation
           isExpanded={isExpanded}
+          toggleExpanded={() => setIsExpanded(!isExpanded)}
         />
-        <TableForm />
-        <Products categoryId={selectedCategory} isExpanded={isExpanded} />
-        {!isExpanded && <Categories />}
-      </main>
-      <BottomNavigation
-        isExpanded={isExpanded}
-        toggleExpanded={() => setIsExpanded(!isExpanded)}
-      />
+      </div>
+
     </div>
   );
 }

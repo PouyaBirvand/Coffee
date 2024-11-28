@@ -2,14 +2,16 @@ import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
 import { useAppContext } from "../context/AppContext";
 import { cartService } from "../services/cartService";
+import { useNavigate } from "react-router-dom";
 
 const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime }) => {
   if (!isOpen) return null;
   const { setCartId } = useAppContext();
+  const navigate = useNavigate()
 
   const handleBackToMenu = () => {
     onClose();
-    window.location.href = '/';
+    navigate('/')
   };
 
   const validTableNumber = Number.isInteger(parseInt(tableNumber)) ? parseInt(tableNumber) : 
