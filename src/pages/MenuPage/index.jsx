@@ -51,14 +51,14 @@ function MenuPage() {
         </div>
         <TableForm />
 
-        {!isExpanded && (
-          <div className="absolute top-[27rem] left-0 right-0">
-            <Categories />
-          </div>
-        )}
       </div>
 
       <div className="flex-shrink-0">
+        {!isExpanded && (
+          <div className="fixed bottom-[6.5rem] left-0 right-0">
+            <Categories />
+          </div>
+        )}
         <BottomNavigation
           isExpanded={isExpanded}
           toggleExpanded={() => setIsExpanded(!isExpanded)}
