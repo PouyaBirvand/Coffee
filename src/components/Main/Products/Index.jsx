@@ -1,89 +1,65 @@
-import { register } from 'swiper/element/bundle'
+import { register } from 'swiper/element/bundle';
 register();
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectCoverflow } from 'swiper/modules'
-
-import 'swiper/css'
-import 'swiper/css/effect-coverflow'
-
-import "swiper/css"
-import "swiper/css/effect-coverflow"
-import PropTypes from "prop-types"
-import { useProducts } from "../../../hooks/useProduct"
-import { useCallback, useEffect, useMemo, useState } from "react"
-import { useAppContext } from "../../../context/AppContext"
-import { ProductImage } from "./ProductImage"
-import { ProductInfo } from "./ProductInfo"
-import { LoadingSpinner } from "../../../ui/Loader/LoadingSpinner"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import PropTypes from "prop-types";
+import { useProducts } from "../../../hooks/useProduct";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useAppContext } from "../../../context/AppContext";
+import { ProductImage } from "./ProductImage";
+import { ProductInfo } from "./ProductInfo";
+import { LoadingSpinner } from "../../../ui/Loader/LoadingSpinner";
 import { CATEGORIES } from '../../../utils/categoryMapping';
 import { PersonalFoodsList } from './PersonalFoodList';
 
-// eslint-disable-next-line react/prop-types
 function Products({ categoryId, isExpanded, searchResults }) {
-
   const { data: items = [], isLoading } = useProducts(categoryId);
   const [activeIndex, setActiveIndex] = useState(0);
-  const { setCurrentItem, currentItem , selectionSource , setSelectionSource } = useAppContext();
+  const { setCurrentItem, currentItem, selectionSource, setSelectionSource } = useAppContext();
   const displayItems = searchResults || items;
-
   const [selectedItemId, setSelectedItemId] = useState(null);
-
 
   useEffect(() => {
     if (selectionSource === 'search') {
       setActiveIndex(0);
     }
   }, [selectionSource]);
-  
 
   useEffect(() => {
     setActiveIndex(0);
   }, [categoryId, selectionSource]);
-  
+
+  useEffect(() => {
+    if (!isExpanded && selectionSource === 'search') {
+      setSelectionSource('products');
+    }
+  }, [isExpanded, selectionSource, setSelectionSource]);
+
   useEffect(() => {
     if (items.length > 0 && selectionSource === 'products') {
       const newItem = JSON.parse(JSON.stringify(items[activeIndex]));
       setCurrentItem(newItem);
     }
-  }, [activeIndex, items, selectionSource]);
-  
-  useEffect(() => {
-    if (items.length > 0 && selectionSource === 'products') {
-      const initialItem = JSON.parse(JSON.stringify(items[0])); // Always start with first item
-      setSelectedItemId(items[0].id);
-      setCurrentItem(initialItem);
-      setActiveIndex(0);
-    }
-  }, [items, selectionSource]); 
-  
+  }, [activeIndex, items, selectionSource, setCurrentItem]);
 
-  
-  
-  
-
-  const memoizedItems = useMemo(
-    () => {
-  
-      if (!isExpanded && selectionSource === 'search') {
-        setSelectionSource('products'); 
-        return displayItems.slice(0, 10);
-      }
-      
-
-      if (isExpanded && currentItem && selectionSource === 'search') {
-        return [currentItem];
-      }
-      if (isExpanded) {
-        return [items[activeIndex]];
-      }
-      
+  const memoizedItems = useMemo(() => {
+    if (!isExpanded && selectionSource === 'search') {
       return displayItems.slice(0, 10);
-    },
-    [isExpanded, items, activeIndex, currentItem, displayItems, selectionSource]
-  );
+    }
 
-  
+    if (isExpanded && currentItem && selectionSource === 'search') {
+      return [currentItem];
+    }
+
+    if (isExpanded) {
+      return [items[activeIndex]];
+    }
+
+    return displayItems.slice(0, 10);
+  }, [isExpanded, items, activeIndex, currentItem, displayItems, selectionSource]);
 
   const renderSlide = useCallback(
     (item) => (
@@ -98,9 +74,9 @@ function Products({ categoryId, isExpanded, searchResults }) {
       </SwiperSlide>
     ),
     [isExpanded]
-  )
+  );
 
-  if (isLoading) return <LoadingSpinner />
+  if (isLoading) return <LoadingSpinner />;
 
   if (isExpanded) {
     return (
@@ -110,62 +86,55 @@ function Products({ categoryId, isExpanded, searchResults }) {
     );
   }
 
- 
   if (categoryId === CATEGORIES.PERSONALFOODS && !isExpanded) {
-    const foodProducts = items;  // Items are already filtered in useProducts
-    console.log('Food Products:', foodProducts);
-    return <PersonalFoodsList items={foodProducts} />;
+    return <PersonalFoodsList items={items} />;
   }
-  
 
   return (
-
-<Swiper
-    modules={[EffectCoverflow]}
-    effect="coverflow"
-    grabCursor={true}
-    centeredSlides={true}
-    slidesPerView={1.26}
-    coverflowEffect={{
-      rotate: 40,
-      stretch: 0,
-      depth: 300,
-      modifier: 1,
-      slideShadows: false,
-    }}
-    className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
-    spaceBetween={40}
-    initialSlide={activeIndex}
-    key={categoryId}
-    onSlideChange={(swiper) => {
-      const newIndex = swiper.activeIndex;
-      setActiveIndex(newIndex);
-      if (items[newIndex]) {
-        const newItem = JSON.parse(JSON.stringify(items[newIndex]));
-        setCurrentItem(newItem);
-        setSelectionSource('products');
-      }
-    }}
-    onInit={(swiper) => {
-      if (items[0]) {
-        const initialItem = JSON.parse(JSON.stringify(items[0]));
-        setCurrentItem(initialItem);
-        setSelectionSource('products');
-      }
-    }}
->
-    {memoizedItems.map(renderSlide)}
-  </Swiper>
-
-
-);
+    <Swiper
+      modules={[EffectCoverflow]}
+      effect="coverflow"
+      grabCursor={true}
+      centeredSlides={true}
+      slidesPerView={1.26}
+      coverflowEffect={{
+        rotate: 40,
+        stretch: 0,
+        depth: 300,
+        modifier: 1,
+        slideShadows: false,
+      }}
+      className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
+      spaceBetween={40}
+      initialSlide={activeIndex}
+      key={categoryId}
+      onSlideChange={(swiper) => {
+        const newIndex = swiper.activeIndex;
+        setActiveIndex(newIndex);
+        if (items[newIndex]) {
+          const newItem = JSON.parse(JSON.stringify(items[newIndex]));
+          setCurrentItem(newItem);
+          setSelectionSource('products');
+        }
+      }}
+      onInit={(swiper) => {
+        if (items[0]) {
+          const initialItem = JSON.parse(JSON.stringify(items[0]));
+          setCurrentItem(initialItem);
+          setSelectedItemId(items[0].id);
+          setSelectionSource('products');
+        }
+      }}
+    >
+      {memoizedItems.map(renderSlide)}
+    </Swiper>
+  );
 }
 
 Products.propTypes = {
   categoryId: PropTypes.number.isRequired,
   isExpanded: PropTypes.bool.isRequired,
-}
+  searchResults: PropTypes.array
+};
 
-export default Products
-
-
+export default Products;

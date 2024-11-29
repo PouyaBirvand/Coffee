@@ -14,6 +14,7 @@ import { useModal } from "../../context/ModalContext";
 import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
 import { useBackButton } from "../../hooks/useBackButton";
 
+
 function CartPage() {
   const { cartItems, removeFromCart, updateCartQuantity, cartId } = useAppContext();
   const { showOrderModal, setShowOrderModal } = useModal();
@@ -76,6 +77,21 @@ function CartPage() {
       console.error("Update quantity error:", error);
     }
   };
+
+  useEffect(() => {
+    const handleItemRemoved = (event) => {
+        localStorage.removeItem('tableNumber');
+        localStorage.removeItem('cartId');
+        console.log('LocalStorage keys TableNumber and CartId removed.');
+    };
+
+    window.addEventListener('item-removed', handleItemRemoved);
+
+    return () => {
+        window.removeEventListener('item-removed', handleItemRemoved);
+    };
+}, []);
+
 
   return (
     <>

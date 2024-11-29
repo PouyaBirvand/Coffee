@@ -2,21 +2,25 @@ import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import React, { useMemo } from "react";
 
 const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime }) => {
-  if (!isOpen) return null;
-  const navigate = useNavigate()
-  const {setOrderDetails} = useAppContext()
+  const navigate = useNavigate();
+  const { setOrderDetails } = useAppContext();
+
+  const validTableNumber = useMemo(() => {
+    return Number.isInteger(parseInt(tableNumber)) 
+      ? parseInt(tableNumber) 
+      : parseInt(localStorage.getItem('tableNumber'));
+  }, [tableNumber]);
 
   const handleBackToMenu = () => {
     onClose();
-    setOrderDetails(null); // Add this line
-    navigate('/')
-};
+    setOrderDetails(null);
+    navigate('/');
+  };
 
-  const validTableNumber = Number.isInteger(parseInt(tableNumber)) ? parseInt(tableNumber) : 
-    parseInt(localStorage.getItem('tableNumber'));
-
+  if (!isOpen) return null;
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -101,6 +105,7 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
   );
 };
 
+
 OrderConfirmationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
@@ -108,4 +113,4 @@ OrderConfirmationModal.propTypes = {
   estimatedTime: PropTypes.number.isRequired
 };
 
-export default OrderConfirmationModal;
+export default React.memo(OrderConfirmationModal);

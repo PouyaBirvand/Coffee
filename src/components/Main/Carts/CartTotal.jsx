@@ -7,7 +7,7 @@ export default function CartTotal({ totalPrice, formatPrice }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed bottom-[9.5rem] left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%] z-[1] sm:bottom-[5.5rem]"
+      className="fixed bottom-[6.5rem] left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%] z-[1]"
     >
       <div className="w-[95%] mx-auto">
         <div className="flex justify-between items-center text-deep-mahogany text-lg font-bold pt-2">
