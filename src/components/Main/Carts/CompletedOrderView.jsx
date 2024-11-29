@@ -32,7 +32,7 @@ function CompletedOrderView({ items, formatPrice }) {
           >
             <div className="w-[120px] h-[120px] flex-shrink-0 sm:w-[100px] sm:h-[100px] xs:w-[90px] xs:h-[90px]">
               <motion.img
-                src={`http://127.0.0.1:8000/storage/images/${item.product.image}`}
+                src={`http://127.0.0.1:8000/storage/${item.product.image}`}
                 alt={item.product.title}
                 className="w-full h-full object-contain bg-translucent-coffee bg-opacity-40 rounded-xl"
                 whileHover={{ scale: 1.05 }}
