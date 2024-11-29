@@ -80,17 +80,20 @@ function CartPage() {
 
   useEffect(() => {
     const handleItemRemoved = (event) => {
-        localStorage.removeItem('tableNumber');
-        localStorage.removeItem('cartId');
-        console.log('LocalStorage keys TableNumber and CartId removed.');
+      const tableNumber = event.detail.table_number;
+      console.log(`Cart removed for table: ${tableNumber}`);
+
+      localStorage.removeItem('tableNumber');
+      localStorage.removeItem('cartId');
     };
 
-    window.addEventListener('item-removed', handleItemRemoved);
+    window.addEventListener('cart-removed', handleItemRemoved);
 
     return () => {
-        window.removeEventListener('item-removed', handleItemRemoved);
+      window.removeEventListener('cart-removed', handleItemRemoved);
     };
-}, []);
+  }, []);
+
 
 
   return (
