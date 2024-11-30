@@ -26,6 +26,13 @@ function CartPage() {
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
   useBackButton();
 
+
+
+
+
+
+  
+
   console.log("Table Number in CartPage:", tableNumber); // Add this line
 
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
@@ -81,22 +88,16 @@ function CartPage() {
   };
 
   useEffect(() => {
-    const handleItemRemoved = (event) => {
-      const tableNumber = event.detail.table_number;
-      console.log(`Cart removed for table: ${tableNumber}`);
-
+    const handleCartRemoved = (event) => {
+      console.log('Cart removed event received:', event.detail);
       localStorage.removeItem('tableNumber');
-      localStorage.removeItem('cartId');
+      alert('Your table number has been cleared. Please enter a new one.');
     };
-
-    window.addEventListener('cart-removed', handleItemRemoved);
-
+    window.addEventListener('cart-removed', handleCartRemoved);
     return () => {
-      window.removeEventListener('cart-removed', handleItemRemoved);
+      window.removeEventListener('cart-removed', handleCartRemoved);
     };
   }, []);
-
-
 
   return (
     <>

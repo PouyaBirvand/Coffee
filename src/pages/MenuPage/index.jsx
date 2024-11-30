@@ -10,6 +10,7 @@ import Products from "../../components/Main/Products/Index";
 import ProductTitle from "../../components/Header/Logo";
 
 function MenuPage() {
+
   const { selectedCategory, setSelectedCategory, isExpanded, setIsExpanded } =
     useAppContext();
   const { categoryId } = useParams();
@@ -36,6 +37,8 @@ function MenuPage() {
       navigate("/Coffee" , {replace: true});
     }
   }, [categoryId, navigate, setSelectedCategory, getCategoryId]);
+
+  
 
   return (
     <div className="bg-body min-h-screen overflow-x-hidden w-full px-4 md:px-6 pt-6">
