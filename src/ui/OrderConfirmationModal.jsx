@@ -15,6 +15,7 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
   }, [tableNumber]);
 
   const handleBackToMenu = () => {
+    window.onbeforeunload = null;
     onClose();
     setOrderDetails(null);
     navigate('/');

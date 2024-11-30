@@ -13,9 +13,11 @@ import CompletedOrderView from "../../components/Main/Carts/CompletedOrderView";
 import { useModal } from "../../context/ModalContext";
 import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
 import { useBackButton } from "../../hooks/useBackButton";
+import { usePreventRefresh } from "../../hooks/usePreventRefresh";
 
 
 function CartPage() {
+  usePreventRefresh();
   const { cartItems, removeFromCart, updateCartQuantity, cartId } = useAppContext();
   const { showOrderModal, setShowOrderModal } = useModal();
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });

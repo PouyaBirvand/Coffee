@@ -21,23 +21,31 @@ function Products({ categoryId, isExpanded, searchResults }) {
   const { setCurrentItem, currentItem, selectionSource, setSelectionSource } = useAppContext();
   const displayItems = searchResults || items;
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
+  
+  useEffect(() => {
+    if (swiperInstance) {
+      swiperInstance.slideTo(0, 0);
+    }
+    setActiveIndex(0);
+  }, [categoryId, swiperInstance]);
 
   useEffect(() => {
     if (selectionSource === 'search') {
       setActiveIndex(0);
     }
   }, [selectionSource]);
-
+  
   useEffect(() => {
     setActiveIndex(0);
   }, [categoryId, selectionSource]);
-
+  
   useEffect(() => {
     if (!isExpanded && selectionSource === 'search') {
       setSelectionSource('products');
     }
   }, [isExpanded, selectionSource, setSelectionSource]);
-
+  
   useEffect(() => {
     if (items.length > 0 && selectionSource === 'products') {
       const newItem = JSON.parse(JSON.stringify(items[activeIndex]));
@@ -90,8 +98,12 @@ function Products({ categoryId, isExpanded, searchResults }) {
     return <PersonalFoodsList items={items} />;
   }
 
+
+
   return (
     <Swiper
+      // Add onSwiper prop
+      onSwiper={setSwiperInstance}
       modules={[EffectCoverflow]}
       effect="coverflow"
       grabCursor={true}
@@ -106,7 +118,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
       }}
       className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
       spaceBetween={40}
-      initialSlide={activeIndex}
+      initialSlide={0}
       key={categoryId}
       onSlideChange={(swiper) => {
         const newIndex = swiper.activeIndex;
@@ -118,6 +130,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
         }
       }}
       onInit={(swiper) => {
+        setSwiperInstance(swiper);
         if (items[0]) {
           const initialItem = JSON.parse(JSON.stringify(items[0]));
           setCurrentItem(initialItem);
