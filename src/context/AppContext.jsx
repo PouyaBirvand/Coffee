@@ -13,10 +13,8 @@ export function AppProvider({ children }) {
     const [cartId, setCartId] = useState(() => localStorage.getItem('cartId'));
 
     const [tableNumber, setTableNumber] = useState(() => {
-      const storedNumber = localStorage.getItem('tableNumber');
-      console.log("Initial Table Number in Context:", storedNumber);
-      return storedNumber || null;
-    });
+      return localStorage.getItem('tableNumber') || null;
+  });
 
     const [searchResults, setSearchResults] = useState(null);
     const [orderDetails, setOrderDetails] = useState(null);
@@ -60,6 +58,15 @@ export function AppProvider({ children }) {
         }
       };
 
+      const updateTableNumber = (number) => {
+        setTableNumber(number);
+        if (number) {
+            localStorage.setItem('tableNumber', number);
+        } else {
+            localStorage.removeItem('tableNumber');
+        }
+      }
+
     // Context Value
     const contextValue = {
         currentItem,
@@ -89,7 +96,8 @@ export function AppProvider({ children }) {
         setCartId,
         refreshCart,
         orderDetails,
-        setOrderDetails
+        setOrderDetails,
+        updateTableNumber 
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

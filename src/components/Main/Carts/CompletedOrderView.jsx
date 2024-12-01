@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
 import { CartIcons } from "./CartIcons";
 
+
 function CompletedOrderView({ items, formatPrice }) {
   const totalAmount = items.reduce((total, item) => 
     total + (Number(item.product.price) * item.quantity), 0
   );
+
 
   return (
     <div className="flex flex-col">

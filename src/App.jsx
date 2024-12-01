@@ -6,10 +6,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ErrorBoundary from "./ui/ErrorBoundary/ErrorBoundary.jsx";
 import { ModalProvider } from "./context/ModalContext.jsx";
+import CheckAndRemoveSeat from './utils/CheckAndRemoveSeat.jsx';
+
 const Homepage = lazy(() => import("./pages/MenuPage/index.jsx"), {
   suspense: true,
   preload: true,
 });
+
 const Cart = lazy(() => import("./pages/CartPage/index.jsx"), {
   suspense: true,
   preload: true,
@@ -18,11 +21,8 @@ const Cart = lazy(() => import("./pages/CartPage/index.jsx"), {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5,
-      cacheTime: 1000 * 60 * 30,
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
+      staleTime: Infinity,
+      cacheTime: Infinity,
     },
   },
 });
@@ -34,6 +34,7 @@ function App() {
         <ModalProvider>
           <AppProvider>
             <BrowserRouter>
+              <CheckAndRemoveSeat />
               <Suspense fallback={<CoffeeLoader />}>
                 <Routes>
                   <Route

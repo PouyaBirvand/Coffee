@@ -118,7 +118,7 @@ function TableForm() {
               <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] rotate-12 absolute" />
               <div className="w-full h-full bg-dark-cocoa/80 rounded-[1.5rem] -rotate-12 absolute" />
               <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] flex items-center justify-center relative">
-                <CoffeeIcon />
+                <img className="rounded-full w-16 h-16" src="./icon.jpg" alt="" />
               </div>
             </motion.div>
           </div>

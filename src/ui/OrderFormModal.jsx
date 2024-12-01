@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useCompleteOrder } from "../hooks/useOrderManagement";
 import { useAppContext } from "../context/AppContext";
@@ -51,7 +51,8 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
   const queryClient = useQueryClient();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderResponse, setOrderResponse] = useState(null);
-  
+
+
 
   const { setCartItems, cartItems, setCartId } = useAppContext();
   const { setShowOrderModal } = useModal();
@@ -60,37 +61,49 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
 
   const handleSubmit = () => {
     const tableNumber = localStorage.getItem("tableNumber");
-    
+    setIsSubmitting(true);
+
     completeOrder(tableNumber, {
-      onSuccess: async (response) => {
-        if (response.data.success) {
-          setIsValidated(true);
-          setServerMessage("Your order has been successfully placed!");
-          
-          setTimeout(() => {
-            onOrderComplete(response.data);
-            setShowOrderModal(true);
-            
-            localStorage.removeItem('cartId');
-            setCartId(null);
-            setCartItems([]);
-  
-            cartService.create({
-              table_number: tableNumber,
-              status: 'active'
-            }).then(newCartResponse => {
-              if (newCartResponse.data.success) {
-                localStorage.setItem('cartId', newCartResponse.data.id);
-                setCartId(newCartResponse.data.id);
-              }
-            });
-  
-            queryClient.invalidateQueries(["cart"]);
-          }, 2000);
+        onSuccess: async (response) => {
+            if (response.data.success) {
+                setIsValidated(true);
+                setServerMessage("Your order has been successfully placed!");
+                
+                setTimeout(async () => {
+                    onOrderComplete(response.data);
+                    setShowOrderModal(true);
+                    
+                    localStorage.removeItem('cartId');
+                    setCartId(null);
+                    setCartItems([]);
+
+                    try {
+                        const newCartResponse = await cartService.create({
+                            table_number: tableNumber,
+                            status: 'active'
+                        });
+                        
+                        if (newCartResponse.data.success) {
+                            localStorage.setItem('cartId', newCartResponse.data.id);
+                            setCartId(newCartResponse.data.id);
+                        }
+                        
+                        queryClient.invalidateQueries(["cart"]);
+                    } catch (error) {
+                        console.error("Failed to create new cart:", error);
+                    }
+                }, 2000);
+            }
+        },
+        onError: (error) => {
+            setServerMessage("Error processing order");
+            setIsSubmitting(false);
+            console.error(error);
         }
-      }
     });
-  };
+};
+
+
   setTimeout(() => {
     if (orderResponse) {
       onOrderComplete(orderResponse);

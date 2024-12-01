@@ -13,11 +13,11 @@ import CompletedOrderView from "../../components/Main/Carts/CompletedOrderView";
 import { useModal } from "../../context/ModalContext";
 import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
 import { useBackButton } from "../../hooks/useBackButton";
-import { usePreventRefresh } from "../../hooks/usePreventRefresh";
+// import { usePreventRefresh } from "../../hooks/usePreventRefresh";
 
 
 function CartPage() {
-  usePreventRefresh();
+  // usePreventRefresh();
   const { cartItems, removeFromCart, updateCartQuantity, cartId } = useAppContext();
   const { showOrderModal, setShowOrderModal } = useModal();
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });
@@ -25,12 +25,6 @@ function CartPage() {
   const {orderDetails , setOrderDetails , tableNumber} = useAppContext()
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
   useBackButton();
-
-
-
-
-
-
   
 
   console.log("Table Number in CartPage:", tableNumber); // Add this line
@@ -97,7 +91,7 @@ function CartPage() {
     return () => {
       window.removeEventListener('cart-removed', handleCartRemoved);
     };
-  }, []);
+}, []);
 
   return (
     <>
