@@ -81,17 +81,17 @@ function CartPage() {
     }
   };
 
-  useEffect(() => {
-    const handleCartRemoved = (event) => {
-      console.log('Cart removed event received:', event.detail);
-      localStorage.removeItem('tableNumber');
-      alert('Your table number has been cleared. Please enter a new one.');
-    };
-    window.addEventListener('cart-removed', handleCartRemoved);
-    return () => {
-      window.removeEventListener('cart-removed', handleCartRemoved);
-    };
-}, []);
+//   useEffect(() => {
+//     const handleCartRemoved = (event) => {
+//       console.log('Cart removed event received:', event.detail);
+//       localStorage.removeItem('tableNumber');
+//       alert('Your table number has been cleared. Please enter a new one.');
+//     };
+//     window.addEventListener('cart-removed', handleCartRemoved);
+//     return () => {
+//       window.removeEventListener('cart-removed', handleCartRemoved);
+//     };
+// }, []);
 
   return (
     <>

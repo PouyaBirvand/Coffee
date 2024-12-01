@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ErrorBoundary from "./ui/ErrorBoundary/ErrorBoundary.jsx";
 import { ModalProvider } from "./context/ModalContext.jsx";
-import CheckAndRemoveSeat from './utils/CheckAndRemoveSeat.jsx';
+import { useTableStatus } from "./hooks/useTableStatus.js";
 
 const Homepage = lazy(() => import("./pages/MenuPage/index.jsx"), {
   suspense: true,
@@ -28,13 +28,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  useTableStatus();
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <ModalProvider>
           <AppProvider>
             <BrowserRouter>
-              <CheckAndRemoveSeat />
               <Suspense fallback={<CoffeeLoader />}>
                 <Routes>
                   <Route
