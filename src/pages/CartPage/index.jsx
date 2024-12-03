@@ -13,6 +13,7 @@ import CompletedOrderView from "../../components/Main/Carts/CompletedOrderView";
 import { useModal } from "../../context/ModalContext";
 import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
 import { useBackButton } from "../../hooks/useBackButton";
+import { orderService } from "../../services/orderService";
 // import { usePreventRefresh } from "../../hooks/usePreventRefresh";
 
 
@@ -23,6 +24,7 @@ function CartPage() {
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const {orderDetails , setOrderDetails , tableNumber} = useAppContext()
+  const [tableStatus, setTableStatus] = useState('active');
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
   useBackButton();
   
@@ -80,6 +82,23 @@ function CartPage() {
       console.error("Update quantity error:", error);
     }
   };
+
+  useEffect(() => {
+    const tableNumber = localStorage.getItem('tableNumber');
+    if (!tableNumber) return;
+
+    const checkStatus = async () => {
+      try {
+        const response = await orderService.getStatus(tableNumber);
+        setTableStatus(response.data.status);
+        console.log('Table Status:', response.data);
+      } catch (error) {
+        console.error('Status check failed:', error);
+      }
+    };
+
+    checkStatus();
+  }, []);
 
 //   useEffect(() => {
 //     const handleCartRemoved = (event) => {
