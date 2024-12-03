@@ -12,11 +12,11 @@ viewBox="0 0 256 256"
 // eslint-disable-next-line react/prop-types
 const MenuHeader = ({ closeMenu }) => (
     <div className="flex items-center space-x-2 border-b border-opacity-30 border-dark-cocoa pb-3 mt-2">
-                      <img className="rounded-full h-11 w-11" src="./icon.jpg" alt="" />
+                      <img className="rounded-full h-[3.3rem] w-[3.5rem]" src="./icon.jpg" alt="" />
       <h2 className="text-[1.3rem] text-deep-mahogany font-bold text-center relative top-1 tracking-wide">
         Frisky coffee
       </h2>
-      <button onClick={closeMenu} className="text-dark-cocoa translate-x-[5rem]">
+      <button onClick={closeMenu} className="text-dark-cocoa translate-x-[4rem]">
         <lord-icon
           src="https://cdn.lordicon.com/nqtddedc.json"
           trigger="loop"

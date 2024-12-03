@@ -118,7 +118,7 @@ function TableForm() {
               <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] rotate-12 absolute" />
               <div className="w-full h-full bg-dark-cocoa/80 rounded-[1.5rem] -rotate-12 absolute" />
               <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] flex items-center justify-center relative">
-                <img className="rounded-full w-16 h-16" src="./icon.jpg" alt="" />
+                <img className="rounded-full w-16 h-16" src="./icon1.jpg" alt="" />
               </div>
             </motion.div>
           </div>
@@ -156,7 +156,7 @@ function TableForm() {
             <motion.input
               whileFocus={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="bg-translucent-coffee/50 placeholder-dark-cocoa rounded-lg outline-none py-3 pl-7 w-full xs:text-sm"
+              className="bg-translucent-coffee/30 placeholder-dark-cocoa rounded-lg outline-none py-3 pl-7 w-full xs:text-sm border-solid border-red-900 border-separate"
               type="tel"
               pattern="[0-9]*"
               placeholder="for example : 12 ..."

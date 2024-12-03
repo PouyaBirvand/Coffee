@@ -14,6 +14,7 @@ import { useModal } from "../../context/ModalContext";
 import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
 import { useBackButton } from "../../hooks/useBackButton";
 import { orderService } from "../../services/orderService";
+import { useQueryClient } from "@tanstack/react-query";
 // import { usePreventRefresh } from "../../hooks/usePreventRefresh";
 
 
@@ -25,6 +26,7 @@ function CartPage() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const {orderDetails , setOrderDetails , tableNumber} = useAppContext()
   const [tableStatus, setTableStatus] = useState('active');
+  const queryClient = useQueryClient()
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
   useBackButton();
   
@@ -38,6 +40,16 @@ function CartPage() {
     setOrderDetails(response);
     setIsOrderModalOpen(false);
   };
+
+  useEffect(() => {
+    const tableNumber = localStorage.getItem('tableNumber');
+    console.log('Table Number:', tableNumber);
+    
+    if (tableNumber) {
+        // Fetch cart data
+        queryClient.invalidateQueries(['cart']);
+    }
+}, []);
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
