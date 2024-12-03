@@ -11,23 +11,25 @@ export const useTableStatus = () => {
       console.log('No table number found');
       return;
     }
-  
     const checkTableStatus = async () => {
       try {
-        console.log('Checking table status...');
-        const response = await orderService.getStatus(tableNumber);
-        console.log('Status Response:', response.data);
-  
-        if (!response.data.success) {
-          await orderService.clearCart(tableNumber);
-          localStorage.removeItem('cartId');
-          localStorage.removeItem('tableNumber');
-          window.location.reload();
-      }
+          const response = await orderService.getStatus(tableNumber);
+          // فقط در صورت عدم موفقیت پاک کنه
+          if (!response?.data?.success) {
+              await orderService.clearCart(tableNumber);
+              localStorage.removeItem('cartId');
+              localStorage.removeItem('tableNumber');
+              window.location.href = '/';
+          }
       } catch (error) {
-        console.error('Table status check failed:', error);
+          if (error.response?.status === 404) {
+              localStorage.removeItem('cartId');
+              localStorage.removeItem('tableNumber');
+              window.location.href = '/';
+          }
       }
-    };
+  };
+  
   
     const interval = setInterval(checkTableStatus, 30000);
     return () => clearInterval(interval);

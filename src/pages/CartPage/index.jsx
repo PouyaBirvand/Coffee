@@ -97,18 +97,19 @@ function CartPage() {
 
   useEffect(() => {
     const checkStatus = async () => {
-        try {
-            const response = await orderService.getStatus(tableNumber);
-            setTableStatus(response.data.status);
-            
-            if (response.data.status === 1) {
-                setCompletedOrderItems(cartItems);
-                setOrderDetails(response.data);
-            }
-        } catch (error) {
-            console.error('Status check failed:', error);
-        }
-    };
+      try {
+          const response = await orderService.getStatus(tableNumber);
+          if (response?.data?.success) {
+              setTableStatus(response.data.status);
+              if (response.data.status === 1) {
+                  setCompletedOrderItems(cartItems);
+                  setOrderDetails(response.data);
+              }
+          }
+      } catch (error) {
+          console.error('Status check failed:', error);
+      }
+  };
 
     const interval = setInterval(checkStatus, 10000);
     return () => clearInterval(interval);
