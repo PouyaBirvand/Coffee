@@ -96,21 +96,23 @@ function CartPage() {
   };
 
   useEffect(() => {
-    const tableNumber = localStorage.getItem('tableNumber');
-    if (!tableNumber) return;
-
     const checkStatus = async () => {
-      try {
-        const response = await orderService.getStatus(tableNumber);
-        setTableStatus(response.data.status);
-        console.log('Table Status:', response.data);
-      } catch (error) {
-        console.error('Status check failed:', error);
-      }
+        try {
+            const response = await orderService.getStatus(tableNumber);
+            setTableStatus(response.data.status);
+            
+            if (response.data.status === 1) {
+                setCompletedOrderItems(cartItems);
+                setOrderDetails(response.data);
+            }
+        } catch (error) {
+            console.error('Status check failed:', error);
+        }
     };
 
-    checkStatus();
-  }, []);
+    const interval = setInterval(checkStatus, 10000);
+    return () => clearInterval(interval);
+}, [cartItems]);
 
 //   useEffect(() => {
 //     const handleCartRemoved = (event) => {

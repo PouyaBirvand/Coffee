@@ -18,12 +18,12 @@ export const useTableStatus = () => {
         const response = await orderService.getStatus(tableNumber);
         console.log('Status Response:', response.data);
   
-        if (!response.data.success || response.data.status === 1) {
-          console.log('Table is inactive, clearing storage...');
+        if (!response.data.success) {
+          await orderService.clearCart(tableNumber);
           localStorage.removeItem('cartId');
           localStorage.removeItem('tableNumber');
           window.location.reload();
-        }
+      }
       } catch (error) {
         console.error('Table status check failed:', error);
       }
