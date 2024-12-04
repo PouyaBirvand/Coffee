@@ -12,7 +12,7 @@ export const useCompleteOrder = () => {
           // Then complete order
           const orderResponse = await orderService.completeOrder(tableNumber);
           // Finally clear cart
-          await orderService.clearCart(tableNumber);
+          // await orderService.clearCart(tableNumber);
           return orderResponse;
         }
         throw new Error('Order status check failed');
