@@ -30,17 +30,21 @@ function CartPage() {
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
   const handleOrderComplete = async (response) => {
+    const currentTableNumber = parseInt(localStorage.getItem("tableNumber"));
+    
+    if (!currentTableNumber) return;
+
     try {
-      const statusResponse = await orderService.getStatus(tableNumber);
-      if (statusResponse.data.success && statusResponse.data.order?.items) {
-        setCompletedOrderItems(statusResponse.data.order.items);
-        setOrderDetails(response);
-        setIsOrderModalOpen(false);
-      }
+        const statusResponse = await orderService.getStatus(currentTableNumber);
+        if (statusResponse.data.success && statusResponse.data.order?.items) {
+            setCompletedOrderItems(statusResponse.data.order.items);
+            setOrderDetails(response);
+            setIsOrderModalOpen(false);
+        }
     } catch (error) {
-      console.error("Error fetching completed order:", error);
+        console.error("Error fetching completed order:", error);
     }
-  };
+};
 
   // Check order status on mount and when tableNumber changes
   useEffect(() => {
