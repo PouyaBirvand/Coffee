@@ -40,32 +40,8 @@ export function AppProvider({ children }) {
         setIsExpanded(prev => !prev)
     }
 
-    const clearCart = () => {
-      setCartItems([]);
-      setCartId(null);
-      setOrderDetails(null); 
-      localStorage.removeItem('cartId');
-  };
 
-      const refreshCart = async () => {
-        if (cartId) {
-          try {
-            const response = await cartService.viewCart(cartId);
-            setCartItems(response.data.items || []);
-          } catch (error) {
-            console.log("Cart refresh error:", error);
-          }
-        }
-      };
 
-      const updateTableNumber = (number) => {
-        setTableNumber(number);
-        if (number) {
-            localStorage.setItem('tableNumber', number);
-        } else {
-            localStorage.removeItem('tableNumber');
-        }
-      }
 
     // Context Value
     const contextValue = {
@@ -92,12 +68,9 @@ export function AppProvider({ children }) {
         setSearchResults,
         selectionSource,
         setSelectionSource,
-        clearCart,
         setCartId,
-        refreshCart,
         orderDetails,
         setOrderDetails,
-        updateTableNumber 
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

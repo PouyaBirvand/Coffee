@@ -7,8 +7,7 @@ import { RestaurantIcon } from "./BottomIcons/RestaurantIcon";
 
 // eslint-disable-next-line react/prop-types
 function BottomNavigation({ onOrderClick }) {
-  const { isExpanded, toggleExpanded, addToCart, currentItem, cartId } =
-    useAppContext();
+  const { isExpanded, toggleExpanded, addToCart, currentItem, cartId } = useAppContext();
   const location = useLocation();
   const queryClient = useQueryClient();
 

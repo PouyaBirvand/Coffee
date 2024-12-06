@@ -2,12 +2,10 @@ import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
 import { CartIcons } from "./CartIcons";
 
-
 function CompletedOrderView({ items, formatPrice }) {
   const totalAmount = items.reduce((total, item) => 
-    total + (Number(item.product.price) * item.quantity), 0
+    total + (Number(item.product?.price || item.price) * item.quantity), 0
   );
-
 
   return (
     <div className="flex flex-col">
@@ -34,8 +32,8 @@ function CompletedOrderView({ items, formatPrice }) {
           >
             <div className="w-[120px] h-[120px] flex-shrink-0 sm:w-[100px] sm:h-[100px] xs:w-[90px] xs:h-[90px]">
               <motion.img
-                src={`http://127.0.0.1:8000/storage/${item.product.image}`}
-                alt={item.product.title}
+                src={`http://127.0.0.1:8000/storage/${item.product?.image || item.image}`}
+                alt={item.product?.title || item.title}
                 className="w-full h-full object-contain bg-translucent-coffee bg-opacity-40 rounded-xl"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
@@ -44,16 +42,16 @@ function CompletedOrderView({ items, formatPrice }) {
             
             <div className="flex-1 min-w-0">
               <h2 className="text-base font-semibold text-dark-cocoa truncate sm:text-sm">
-                {item.product.title}
+                {item.product?.title || item.title}
               </h2>
               
               <p className="text-white text-xs mt-1 truncate">
-                {item.product.description && 
-                  item.product.description.split(" ").slice(0, 3).join(" ") + "..."}
+                {(item.product?.description || item.description) && 
+                  (item.product?.description || item.description).split(" ").slice(0, 3).join(" ") + "..."}
               </p>
 
               <p className="text-deep-mahogany font-bold text-base mt-1 flex items-center gap-2 sm:text-sm">
-                <span>${formatPrice(item.product.price)}</span>
+                <span>${formatPrice(item.product?.price || item.price)}</span>
                 {item.discount && (
                   <span className="text-green-400 text-xs">
                     -{item.discount * 100}%
@@ -111,7 +109,11 @@ const ItemPropType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
   discount: PropTypes.number,
-  product: ProductPropType.isRequired,
+  product: ProductPropType,
+  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
 });
 
 CompletedOrderView.propTypes = {

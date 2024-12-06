@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import React, { useMemo } from "react";
+import { orderService } from "../services/orderService";
 
 const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime }) => {
   const navigate = useNavigate();
@@ -14,11 +15,19 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
       : parseInt(localStorage.getItem('tableNumber'));
   }, [tableNumber]);
 
-  const handleBackToMenu = () => {
-    window.onbeforeunload = null;
-    onClose();
-    setOrderDetails(null);
-    navigate('/');
+  const handleBackToMenu = async () => {
+    try {
+      // Clear the cart items from the server
+      await orderService.clearCart(validTableNumber);
+      
+      // Reset local state and navigate
+      window.onbeforeunload = null;
+      onClose();
+      setOrderDetails(null);
+      navigate('/', { replace: true });
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+    }
   };
 
   if (!isOpen) return null;

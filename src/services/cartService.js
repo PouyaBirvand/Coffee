@@ -1,11 +1,12 @@
 import api from './axios';
 
 export const cartService = {
+  
   create: (data) => api.post('/carts', {
     table_number: data.table_number,
     status: data.status
 }),
-  
+
   addItem: async (cartId, product) => {
     console.log('Cart Service - Adding:', { cartId, product });
     return await api.post(`/carts/${cartId}/items`, {

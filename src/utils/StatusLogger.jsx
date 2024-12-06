@@ -16,7 +16,8 @@ export function StatusLogger() {
           time: new Date().toLocaleTimeString(),
           tableNumber,
           status: response.data.status,
-          success: response.data.success
+          success: response.data.success,
+          items: response.data.order.items
         });
       } catch (error) {
         console.log('❌ Status Check Failed:', {

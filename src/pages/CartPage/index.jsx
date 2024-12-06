@@ -15,57 +15,59 @@ import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
 import { useBackButton } from "../../hooks/useBackButton";
 import { orderService } from "../../services/orderService";
 import { useQueryClient } from "@tanstack/react-query";
-// import { usePreventRefresh } from "../../hooks/usePreventRefresh";
 
 
 function CartPage() {
-  // usePreventRefresh();
-  const { cartItems, removeFromCart, updateCartQuantity, cartId } = useAppContext();
+  const { cartItems, removeFromCart, updateCartQuantity, cartId, orderDetails, setOrderDetails, tableNumber } = useAppContext();
   const { showOrderModal, setShowOrderModal } = useModal();
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-  const {orderDetails , setOrderDetails , tableNumber} = useAppContext()
-  const [tableStatus, setTableStatus] = useState('active');
-  const queryClient = useQueryClient()
   const [completedOrderItems, setCompletedOrderItems] = useState([]);
-  useBackButton();
-  
+  const queryClient = useQueryClient();
 
-  console.log("Table Number in CartPage:", tableNumber); // Add this line
+  useBackButton();
 
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
-  const handleOrderComplete = (response) => {
-    setCompletedOrderItems([...cartItems]);
-    setOrderDetails(response);
-    setIsOrderModalOpen(false);
+  const handleOrderComplete = async (response) => {
+    try {
+      const statusResponse = await orderService.getStatus(tableNumber);
+      if (statusResponse.data.success && statusResponse.data.order?.items) {
+        setCompletedOrderItems(statusResponse.data.order.items);
+        setOrderDetails(response);
+        setIsOrderModalOpen(false);
+      }
+    } catch (error) {
+      console.error("Error fetching completed order:", error);
+    }
   };
 
+  // Check order status on mount and when tableNumber changes
   useEffect(() => {
-    const tableNumber = localStorage.getItem('tableNumber');
-    console.log('Table Number:', tableNumber);
-    
-    if (tableNumber) {
-        // Fetch cart data
-        queryClient.invalidateQueries(['cart']);
-    }
-}, []);
-
-  useEffect(() => {
-    const fetchOrderDetails = async () => {
-      if (!cartId) return;
-      try {
-        const response = await cartService.getCartOrder(cartId);
-        if (response.data?.success) {
-          setOrderDetails(response.data);
+    const checkOrderStatus = async () => {
+      if (tableNumber && !isNaN(tableNumber)) {
+        try {
+          const response = await orderService.getStatus(tableNumber);
+          if (response.data.success && response.data.status === 1) {
+            setCompletedOrderItems(response.data.order.items);
+            setOrderDetails(response.data);
+          }
+        } catch (error) {
+          console.error("Error fetching order status:", error);
         }
-      } catch (error) {
-        console.log("Order not completed yet");
       }
     };
-    fetchOrderDetails();
-  }, [cartId]);
+    checkOrderStatus();
+  }, [tableNumber, setOrderDetails]);
 
+  // Invalidate cart queries when table number changes
+  useEffect(() => {
+    if (tableNumber) {
+      queryClient.invalidateQueries(['cart']);
+    }
+  }, [tableNumber, queryClient]);
+
+  // Fetch cart totals when cartId or cartItems change
   useEffect(() => {
     if (cartId) {
       const fetchCart = async () => {
@@ -95,37 +97,6 @@ function CartPage() {
     }
   };
 
-//   useEffect(() => {
-//     const checkStatus = async () => {
-//         try {
-//             const response = await orderService.getStatus(tableNumber);
-//             setTableStatus(response.data.status);
-            
-//             if (response.data.status === 1) {
-//                 setCompletedOrderItems(cartItems);
-//                 setOrderDetails(response.data);
-//             }
-//         } catch (error) {
-//             console.error('Status check failed:', error);
-//         }
-//     };
-
-//     const interval = setInterval(checkStatus, 10000);
-//     return () => clearInterval(interval);
-// }, [cartItems]);
-
-//   useEffect(() => {
-//     const handleCartRemoved = (event) => {
-//       console.log('Cart removed event received:', event.detail);
-//       localStorage.removeItem('tableNumber');
-//       alert('Your table number has been cleared. Please enter a new one.');
-//     };
-//     window.addEventListener('cart-removed', handleCartRemoved);
-//     return () => {
-//       window.removeEventListener('cart-removed', handleCartRemoved);
-//     };
-// }, []);
-
   return (
     <>
       <motion.div
@@ -137,7 +108,7 @@ function CartPage() {
         <Header />
         <ProductTitle />
 
-        {orderDetails?.success ? (
+        {(orderDetails?.success && completedOrderItems.length > 0) ? (
           <CompletedOrderView
             items={completedOrderItems}
             formatPrice={formatPrice}
@@ -170,12 +141,13 @@ function CartPage() {
           <BottomNavigation onOrderClick={handleOpenOrderModal} />
         </>
       )}
-       <OrderConfirmationModal
-      isOpen={showOrderModal}
-      onClose={() => setShowOrderModal(false)}
-      tableNumber={parseInt(tableNumber)}
-      estimatedTime={20}
-    />
+      
+      <OrderConfirmationModal
+        isOpen={showOrderModal}
+        onClose={() => setShowOrderModal(false)}
+        tableNumber={parseInt(tableNumber)}
+        estimatedTime={20}
+      />
     </>
   );
 }

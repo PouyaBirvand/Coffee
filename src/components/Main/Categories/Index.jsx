@@ -7,12 +7,11 @@ function Categories() {
 
   return (
     <div className="mx-auto md:w-min w-[70%]">
-      <div className="bg-warm-wood bg-opacity-60 rounded-full 
+      <div className="bg-warm-wood bg-opacity-60 rounded-full sm:scale-[0.9] scale-[0.95]
                     flex
-                    py-0.5 px-0.5 gap-[0.1rem] justify-between xs:gap-[0.8rem]">
+                    py-1 px-1 gap-1  justify-between xs:gap-[0.5rem]">
         {categoryIcons.map((category) => (
-          <div key={category.categoryId} 
-               className={`scale-[0.9]`}>
+          <div key={category.categoryId} >
             <CategoryIcon
               icon={category.icon}
               isSelected={selectedCategory === category.categoryId}

@@ -19,70 +19,60 @@ function Products({ categoryId, isExpanded, searchResults }) {
   const { data: items = [], isLoading } = useProducts(categoryId);
   const [activeIndex, setActiveIndex] = useState(0);
   const { setCurrentItem, currentItem, selectionSource, setSelectionSource } = useAppContext();
-  const displayItems = searchResults || items;
-  const [selectedItemId, setSelectedItemId] = useState(null);
   const [swiperInstance, setSwiperInstance] = useState(null);
   
-  useEffect(() => {
-    if (swiperInstance) {
-      swiperInstance.slideTo(0, 0);
-    }
-    setActiveIndex(0);
-  }, [categoryId, swiperInstance]);
-
-  useEffect(() => {
-    if (selectionSource === 'search') {
-      setActiveIndex(0);
-    }
-  }, [selectionSource]);
-  
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [categoryId, selectionSource]);
-  
-  useEffect(() => {
-    if (!isExpanded && selectionSource === 'search') {
-      setSelectionSource('products');
-    }
-  }, [isExpanded, selectionSource, setSelectionSource]);
-  
-  useEffect(() => {
-    if (items.length > 0 && selectionSource === 'products') {
-      const newItem = JSON.parse(JSON.stringify(items[activeIndex]));
-      setCurrentItem(newItem);
-    }
-  }, [activeIndex, items, selectionSource, setCurrentItem]);
+  const displayItems = searchResults || items;
 
   const memoizedItems = useMemo(() => {
     if (!isExpanded && selectionSource === 'search') {
       return displayItems.slice(0, 10);
     }
-
     if (isExpanded && currentItem && selectionSource === 'search') {
       return [currentItem];
     }
-
     if (isExpanded) {
       return [items[activeIndex]];
     }
-
     return displayItems.slice(0, 10);
   }, [isExpanded, items, activeIndex, currentItem, displayItems, selectionSource]);
 
-  const renderSlide = useCallback(
-    (item) => (
-      <SwiperSlide
-        key={item.id}
-        className={`pt-12 sm:pt-16 z-0 mb-[3rem] ${isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""}`}
-      >
-        <div className={`relative ${!isExpanded ? "shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3" : ""} mx-auto`}>
-          <ProductImage item={item} isExpanded={isExpanded} />
-          <ProductInfo item={item} isExpanded={isExpanded} />
-        </div>
-      </SwiperSlide>
-    ),
-    [isExpanded]
-  );
+  const handleSlideChange = (swiper) => {
+    const newIndex = swiper.activeIndex;
+    setActiveIndex(newIndex);
+    if (items[newIndex]) {
+      const newItem = JSON.parse(JSON.stringify(items[newIndex]));
+      setCurrentItem(newItem);
+      setSelectionSource('products');
+    }
+  };
+
+  const handleSwiperInit = (swiper) => {
+    setSwiperInstance(swiper);
+    if (items[0]) {
+      const initialItem = JSON.parse(JSON.stringify(items[0]));
+      setCurrentItem(initialItem);
+      setSelectionSource('products');
+    }
+  };
+
+  useEffect(() => {
+    if (swiperInstance) {
+      swiperInstance.slideTo(0, 0);
+      setActiveIndex(0);
+    }
+  }, [categoryId]);
+
+  const renderSlide = useCallback((item) => (
+    <SwiperSlide
+      key={item.id}
+      className={`pt-12 sm:pt-16 z-0 mb-[3rem] ${isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""}`}
+    >
+      <div className={`relative ${!isExpanded ? "shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3" : ""} mx-auto`}>
+        <ProductImage item={item} isExpanded={isExpanded} />
+        <ProductInfo item={item} isExpanded={isExpanded} />
+      </div>
+    </SwiperSlide>
+  ), [isExpanded]);
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -98,12 +88,9 @@ function Products({ categoryId, isExpanded, searchResults }) {
     return <PersonalFoodsList items={items} />;
   }
 
-
-
   return (
     <Swiper
-      // Add onSwiper prop
-      onSwiper={setSwiperInstance}
+      onSwiper={handleSwiperInit}
       modules={[EffectCoverflow]}
       effect="coverflow"
       grabCursor={true}
@@ -120,29 +107,13 @@ function Products({ categoryId, isExpanded, searchResults }) {
       spaceBetween={40}
       initialSlide={0}
       key={categoryId}
-      onSlideChange={(swiper) => {
-        const newIndex = swiper.activeIndex;
-        setActiveIndex(newIndex);
-        if (items[newIndex]) {
-          const newItem = JSON.parse(JSON.stringify(items[newIndex]));
-          setCurrentItem(newItem);
-          setSelectionSource('products');
-        }
-      }}
-      onInit={(swiper) => {
-        setSwiperInstance(swiper);
-        if (items[0]) {
-          const initialItem = JSON.parse(JSON.stringify(items[0]));
-          setCurrentItem(initialItem);
-          setSelectedItemId(items[0].id);
-          setSelectionSource('products');
-        }
-      }}
+      onSlideChange={handleSlideChange}
     >
       {memoizedItems.map(renderSlide)}
     </Swiper>
   );
 }
+
 
 Products.propTypes = {
   categoryId: PropTypes.number.isRequired,

@@ -58,7 +58,7 @@ function MenuPage() {
 
       <div className="flex-shrink-0">
         {!isExpanded && (
-          <div className="fixed bottom-[6.5rem] left-0 right-0">
+          <div className="fixed bottom-[6.5rem] left-0 right-0 z-[9]">
             <Categories />
           </div>
         )}

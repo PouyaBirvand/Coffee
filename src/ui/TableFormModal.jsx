@@ -2,23 +2,6 @@ import { useEffect } from "react";
 import { useTableManagement } from "../hooks/useTableManagement";
 import { motion } from "framer-motion";
 
-const CoffeeIcon = () => (
-  <svg
-    width="50"
-    height="50"
-    viewBox="0 0 20 20"
-    fill="white"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M1.16669 18.8333H8.39898M8.39898 18.8333H8.51773M8.39898 18.8333C6.47542 18.8177 4.63597 18.0425 3.28133 16.6768C1.92669 15.311 1.16662 13.4653 1.16669 11.5417V7.29479C1.16669 6.76354 1.5969 6.33333 2.12815 6.33333H14.7886C15.3198 6.33333 15.75 6.76354 15.75 7.29479V7.375M8.51773 18.8333H15.75M8.51773 18.8333C10.4413 18.8177 12.2807 18.0425 13.6354 16.6768C14.99 15.311 15.7501 13.4653 15.75 11.5417M15.75 7.375H17.3125C18.0032 7.375 18.6656 7.64937 19.1539 8.13774C19.6423 8.62612 19.9167 9.2885 19.9167 9.97917C19.9167 10.6698 19.6423 11.3322 19.1539 11.8206C18.6656 12.309 18.0032 12.5833 17.3125 12.5833H15.75V11.5417M15.75 7.375V11.5417"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 const TableIcon = () => (
   <svg
     width="25"
@@ -90,7 +73,11 @@ function TableForm() {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-end z-[2001]"
     >
-      <motion.div
+      <motion.form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
@@ -141,7 +128,7 @@ function TableForm() {
               </p>
             </div>
 
-            <h2 className="text-3xl sm:text-lg md:text-2xl xs:text-base text-dark-cocoa text-center font-extrabold">
+            <h2 className="text-3xl sm:text-lg md:text-[1.3rem] xs:text-base text-dark-cocoa text-center font-extrabold">
               First, enter your table number
             </h2>
           </motion.div>
@@ -178,10 +165,10 @@ function TableForm() {
           </motion.div>
 
           <motion.button
+          type="submit"
             whileTap={{ scale: 0.95 }}
-            onClick={handleSubmit}
             disabled={isLoading}
-            className={`w-full bg-dark-cocoa text-white py-4 rounded-xl font-semibold text-lg shadow-xl shadow-dark-cocoa/20 relative ${
+            className={`w-full bg-dark-cocoa text-white py-3 rounded-xl font-semibold text-lg shadow-xl shadow-dark-cocoa/20 relative ${
               isLoading ? "opacity-90" : ""
             }`}
           >
@@ -199,7 +186,7 @@ function TableForm() {
             )}
           </motion.button>
         </motion.div>
-      </motion.div>
+      </motion.form>
     </motion.div>
   );
 }

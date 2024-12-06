@@ -73,13 +73,15 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
                     onOrderComplete(response.data);
                     setShowOrderModal(true);
                     
+                    // Clear current cart data
                     localStorage.removeItem('cartId');
                     setCartId(null);
                     setCartItems([]);
 
                     try {
+                        // Create new cart with the same table number
                         const newCartResponse = await cartService.create({
-                            table_number: tableNumber,
+                            table_number: tableNumber, // Keep the same table number
                             status: 'active'
                         });
                         
