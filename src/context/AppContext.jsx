@@ -71,6 +71,7 @@ export function AppProvider({ children }) {
         setCartId,
         orderDetails,
         setOrderDetails,
+        setTableNumber
     }
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

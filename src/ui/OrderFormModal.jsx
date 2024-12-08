@@ -54,7 +54,7 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
 
 
 
-  const { setCartItems, cartItems, setCartId } = useAppContext();
+  const { setCartItems, cartItems, setCartId , setTableNumber } = useAppContext();
   const { setShowOrderModal } = useModal();
 
   if (!cartItems?.length || !isOpen) return null;
@@ -75,21 +75,12 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
                     
                     // Clear current cart data
                     localStorage.removeItem('cartId');
+
                     setCartId(null);
                     setCartItems([]);
 
                     try {
                         // Create new cart with the same table number
-                        const newCartResponse = await cartService.create({
-                            table_number: tableNumber, // Keep the same table number
-                            status: 'active'
-                        });
-                        
-                        if (newCartResponse.data.success) {
-                            localStorage.setItem('cartId', newCartResponse.data.id);
-                            setCartId(newCartResponse.data.id);
-                        }
-                        
                         queryClient.invalidateQueries(["cart"]);
                     } catch (error) {
                         console.error("Failed to create new cart:", error);

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import React, { useMemo } from "react";
-import { orderService } from "../services/orderService";
+// import { orderService } from "../services/orderService";
 
 const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime }) => {
   const navigate = useNavigate();
-  const { setOrderDetails } = useAppContext();
+  const { setOrderDetails , setTableNumber } = useAppContext();
 
   const validTableNumber = useMemo(() => {
     return Number.isInteger(parseInt(tableNumber)) 
@@ -18,7 +18,9 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
   const handleBackToMenu = async () => {
     try {
       // Clear the cart items from the server
-      await orderService.clearCart(validTableNumber);
+      // await orderService.clearCart(validTableNumber);
+      localStorage.removeItem('tableNumber');
+      setTableNumber(null)
       
       // Reset local state and navigate
       window.onbeforeunload = null;
@@ -36,7 +38,7 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-4 overflow-y-auto"
     >
       <div className="absolute inset-0 bg-dark-cocoa/60 backdrop-blur-sm" onClick={onClose} />
       
