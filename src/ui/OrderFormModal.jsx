@@ -52,9 +52,8 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderResponse, setOrderResponse] = useState(null);
 
-
-
-  const { setCartItems, cartItems, setCartId , setTableNumber } = useAppContext();
+  const { setCartItems, cartItems, setCartId, setTableNumber } =
+    useAppContext();
   const { setShowOrderModal } = useModal();
 
   if (!cartItems?.length || !isOpen) return null;
@@ -64,38 +63,35 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
     setIsSubmitting(true);
 
     completeOrder(tableNumber, {
-        onSuccess: async (response) => {
-            if (response.data.success) {
-                setIsValidated(true);
-                setServerMessage("Your order has been successfully placed!");
-                
-                setTimeout(async () => {
-                    onOrderComplete(response.data);
-                    setShowOrderModal(true);
-                    
-                    // Clear current cart data
-                    localStorage.removeItem('cartId');
+      onSuccess: async (response) => {
+        if (response?.data?.success) {
+          setIsValidated(true);
+          setServerMessage("Your order has been successfully placed!");
 
-                    setCartId(null);
-                    setCartItems([]);
+          setTimeout(async () => {
+            onOrderComplete(response.data);
+            setShowOrderModal(true);
 
-                    try {
-                        // Create new cart with the same table number
-                        queryClient.invalidateQueries(["cart"]);
-                    } catch (error) {
-                        console.error("Failed to create new cart:", error);
-                    }
-                }, 2000);
-            }
-        },
-        onError: (error) => {
-            setServerMessage("Error processing order");
-            setIsSubmitting(false);
-            console.error(error);
+            // Clear cart data
+            localStorage.removeItem("cartId");
+            setCartId(null);
+            setCartItems([]);
+
+            // Invalidate queries
+            queryClient.invalidateQueries(["cart"]);
+          }, 2000);
         }
+      },
+      onError: (error) => {
+        setServerMessage("Unable to process order. Please try again.");
+        setIsSubmitting(false);
+        // console.error("Order error:", error);
+      },
+      onSettled: () => {
+        setIsSubmitting(false);
+      },
     });
-};
-
+  };
 
   setTimeout(() => {
     if (orderResponse) {

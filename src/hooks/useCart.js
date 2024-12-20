@@ -9,7 +9,7 @@ export function useCart(cartId) {
         queryFn: async () => {
             if (!cartId) return { items: [] };
             const response = await cartService.viewCart(cartId);
-            console.log('Cart Response:', response.data); 
+            // console.log('Cart Response:', response.data); 
             return response.data.cart; 
         },
         enabled: Boolean(cartId)

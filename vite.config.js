@@ -10,6 +10,6 @@ export default defineConfig({
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": { "zeroConfig": true }
-    }
+    },
   ],
 })

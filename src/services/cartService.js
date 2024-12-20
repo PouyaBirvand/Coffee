@@ -32,17 +32,17 @@ export const cartService = {
     
     return api.post(endpoint, payload)
       .then(response => {
-        console.log('Success:', {
-          endpoint,
-          response: response.data,
-          cartId,
-          itemId,
-          change
-        });
+        // console.log('Success:', {
+        //   endpoint,
+        //   response: response.data,
+        //   cartId,
+        //   itemId,
+        //   change
+        // });
         return response;
       })
       .catch(error => {
-        console.log('Error details:', error.response?.data);
+        // console.log('Error details:', error.response?.data);
         throw error;
       });
   },
@@ -50,7 +50,7 @@ export const cartService = {
   removeItem: (cartId, itemId) => {
     return api.delete(`/carts/${cartId}/items/${itemId}`)
       .then(response => {
-        console.log('Item removed successfully:', response.data);
+        // console.log('Item removed successfully:', response.data);
         return response;
       });
   },

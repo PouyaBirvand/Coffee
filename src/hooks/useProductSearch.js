@@ -22,7 +22,7 @@ export const useProductSearch = () => {
         }));
         setResults(formattedResults);
       } catch (error) {
-        console.log("Search error:", error);
+        // console.log("Search error:", error);
       } finally {
         setIsLoading(false);
       }

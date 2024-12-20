@@ -36,7 +36,7 @@ export function PersonalFoodsList({ items }) {
           setAddedItems(prev => ({ ...prev, [item.id]: false }));
         
       } catch (error) {
-        console.error("Failed to add item to cart:", error);
+        // console.error("Failed to add item to cart:", error);
       }
     };
   

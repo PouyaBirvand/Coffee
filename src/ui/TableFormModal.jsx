@@ -102,10 +102,10 @@ function TableForm() {
               transition={{ type: "spring" }}
               className="w-24 h-24 mx-auto"
             >
-              <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] rotate-12 absolute" />
-              <div className="w-full h-full bg-dark-cocoa/80 rounded-[1.5rem] -rotate-12 absolute" />
-              <div className="w-full h-full bg-dark-cocoa rounded-[1.5rem] flex items-center justify-center relative">
-                <img className="rounded-full w-16 h-16" src="./icon1.jpg" alt="" />
+              <div className="w-full h-full rounded-[1.5rem] rotate-12 absolute" />
+              <div className="w-full h-full rounded-[1.5rem] -rotate-12 absolute" />
+              <div className="w-full h-full rounded-[1.5rem] flex items-center justify-center relative">
+                <img className="rounded-full object-cover scale-[7.5]" src="./cover.png" alt="" />
               </div>
             </motion.div>
           </div>

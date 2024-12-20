@@ -28,7 +28,7 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
       setOrderDetails(null);
       navigate('/', { replace: true });
     } catch (error) {
-      console.error('Error clearing cart:', error);
+      // console.error('Error clearing cart:', error);
     }
   };
 

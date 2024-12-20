@@ -43,7 +43,7 @@ export function useTableManagement() {
     try {
         await createCartMutation.mutateAsync();
     } catch (error) {
-        console.error(error);
+        // console.error(error);
     } finally {
         setIsLoading(false);
     }

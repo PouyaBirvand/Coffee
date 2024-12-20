@@ -18,7 +18,7 @@ function BottomNavigation({ onOrderClick }) {
         queryClient.invalidateQueries(["cart", cartId]);
         toggleExpanded();
       } catch (error) {
-        console.log("Add to cart failed:", error);
+        // console.log("Add to cart failed:", error);
       }
     }
   };

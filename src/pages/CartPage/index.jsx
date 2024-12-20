@@ -35,14 +35,14 @@ function CartPage() {
     if (!currentTableNumber) return;
 
     try {
-        const statusResponse = await orderService.getStatus(currentTableNumber);
-        if (statusResponse.data.success && statusResponse.data.order?.items) {
-            setCompletedOrderItems(statusResponse.data.order.items);
+        const statusResponse = await orderService.getnewCart(currentTableNumber);
+        if (statusResponse.data.cart.items) {
+            setCompletedOrderItems(statusResponse.data.cart.items);
             setOrderDetails(response);
             setIsOrderModalOpen(false);
         }
     } catch (error) {
-        console.error("Error fetching completed order:", error);
+        // console.error("Error fetching completed order:", error);
     }
 };
 
@@ -51,13 +51,13 @@ function CartPage() {
     const checkOrderStatus = async () => {
       if (tableNumber && !isNaN(tableNumber)) {
         try {
-          const response = await orderService.getStatus(tableNumber);
-          if (response.data.success && response.data.status === 1) {
-            setCompletedOrderItems(response.data.order.items);
+          const response = await orderService.getnewCart(tableNumber);
+          if (response.data.success) {
+            setCompletedOrderItems(response.data.cart.items);
             setOrderDetails(response.data);
           }
         } catch (error) {
-          console.error("Error fetching order status:", error);
+          // console.error("Error fetching order status:", error);
         }
       }
     };
@@ -79,7 +79,7 @@ function CartPage() {
           const response = await cartService.viewCart(cartId);
           setCartTotals({ totalPrice: response.data.total_price });
         } catch (error) {
-          console.log("Cart fetch error:", error.response);
+          // console.log("Cart fetch error:", error.response);
         }
       };
       fetchCart();
@@ -112,7 +112,7 @@ function CartPage() {
         <Header />
         <ProductTitle />
 
-        {(orderDetails?.success && completedOrderItems.length > 0) ? (
+        {(completedOrderItems.length > 0) ? (
           <CompletedOrderView
             items={completedOrderItems}
             formatPrice={formatPrice}
