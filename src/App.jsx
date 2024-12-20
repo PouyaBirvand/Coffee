@@ -44,14 +44,14 @@ function App() {
               )}
               <Suspense fallback={<CoffeeLoader />}>
                 <Routes>
-                  <Route path="/Coffee" element={<Homepage />} />
-                  <Route path="/cart" element={<Cart />} />
                   <Route
                     path="/"
                     element={<Navigate to="/Coffee" replace={true} />}
                   />
+                  <Route path="/:categoryId" element={<Homepage />} />
+                  <Route path="/cart" element={<Cart replace />} />
                   <Route path="*" element={<NotFound />} />
-                </Routes> 
+                </Routes>
               </Suspense>
             </BrowserRouter>
           </AppProvider>
@@ -61,4 +61,5 @@ function App() {
     </ErrorBoundary>
   );
 }
+
 export default App;

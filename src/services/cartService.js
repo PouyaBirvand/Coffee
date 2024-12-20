@@ -8,7 +8,7 @@ export const cartService = {
 }),
 
   addItem: async (cartId, product) => {
-    console.log('Cart Service - Adding:', { cartId, product });
+    // console.log('Cart Service - Adding:', { cartId, product });
     return await api.post(`/carts/${cartId}/items`, {
         product_id: parseInt(product.id),
         quantity: 1

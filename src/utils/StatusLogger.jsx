@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { orderService } from '../services/orderService';
+// import { orderService } from '../services/orderService';
 
 export function StatusLogger() {
   const cartId = localStorage.getItem('cartId');
   
   useEffect(() => {
     const logStatus = async () => {
-      const tableNumber = localStorage.getItem('tableNumber');
+      // const tableNumber = localStorage.getItem('tableNumber');
 
       try {
-        const response = await orderService.getnewCart(tableNumber);
+        // const response = await orderService.getnewCart(tableNumber);
         // console.log('madarjende ro', await orderService.getnewCart(tableNumber));
         // console.log('🔄 Status Check:', {
         //   time: new Date().toLocaleTimeString(),

@@ -97,7 +97,7 @@ function CartPage() {
     try {
       await updateCartQuantity({ itemId: parseInt(itemId), change });
     } catch (error) {
-      console.error("Update quantity error:", error);
+      // console.error("Update quantity error:", error);
     }
   };
 

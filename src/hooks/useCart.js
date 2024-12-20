@@ -33,7 +33,7 @@ export function useCart(cartId) {
             queryClient.invalidateQueries(['cart', cartId]);
         },
         onError: (error) => {
-            console.error('Failed to update quantity:', error);
+            // console.error('Failed to update quantity:', error);
         }
     });
 
