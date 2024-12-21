@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { CartIcons } from "./CartIcons";
 
 // eslint-disable-next-line react/prop-types
-export default function CartTotal({ totalPrice, formatPrice }) {
+const CartTotal = memo(function CartTotal({ totalPrice, formatPrice }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -27,4 +28,7 @@ export default function CartTotal({ totalPrice, formatPrice }) {
       </div>
     </motion.div>
   );
-}
+});
+
+CartTotal.displayName = 'CartTotal';
+export default CartTotal;

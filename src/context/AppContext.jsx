@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext, useEffect, useMemo, useCallback } from "react";
 import { cartService } from "../services/cartService";
 import { useCart } from "../hooks/useCart";
 
@@ -25,14 +25,14 @@ export function AppProvider({ children }) {
     useCart(cartId);
 
   // Cart Initialization
+  const totalItems = useMemo(() => cart?.items?.length || 0, [cart?.items]);
+  const totalAmount = useMemo(() => cart?.total || 0, [cart?.total]);
 
   // Cart Operations
-  const addToCart = async (product) => {
-    if (!cartId) {
-      throw new Error("Please select a table first");
-    }
+  const addToCart = useCallback(async (product) => {
+    if (!cartId) throw new Error("Please select a table first");
     return addItem(product);
-  };
+  }, [cartId, addItem]);
   // UI Operations
   const toggleExpanded = () => {
     setIsExpanded((prev) => !prev);
@@ -50,13 +50,13 @@ export function AppProvider({ children }) {
     updateCartQuantity: updateQuantity,
     removeFromCart: removeItem,
     cartId,
-    totalItems: cart?.items?.length || 0,
     selectedCategory,
     setSelectedCategory,
     tableNumber,
     toggleExpanded,
     setCartItems,
-    totalAmount: cart?.total || 0,
+    totalItems,
+    totalAmount,
     discountedAmount: cart?.discounted_total || 0,
     deleteCart,
     searchResults,

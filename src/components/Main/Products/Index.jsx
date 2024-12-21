@@ -1,85 +1,108 @@
-import { register } from 'swiper/element/bundle';
+import { register } from "swiper/element/bundle";
 register();
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
 import PropTypes from "prop-types";
 import { useProducts } from "../../../hooks/useProduct";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useAppContext } from "../../../context/AppContext";
 import { ProductImage } from "./ProductImage";
 import { ProductInfo } from "./ProductInfo";
 import { LoadingSpinner } from "../../../ui/Loader/LoadingSpinner";
-import { CATEGORIES } from '../../../utils/categoryMapping';
-import { PersonalFoodsList } from './PersonalFoodList';
+import { CATEGORIES } from "../../../utils/categoryMapping";
+import { PersonalFoodsList } from "./PersonalFoodList";
 
 function Products({ categoryId, isExpanded, searchResults }) {
   const { data: items = [], isLoading } = useProducts(categoryId);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const { setCurrentItem, currentItem, selectionSource, setSelectionSource } = useAppContext();
-  const [swiperInstance, setSwiperInstance] = useState(null);
-  
-  const displayItems = searchResults || items;
+  const activeIndexRef = useRef(0);
+  const { setCurrentItem, currentItem, selectionSource, setSelectionSource } =
+    useAppContext();
+  const swiperRef = useRef(null);
+
+  const displayItems = useMemo(
+    () => searchResults || items,
+    [searchResults, items]
+  );
 
   const memoizedItems = useMemo(() => {
-    if (!isExpanded && selectionSource === 'search') {
+    if (!isExpanded && selectionSource === "search") {
       return displayItems.slice(0, 10);
     }
-    if (isExpanded && currentItem && selectionSource === 'search') {
+    if (isExpanded && currentItem && selectionSource === "search") {
       return [currentItem];
     }
     if (isExpanded) {
-      return [items[activeIndex]];
+      return [items[activeIndexRef.current]];
     }
     return displayItems.slice(0, 10);
-  }, [isExpanded, items, activeIndex, currentItem, displayItems, selectionSource]);
+  }, [isExpanded, items, currentItem, displayItems, selectionSource]);
 
-  const handleSlideChange = (swiper) => {
-    const newIndex = swiper.activeIndex;
-    setActiveIndex(newIndex);
-    if (items[newIndex]) {
-      const newItem = JSON.parse(JSON.stringify(items[newIndex]));
-      setCurrentItem(newItem);
-      setSelectionSource('products');
-    }
-  };
+  const handleSlideChange = useCallback(
+    (swiper) => {
+      const newIndex = swiper.activeIndex;
+      activeIndexRef.current = newIndex;
+      if (items[newIndex]) {
+        const newItem = items[newIndex];
+        setCurrentItem(newItem);
+        setSelectionSource("products");
+      }
+    },
+    [items, setCurrentItem, setSelectionSource]
+  );
 
-  const handleSwiperInit = (swiper) => {
-    setSwiperInstance(swiper);
-    if (items[0]) {
-      const initialItem = JSON.parse(JSON.stringify(items[0]));
-      setCurrentItem(initialItem);
-      setSelectionSource('products');
-    }
-  };
+  const handleSwiperInit = useCallback(
+    (swiper) => {
+      swiperRef.current = swiper;
+      if (items[0]) {
+        setCurrentItem(items[0]);
+        setSelectionSource("products");
+      }
+    },
+    [items, setCurrentItem, setSelectionSource]
+  );
 
   useEffect(() => {
-    if (swiperInstance) {
-      swiperInstance.slideTo(0, 0);
-      setActiveIndex(0);
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(0, 0);
+      activeIndexRef.current = 0;
     }
   }, [categoryId]);
 
-  const renderSlide = useCallback((item) => (
-    <SwiperSlide
-      key={item.id}
-      className={`pt-12 sm:pt-16 z-0 mb-[3rem] ${isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""}`}
-    >
-      <div className={`relative ${!isExpanded ? "shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3" : ""} mx-auto`}>
-        <ProductImage item={item} isExpanded={isExpanded} />
-        <ProductInfo item={item} isExpanded={isExpanded} />
-      </div>
-    </SwiperSlide>
-  ), [isExpanded]);
+  const renderSlide = useCallback(
+    (item) => (
+      <SwiperSlide
+        key={item.id}
+        className={`pt-12 sm:pt-16 z-0 mb-[3rem] ${
+          isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""
+        }`}
+      >
+        <div
+          className={`relative ${
+            !isExpanded
+              ? "shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3"
+              : ""
+          } mx-auto`}
+        >
+          <ProductImage item={item} isExpanded={isExpanded} />
+          <ProductInfo item={item} isExpanded={isExpanded} />
+        </div>
+      </SwiperSlide>
+    ),
+    [isExpanded]
+  );
 
   if (isLoading) return <LoadingSpinner />;
 
   if (isExpanded) {
     return (
       <div className="mt-[1.5rem] w-[95%] md:w-[80%] lg:w-[80%] mx-auto">
-        {currentItem ? renderSlide(currentItem) : items[activeIndex] && renderSlide(items[activeIndex])}
+        {currentItem
+          ? renderSlide(currentItem)
+          : items[activeIndexRef.current] &&
+            renderSlide(items[activeIndexRef.current])}
       </div>
     );
   }
@@ -102,6 +125,13 @@ function Products({ categoryId, isExpanded, searchResults }) {
         depth: 300,
         modifier: 1,
         slideShadows: false,
+        virtual: true,
+        preloadImages: false,
+        lazy: true,
+        speed: 300,
+        watchSlidesProgress: false,
+        resistance: false,
+        shortSwipes: true
       }}
       className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
       spaceBetween={40}
@@ -114,11 +144,10 @@ function Products({ categoryId, isExpanded, searchResults }) {
   );
 }
 
-
 Products.propTypes = {
   categoryId: PropTypes.number.isRequired,
   isExpanded: PropTypes.bool.isRequired,
-  searchResults: PropTypes.array
+  searchResults: PropTypes.array,
 };
 
 export default Products;

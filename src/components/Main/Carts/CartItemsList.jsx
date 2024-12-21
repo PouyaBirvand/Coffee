@@ -1,15 +1,15 @@
+import { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CartItem from "./CartItem";
 
 // eslint-disable-next-line react/prop-types
-export default function CartItemsList({ items, onQuantityUpdate, onRemove, formatPrice 
-}) {
+const CartItemsList = memo(function CartItemsList({ items, onQuantityUpdate, onRemove, formatPrice }) {
   return (
     <motion.div 
       className="-mt-[2rem] w-[92%] mx-auto sm:mt-[1rem] h-[22rem] sm:h-[18.4rem] xs:h-[16.7rem] overflow-auto relative z-[1]"
     >
       <AnimatePresence>
-      {(items || []).map((item) => (
+        {(items || []).map((item) => (
           <CartItem
             key={item.id}
             item={item}
@@ -21,4 +21,7 @@ export default function CartItemsList({ items, onQuantityUpdate, onRemove, forma
       </AnimatePresence>
     </motion.div>
   );
-}
+});
+
+CartItemsList.displayName = 'CartItemsList';
+export default CartItemsList;

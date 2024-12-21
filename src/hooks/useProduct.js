@@ -8,12 +8,13 @@ export function useProducts(categoryId) {
     queryFn: async () => {
       const response = await productService.getAll();
       const { products } = response.data;
-      
-      if (categoryId === CATEGORIES.PERSONALFOODS) {
-        return products.filter(product => product.category_id === CATEGORIES.FOODS);
-      }
-      
-      return products.filter(product => product.category_id === categoryId);
-    }
+      return products.filter(product => 
+        categoryId === CATEGORIES.PERSONALFOODS 
+          ? product.category_id === CATEGORIES.FOODS
+          : product.category_id === categoryId
+      );
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 30 * 60 * 1000 // 30 minutes
   });
 }

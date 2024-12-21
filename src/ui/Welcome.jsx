@@ -98,7 +98,7 @@ const Welcome = ({ onComplete }) => {
                 Welcome to
               </motion.h1>
               <motion.div
-                className="mt-3 bg-gradient-to-r from-deep-mahogany via-warm-wood to-deep-mahogany bg-clip-text text-4xl font-bold text-transparent md:text-5xl xl:text-6xl"
+                className="mt-3 bg-gradient-to-r from-deep-mahogany via-warm-wood to-deep-mahogany bg-clip-text text-4xl font-bold text-transparent md:text-5xl xl:text-4xl"
                 animate={{
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
