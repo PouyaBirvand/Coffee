@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import PropTypes from "prop-types";
 import { useProducts } from "../../../hooks/useProduct";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useAppContext } from "../../../context/AppContext";
@@ -75,6 +74,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
     (item) => (
       <SwiperSlide
         key={item.id}
+        virtualIndex={item.id}
         className={`pt-12 sm:pt-16 z-0 mb-[3rem] ${
           isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""
         }`}
@@ -115,6 +115,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
     <Swiper
       onSwiper={handleSwiperInit}
       modules={[EffectCoverflow]}
+      virtual
       effect="coverflow"
       grabCursor={true}
       centeredSlides={true}
@@ -126,12 +127,15 @@ function Products({ categoryId, isExpanded, searchResults }) {
         modifier: 1,
         slideShadows: false,
         virtual: true,
-        preloadImages: false,
-        lazy: true,
+        preloadImages: true,
+        lazy: {
+          loadPrevNext: true,
+          loadPrevNextAmount: 2,
+        },
         speed: 300,
-        watchSlidesProgress: false,
-        resistance: false,
-        shortSwipes: true
+        watchSlidesProgress: true, 
+        resistance: true,
+        shortSwipes: true,
       }}
       className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
       spaceBetween={40}
@@ -143,11 +147,5 @@ function Products({ categoryId, isExpanded, searchResults }) {
     </Swiper>
   );
 }
-
-Products.propTypes = {
-  categoryId: PropTypes.number.isRequired,
-  isExpanded: PropTypes.bool.isRequired,
-  searchResults: PropTypes.array,
-};
 
 export default Products;

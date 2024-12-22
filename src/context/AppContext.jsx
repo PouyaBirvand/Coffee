@@ -4,7 +4,6 @@ import { useCart } from "../hooks/useCart";
 
 const AppContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 export function AppProvider({ children }) {
   // State Management
   const [cartItems, setCartItems] = useState([]);

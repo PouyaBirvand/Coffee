@@ -1,6 +1,5 @@
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
-import PropTypes from "prop-types";
 
 function ProductInfoComponent({ item, isExpanded, isSearchResult }) {
   const commonClasses = useMemo(
@@ -48,15 +47,6 @@ function ProductInfoComponent({ item, isExpanded, isSearchResult }) {
   );
 }
 
-ProductInfoComponent.propTypes = {
-  item: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  }).isRequired,
-  isExpanded: PropTypes.bool.isRequired,
-  isSearchResult: PropTypes.bool,
-};
 
 ProductInfoComponent.displayName = "ProductInfo";
 

@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { CartIcons } from "./CartIcons";
 import { useDebounce } from '../../../hooks/useDebounce';
 
-// eslint-disable-next-line react/prop-types
 const RemoveButton = memo(function RemoveButton({ onRemove }) {
   const [handleRemove, isRemoving] = useDebounce(onRemove, 2000);
 

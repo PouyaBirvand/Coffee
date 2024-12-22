@@ -4,24 +4,28 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
   ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
-  plugins: ['react'],
+  plugins: ["react"],
   rules: {
-    'no-unused-vars': ['warn', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
+    "no-unused-vars": [
+      "warn",
+      { vars: "all", args: "after-used", ignoreRestSiblings: false },
+    ],
+    "react/prop-types": 0,
   },
   settings: {
     react: {
-      version: 'detect',
+      version: "detect",
     },
   },
 };

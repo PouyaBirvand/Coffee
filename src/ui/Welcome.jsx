@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-// eslint-disable-next-line react/prop-types
 const Welcome = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
 

@@ -2,9 +2,6 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import QuantityControls from "./QuantityControls";
 import RemoveButton from "./RemoveButton";
-import PropTypes from "prop-types";
-
-// eslint-disable-next-line react/prop-types
 const CartImage = memo(({ src, alt }) => (
   <motion.img
     src={src}
@@ -75,26 +72,3 @@ const CartItem = memo(function CartItem({
 });
 CartImage.displayName = 'CartImage';
 export default CartItem;
-
-const ProductPropType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  price: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-});
-
-// Define the item shape
-const ItemPropType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  quantity: PropTypes.number.isRequired,
-  discount: PropTypes.number,
-  product: ProductPropType.isRequired,
-});
-
-CartItem.propTypes = {
-  item: ItemPropType.isRequired,
-  onQuantityUpdate: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-  formatPrice: PropTypes.func.isRequired,
-};

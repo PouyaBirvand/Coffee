@@ -2,7 +2,6 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { useDebounce } from "../../../hooks/useDebounce";
 
-// eslint-disable-next-line react/prop-types
 const QuantityControls = memo(function QuantityControls({quantity,onUpdate}) {
   const [handleUpdate, isUpdating] = useDebounce(onUpdate);
 

@@ -2,7 +2,6 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { CartIcons } from "./CartIcons";
 
-// eslint-disable-next-line react/prop-types
 const CartTotal = memo(function CartTotal({ totalPrice, formatPrice }) {
   return (
     <motion.div

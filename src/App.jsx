@@ -56,7 +56,6 @@ function App() {
             </BrowserRouter>
           </AppProvider>
         </ModalProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ErrorBoundary>
   );

@@ -1,9 +1,8 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useCompleteOrder } from "../hooks/useOrderManagement";
 import { useAppContext } from "../context/AppContext";
 import { useQueryClient } from "@tanstack/react-query";
-import { cartService } from "../services/cartService";
 import { useModal } from "../context/ModalContext";
 
 const GiftIcon = () => (
@@ -42,7 +41,6 @@ const CheckmarkIcon = () => (
   </motion.svg>
 );
 
-// eslint-disable-next-line react/prop-types
 const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
   const { mutate: completeOrder, isLoading } = useCompleteOrder();
   const [isValidated, setIsValidated] = useState(false);

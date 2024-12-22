@@ -1,5 +1,4 @@
 import { memo, useState } from "react";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
 function ProductImageComponent({ item, isExpanded, isSearchResult }) {
@@ -21,7 +20,7 @@ function ProductImageComponent({ item, isExpanded, isSearchResult }) {
         onError={(e) => {
           // console.log("Image Error:", e.target.src);
         }}
-        className={`m-auto max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.4] mb-4 object-contain relative 
+        className={`m-auto transform-gpu max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.4] mb-4 object-contain relative 
           ${isExpanded ? "!max-h-[14rem] top-[4rem]" : ""}
           opacity-100`}
         style={{
@@ -34,13 +33,5 @@ function ProductImageComponent({ item, isExpanded, isSearchResult }) {
   );
 }
 
-ProductImageComponent.propTypes = {
-  item: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-  isExpanded: PropTypes.bool.isRequired,
-  isSearchResult: PropTypes.bool,
-};
 
 export const ProductImage = memo(ProductImageComponent);

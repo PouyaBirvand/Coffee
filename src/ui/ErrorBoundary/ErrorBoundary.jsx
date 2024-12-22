@@ -13,7 +13,6 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    // eslint-disable-next-line react/prop-types
     const { children } = this.props;
 
     if (this.state.hasError) {

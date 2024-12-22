@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useModal } from '../../../context/ModalContext';
 import { useAppContext } from '../../../context/AppContext';
 
@@ -37,13 +36,6 @@ const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => {
       />
     </button>
   );
-};
-
-BackButton.propTypes = {
-  isCartPage: PropTypes.bool.isRequired,
-  navigate: PropTypes.func.isRequired,
-  isExpanded: PropTypes.bool.isRequired,
-  setIsExpanded: PropTypes.func.isRequired
 };
 
 export default BackButton;

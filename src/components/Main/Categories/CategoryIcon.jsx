@@ -1,6 +1,5 @@
 import { memo } from 'react';
 
-// eslint-disable-next-line react/prop-types
 export const CategoryIcon = memo(function CategoryIcon({ icon, isSelected, onClick }) {
   return (
     <div

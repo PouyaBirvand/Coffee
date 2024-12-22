@@ -1,10 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import MenuHeader from "./MenuHeader";
 import QuickAccess from "./QuickAccess";
 import SocialMedia from "./SocialMedia";
 import Others from "./Other";
 
-// eslint-disable-next-line react/prop-types
 const Menu = ({ closeMenu }) => (
   <>
     <motion.div
@@ -16,14 +15,14 @@ const Menu = ({ closeMenu }) => (
       onClick={closeMenu}
     />
     <motion.div
-      initial={{ x: "-100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "-100%" }}
-      transition={{ 
+      initial={{ transform: "translateX(-100%)" }}
+      animate={{ transform: "translateX(-6%)" }}
+      exit={{ transform: "translateX(-100%)" }}
+      transition={{
         duration: 0.3,
-        ease: "easeInOut"
+        ease: "easeInOut",
       }}
-      className="fixed left-0 top-0 h-full w-[21rem] bg-body shadow-md z-[3000] rounded-r-[2.8rem] transform-gpu"
+      className="fixed top-0 w-[21rem] h-full bg-body shadow-md z-[3000] rounded-r-[2.8rem] transform-gpu"
     >
       <nav className="p-5 -mt-2">
         <MenuHeader closeMenu={closeMenu} />

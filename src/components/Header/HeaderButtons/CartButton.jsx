@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/prop-types
  const CartButton = ({ goToCart, totalItems }) => (
   <div className="relative">
     <button

@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/prop-types
 export const OrderIcon = ({ onClick }) => (
     <svg
       onClick={onClick}

@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import PropTypes from 'prop-types';
 
 const containerAnimation = {
   hidden: { opacity: 0 },
@@ -22,7 +21,6 @@ const itemAnimation = {
     },
   },
 };
-// eslint-disable-next-line react/prop-types
 export const SearchResults = ({ results, onProductClick }) => {
   return (
     <AnimatePresence>
@@ -73,15 +71,3 @@ export const SearchResults = ({ results, onProductClick }) => {
     </AnimatePresence>
   );
 };
-
-SearchResults.propTypes = {
-    results: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    onProductClick: PropTypes.func.isRequired,
-  };

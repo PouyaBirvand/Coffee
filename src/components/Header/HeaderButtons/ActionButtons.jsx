@@ -1,7 +1,6 @@
 import CartButton from "./CartButton";
 import SearchButton from "../SearchBar/SearchButton";
 
-// eslint-disable-next-line react/prop-types
 const ActionButtons = ({ isCartPage, isExpanded, toggleSearch, goToCart, totalItems,
 }) => {
   return (

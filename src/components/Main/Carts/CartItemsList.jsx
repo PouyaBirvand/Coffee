@@ -2,7 +2,6 @@ import { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CartItem from "./CartItem";
 
-// eslint-disable-next-line react/prop-types
 const CartItemsList = memo(function CartItemsList({ items, onQuantityUpdate, onRemove, formatPrice }) {
   return (
     <motion.div 

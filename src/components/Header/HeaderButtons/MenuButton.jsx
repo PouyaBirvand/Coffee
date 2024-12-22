@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/prop-types
  const MenuButton = ({ toggleMenu }) => (
     <button
       aria-label="Menu"

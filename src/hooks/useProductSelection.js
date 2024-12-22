@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
-// eslint-disable-next-line react/prop-types
 
 export const useProductSelection = (clearSearch) => {
   const navigate = useNavigate();

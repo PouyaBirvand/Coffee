@@ -3,7 +3,6 @@ import { OrderIcon } from "./OrderIcon";
 import { RestaurantIcon } from "./RestaurantIcon";
 
 
-// eslint-disable-next-line react/prop-types
 export const CenterButton = ({ isCartPage, isExpanded, handleAddToCart, toggleExpanded, handleOrderClick}) => (
   <div className="bg-dark-cocoa p-2 rounded-full shadow-lg border border-white">
     <div className="bg-dark-cocoa w-[4.7rem] h-[3rem] -z-20 absolute -top-2 left-1/2 transform -translate-x-1/2 rounded-t-full" />

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import PropTypes from 'prop-types';
 import { CartIcons } from "./CartIcons";
 
 function CompletedOrderView({ items, formatPrice }) {
@@ -93,32 +92,5 @@ function CompletedOrderView({ items, formatPrice }) {
     </div>
   );
 }
-
-const ProductPropType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  price: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string
-  ]).isRequired,
-  image: PropTypes.string.isRequired,
-});
-
-const ItemPropType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  quantity: PropTypes.number.isRequired,
-  discount: PropTypes.number,
-  product: ProductPropType,
-  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  title: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-});
-
-CompletedOrderView.propTypes = {
-  items: PropTypes.arrayOf(ItemPropType).isRequired,
-  formatPrice: PropTypes.func.isRequired,
-};
 
 export default CompletedOrderView;

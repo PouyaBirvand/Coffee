@@ -117,7 +117,6 @@ const CATEGORY_ICONS = {
   ),
 };
 
-// eslint-disable-next-line react/prop-types
 const QuickAccess = ({ closeMenu }) => {
   const { categories } = useCategoryData();
   const { activeItem, handleItemClick } = useCategoryNavigation(

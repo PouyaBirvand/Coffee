@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import { useAppContext } from "../../../context/AppContext";
 import { memo, useCallback, useMemo } from "react";
@@ -102,19 +101,6 @@ function PersonalFoodsListComponent({ items }) {
     </motion.div>
   );
 }
-
-PersonalFoodsListComponent.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      image: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
 
 PersonalFoodsListComponent.displayName = "PersonalFoodsList";
 

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import React, { useMemo } from "react";
@@ -115,14 +114,6 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
       </motion.div>
     </motion.div>
   );
-};
-
-
-OrderConfirmationModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  tableNumber: PropTypes.number.isRequired,
-  estimatedTime: PropTypes.number.isRequired
 };
 
 export default React.memo(OrderConfirmationModal);

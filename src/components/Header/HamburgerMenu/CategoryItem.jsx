@@ -1,5 +1,4 @@
 import { cloneElement } from "react";
-import PropTypes from 'prop-types';
 
 const CategoryItem = ({ category, isActive, onClick, icon }) => {
     return (
@@ -32,13 +31,3 @@ const CategoryItem = ({ category, isActive, onClick, icon }) => {
     );
   };
   export default CategoryItem
-
-  CategoryItem.propTypes = {
-    category: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }).isRequired,
-    isActive: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
-    icon: PropTypes.element.isRequired
-  };
