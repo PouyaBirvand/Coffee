@@ -34,7 +34,7 @@ const CartItem = memo(function CartItem({
     >
       <div className="flex-shrink-0 mr-3 sm:mb-3 sm:mr-0 sm:w-full">
         <CartImage
-          src={`http://127.0.0.1:8000/storage/${item.product.image}`}
+          src={`https://bittercaffeine.ir/CafeApi/public/storage/${item.product.image}`}
           alt={item.product.title}
         />
       </div>

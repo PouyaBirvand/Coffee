@@ -35,7 +35,7 @@ function PersonalFoodsListComponent({ items }) {
     [addToCart]
   );
 
-  const isLoaded = useImagePreload(`http://127.0.0.1:8000/storage/${items[0]?.image}`);
+  const isLoaded = useImagePreload(`https://bittercaffeine.ir/CafeApi/public/storage/${items[0]?.image}`);
 
 
   return (
@@ -57,7 +57,7 @@ function PersonalFoodsListComponent({ items }) {
             className="bg-translucent-coffee bg-opacity-50 rounded-lg p-3 flex items-start gap-3"
           >
             <img
-              src={`http://127.0.0.1:8000/storage/${item.image}`}
+              src={`https://bittercaffeine.ir/CafeApi/public/storage/${item.image}`}
               alt={item.title}
               loading="lazy"
               className="w-20 h-20 object-contain flex-shrink-0"

@@ -50,7 +50,7 @@ export const SearchResults = ({ results, onProductClick }) => {
               >
                 <div className="flex items-center gap-4">
                   <img
-                    src={`http://127.0.0.1:8000/storage/${product.image}`}
+                    src={`https://bittercaffeine.ir/CafeApi/public/storage/${product.image}`}
                     alt={product.title}
                     className="w-16 h-16 object-contain rounded-lg"
                   />

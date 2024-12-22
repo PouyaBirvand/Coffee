@@ -120,6 +120,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
       grabCursor={true}
       centeredSlides={true}
       slidesPerView={1.26}
+      watchSlidesProgress={true}
       coverflowEffect={{
         rotate: 40,
         stretch: 0,
@@ -130,10 +131,10 @@ function Products({ categoryId, isExpanded, searchResults }) {
         preloadImages: true,
         lazy: {
           loadPrevNext: true,
-          loadPrevNextAmount: 2,
+          loadOnTransitionStart: true,
         },
         speed: 300,
-        watchSlidesProgress: true, 
+        watchSlidesProgress: true,
         resistance: true,
         shortSwipes: true,
       }}
