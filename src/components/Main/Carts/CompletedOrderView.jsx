@@ -18,7 +18,7 @@ function CompletedOrderView({ items, formatPrice }) {
       </div>
 
       <motion.div 
-        className="-mt-[2rem] scale-[1.02] w-[92%] mx-auto sm:mt-[1rem] h-[20.5rem] sm:h-[17.6rem] xs:h-[16.5rem] overflow-y-auto relative z-[1]"
+        className="-mt-[2rem] scale-[1.02] w-[92%] mx-auto sm:mt-[1rem] h-[22rem] overflow-y-auto relative z-[1]"
       >
         {items.map((item) => (
           <motion.div

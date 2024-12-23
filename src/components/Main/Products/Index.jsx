@@ -1,6 +1,10 @@
 import { register } from "swiper/element/bundle";
 register();
 
+import "swiper/css/bundle";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 import "swiper/css";
@@ -115,28 +119,16 @@ function Products({ categoryId, isExpanded, searchResults }) {
     <Swiper
       onSwiper={handleSwiperInit}
       modules={[EffectCoverflow]}
-      virtual
       effect="coverflow"
       grabCursor={true}
       centeredSlides={true}
       slidesPerView={1.26}
-      watchSlidesProgress={true}
       coverflowEffect={{
         rotate: 40,
         stretch: 0,
         depth: 300,
         modifier: 1,
         slideShadows: false,
-        virtual: true,
-        preloadImages: true,
-        lazy: {
-          loadPrevNext: true,
-          loadOnTransitionStart: true,
-        },
-        speed: 300,
-        watchSlidesProgress: true,
-        resistance: true,
-        shortSwipes: true,
       }}
       className="w-[95%] md:w-[100%] lg:w-[100%] transition-all duration-300"
       spaceBetween={40}
