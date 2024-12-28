@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // import { orderService } from '../services/orderService';
 
 export function StatusLogger() {
-  const cartId = localStorage.getItem('cartId');
+  const cartId = sessionStorage.getItem('cartId');
   
   useEffect(() => {
     const logStatus = async () => {

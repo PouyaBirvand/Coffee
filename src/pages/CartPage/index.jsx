@@ -30,7 +30,7 @@ function CartPage() {
   const formatPrice = (price) => Number(price ?? 0).toFixed(0);
 
   const handleOrderComplete = async (response) => {
-    const currentTableNumber = parseInt(localStorage.getItem("tableNumber"));
+    const currentTableNumber = parseInt(sessionStorage.getItem("tableNumber"));
     
     if (!currentTableNumber) return;
 

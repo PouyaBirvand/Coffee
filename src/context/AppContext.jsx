@@ -14,9 +14,9 @@ export function AppProvider({ children }) {
   const [selectionSource, setSelectionSource] = useState(null); // 'search' یا 'products'
   const [currentItem, setCurrentItem] = useState(null);
 
-  const [cartId, setCartId] = useState(() => localStorage.getItem("cartId"));
+  const [cartId, setCartId] = useState(() => sessionStorage.getItem("cartId"));
   const [tableNumber, setTableNumber] = useState(() => {
-    return localStorage.getItem("tableNumber") || null;
+    return sessionStorage.getItem("tableNumber") || null;
   });
 
   // Cart Hook

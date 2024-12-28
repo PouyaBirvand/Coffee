@@ -5,19 +5,18 @@ import { useAppContext } from "../context/AppContext";
 
 export function useTableManagement() {
   const [showForm, setShowForm] = useState(
-    () => !localStorage.getItem("tableNumber")
+    () => !sessionStorage.getItem("tableNumber")
   );
   const [tableNumber, setTableNumber] = useState("");
   const { setCartId } = useAppContext();
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
 
-  // Add beforeunload event listener
   useEffect(() => {
     const handleBeforeUnload = () => {
-      localStorage.removeItem("cartId");
-      localStorage.removeItem("tableNumber");
-      localStorage.removeItem("formSubmittedAt");
+      sessionStorage.removeItem("cartId");
+      sessionStorage.removeItem("tableNumber");
+      sessionStorage.removeItem("formSubmittedAt");
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -36,9 +35,9 @@ export function useTableManagement() {
     onSuccess: (response) => {
       setShowForm(false);
       const cartId = response.data.id;
-      localStorage.setItem("cartId", cartId);
-      localStorage.setItem("tableNumber", tableNumber);
-      localStorage.setItem("formSubmittedAt", Date.now().toString());
+      sessionStorage.setItem("cartId", cartId);
+      sessionStorage.setItem("tableNumber", tableNumber);
+      sessionStorage.setItem("formSubmittedAt", Date.now().toString());
 
       setCartId(cartId);
       queryClient.invalidateQueries(["cart", cartId]);
@@ -46,8 +45,8 @@ export function useTableManagement() {
   });
 
   useEffect(() => {
-    const formSubmittedAt = localStorage.getItem("formSubmittedAt");
-    const tableNumber = localStorage.getItem("tableNumber");
+    const formSubmittedAt = sessionStorage.getItem("formSubmittedAt");
+    const tableNumber = sessionStorage.getItem("tableNumber");
 
     if (formSubmittedAt && tableNumber) {
       setShowForm(false);
@@ -60,7 +59,7 @@ export function useTableManagement() {
     try {
       await createCartMutation.mutateAsync();
     } catch (error) {
-      // console.error(error);
+      // Handle error
     } finally {
       setIsLoading(false);
     }

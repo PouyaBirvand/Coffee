@@ -11,14 +11,14 @@ const OrderConfirmationModal = ({ isOpen, onClose, tableNumber, estimatedTime })
   const validTableNumber = useMemo(() => {
     return Number.isInteger(parseInt(tableNumber)) 
       ? parseInt(tableNumber) 
-      : parseInt(localStorage.getItem('tableNumber'));
+      : parseInt(sessionStorage.getItem('tableNumber'));
   }, [tableNumber]);
 
   const handleBackToMenu = async () => {
     try {
       // Clear the cart items from the server
       // await orderService.clearCart(validTableNumber);
-      localStorage.removeItem('tableNumber');
+      sessionStorage.removeItem('tableNumber');
       setTableNumber(null)
       
       // Reset local state and navigate

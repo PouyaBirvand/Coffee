@@ -57,7 +57,7 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
   if (!cartItems?.length || !isOpen) return null;
 
   const handleSubmit = () => {
-    const tableNumber = localStorage.getItem("tableNumber");
+    const tableNumber = sessionStorage.getItem("tableNumber");
     setIsSubmitting(true);
 
     completeOrder(tableNumber, {
@@ -71,7 +71,7 @@ const OrderFormModal = ({ isOpen, onClose, onOrderComplete }) => {
             setShowOrderModal(true);
 
             // Clear cart data
-            localStorage.removeItem("cartId");
+            sessionStorage.removeItem("cartId");
             setCartId(null);
             setCartItems([]);
 
