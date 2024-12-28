@@ -13,7 +13,7 @@ function ProductImageComponent({ item, isExpanded, isSearchResult }) {
         alt={item.title}
         loading="eager"
         fetchpriority="high"
-        decoding="sync"
+        decoding="async"
         width="300"
         height="300"
         className={`m-auto transform-gpu max-h-[12.5rem] max-w-[100%] md:max-h-[9rem] !scale-[1.4] mb-4 object-contain relative 

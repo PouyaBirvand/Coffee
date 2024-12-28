@@ -123,6 +123,10 @@ function Products({ categoryId, isExpanded, searchResults }) {
       grabCursor={true}
       centeredSlides={true}
       slidesPerView={1.26}
+      speed={400}
+      resistance={false}
+      watchSlidesProgress={true}
+      preventInteractionOnTransition={false}
       coverflowEffect={{
         rotate: 40,
         stretch: 0,
@@ -135,6 +139,8 @@ function Products({ categoryId, isExpanded, searchResults }) {
       initialSlide={0}
       key={categoryId}
       onSlideChange={handleSlideChange}
+      touchRatio={1}
+      threshold={5}
     >
       {memoizedItems.map(renderSlide)}
     </Swiper>
