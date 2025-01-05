@@ -105,7 +105,7 @@ function TableForm() {
               <div className="w-full h-full rounded-[1.5rem] rotate-12 absolute" />
               <div className="w-full h-full rounded-[1.5rem] -rotate-12 absolute" />
               <div className="w-full h-full rounded-[1.5rem] flex items-center justify-center relative">
-                <img className="rounded-full object-cover scale-[7.5]" src="./cover.png" alt="" />
+                <img className="rounded-full w-full mt-5 scale-[1.2]" src="./icon.jpg" alt="" />
               </div>
             </motion.div>
           </div>

@@ -7,7 +7,7 @@ import ErrorBoundary from "./ui/ErrorBoundary/ErrorBoundary.jsx";
 import { ModalProvider } from "./context/ModalContext.jsx";
 import { StatusLogger } from "./utils/StatusLogger.jsx";
 import Welcome from "./ui/Welcome.jsx";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NotFound from "./ui/NotFound/NotFound.jsx";
 
 const Homepage = lazy(() => import("./pages/MenuPage/index.jsx"), {

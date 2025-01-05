@@ -50,7 +50,7 @@ const Welcome = ({ onComplete }) => {
             >
               <div className="relative">
                 <motion.img
-                  src="./cover.png"
+                  src="./icon.jpg"
                   alt="Tak Tom Novin"
                   className="h-32 w-32 rounded-full object-cover shadow-lg md:h-40 md:w-40 xl:h-48 xl:w-48"
                   animate={{
@@ -103,7 +103,7 @@ const Welcome = ({ onComplete }) => {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                Tak Tom Novin
+                Frisky Coffee
               </motion.div>
 
               <motion.div

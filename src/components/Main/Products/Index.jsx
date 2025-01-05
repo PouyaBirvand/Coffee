@@ -141,6 +141,20 @@ function Products({ categoryId, isExpanded, searchResults }) {
       onSlideChange={handleSlideChange}
       touchRatio={1}
       threshold={5}
+      breakpoints={{
+        320: {
+          slidesPerView: 1.26,
+          spaceBetween: 40,
+        },
+        600: {
+          slidesPerView: 1.7,
+          spaceBetween: 50,
+        },
+        1024: {
+          slidesPerView: 2.5,
+          spaceBetween: 80,
+        },
+      }}
     >
       {memoizedItems.map(renderSlide)}
     </Swiper>

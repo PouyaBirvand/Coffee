@@ -54,7 +54,8 @@ export function useTableManagement() {
   }, []);
 
   const handleSubmit = async () => {
-    if (isLoading) return;
+    if (isLoading || !tableNumber.trim()) return;
+
     setIsLoading(true);
     try {
       await createCartMutation.mutateAsync();
