@@ -1,24 +1,31 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useAppContext } from "../../context/AppContext";
-import { cartService } from "../../services/cartService";
-import Header from "../../components/Header/Index";
-import ProductTitle from "../../components/Header/Logo";
-import BottomNavigation from "../../components/Footer/Index";
-import OrderFormModal from "../../ui/OrderFormModal";
-import EmptyCart from "../../components/Main/Carts/EmptyCart";
-import CartTotal from "../../components/Main/Carts/CartTotal";
-import CartItemsList from "../../components/Main/Carts/CartItemsList";
-import CompletedOrderView from "../../components/Main/Carts/CompletedOrderView";
-import { useModal } from "../../context/ModalContext";
-import OrderConfirmationModal from "../../ui/OrderConfirmationModal";
-import { useBackButton } from "../../hooks/useBackButton";
-import { orderService } from "../../services/orderService";
-import { useQueryClient } from "@tanstack/react-query";
-
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useAppContext } from '../../context/AppContext';
+import { cartService } from '../../services/cartService';
+import Header from '../../components/Header/Index';
+import ProductTitle from '../../components/Header/Logo';
+import BottomNavigation from '../../components/Footer/Index';
+import OrderFormModal from '../../ui/OrderFormModal';
+import EmptyCart from '../../components/Main/Carts/EmptyCart';
+import CartTotal from '../../components/Main/Carts/CartTotal';
+import CartItemsList from '../../components/Main/Carts/CartItemsList';
+import CompletedOrderView from '../../components/Main/Carts/CompletedOrderView';
+import { useModal } from '../../context/ModalContext';
+import OrderConfirmationModal from '../../ui/OrderConfirmationModal';
+import { useBackButton } from '../../hooks/useBackButton';
+import { orderService } from '../../services/orderService';
+import { useQueryClient } from '@tanstack/react-query';
 
 function CartPage() {
-  const { cartItems, removeFromCart, updateCartQuantity, cartId, orderDetails, setOrderDetails, tableNumber } = useAppContext();
+  const {
+    cartItems,
+    removeFromCart,
+    updateCartQuantity,
+    cartId,
+    orderDetails,
+    setOrderDetails,
+    tableNumber,
+  } = useAppContext();
   const { showOrderModal, setShowOrderModal } = useModal();
   const [cartTotals, setCartTotals] = useState({ totalPrice: 0 });
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -27,26 +34,25 @@ function CartPage() {
 
   useBackButton();
 
-  const formatPrice = (price) => Number(price ?? 0).toFixed(0);
+  const formatPrice = price => Number(price ?? 0).toFixed(0);
 
-  const handleOrderComplete = async (response) => {
-    const currentTableNumber = parseInt(sessionStorage.getItem("tableNumber"));
-    
+  const handleOrderComplete = async response => {
+    const currentTableNumber = parseInt(sessionStorage.getItem('tableNumber'));
+
     if (!currentTableNumber) return;
 
     try {
-        const statusResponse = await orderService.getnewCart(currentTableNumber);
-        if (statusResponse.data.cart.items) {
-            setCompletedOrderItems(statusResponse.data.cart.items);
-            setOrderDetails(response);
-            setIsOrderModalOpen(false);
-        }
+      const statusResponse = await orderService.getnewCart(currentTableNumber);
+      if (statusResponse.data.cart.items) {
+        setCompletedOrderItems(statusResponse.data.cart.items);
+        setOrderDetails(response);
+        setIsOrderModalOpen(false);
+      }
     } catch (error) {
-        // console.error("Error fetching completed order:", error);
+      console.error('Error fetching completed order:', error);
     }
-};
+  };
 
-  // Check order status on mount and when tableNumber changes
   useEffect(() => {
     const checkOrderStatus = async () => {
       if (tableNumber && !isNaN(tableNumber)) {
@@ -57,21 +63,19 @@ function CartPage() {
             setOrderDetails(response.data);
           }
         } catch (error) {
-          // console.error("Error fetching order status:", error);
+          console.error('Error fetching order status:', error);
         }
       }
     };
     checkOrderStatus();
   }, [tableNumber, setOrderDetails]);
 
-  // Invalidate cart queries when table number changes
   useEffect(() => {
     if (tableNumber) {
       queryClient.invalidateQueries(['cart']);
     }
   }, [tableNumber, queryClient]);
 
-  // Fetch cart totals when cartId or cartItems change
   useEffect(() => {
     if (cartId) {
       const fetchCart = async () => {
@@ -79,7 +83,7 @@ function CartPage() {
           const response = await cartService.viewCart(cartId);
           setCartTotals({ totalPrice: response.data.total_price });
         } catch (error) {
-          // console.log("Cart fetch error:", error.response);
+          console.log('Cart fetch error:', error.response);
         }
       };
       fetchCart();
@@ -97,7 +101,7 @@ function CartPage() {
     try {
       await updateCartQuantity({ itemId: parseInt(itemId), change });
     } catch (error) {
-      // console.error("Update quantity error:", error);
+      console.error('Update quantity error:', error);
     }
   };
 
@@ -112,7 +116,7 @@ function CartPage() {
         <Header />
         <ProductTitle />
 
-        {(completedOrderItems.length > 0) ? (
+        {completedOrderItems.length > 0 ? (
           <CompletedOrderView
             items={completedOrderItems}
             formatPrice={formatPrice}
@@ -145,7 +149,7 @@ function CartPage() {
           <BottomNavigation onOrderClick={handleOpenOrderModal} />
         </>
       )}
-      
+
       <OrderConfirmationModal
         isOpen={showOrderModal}
         onClose={() => setShowOrderModal(false)}
