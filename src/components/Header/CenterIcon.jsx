@@ -1,9 +1,12 @@
-import { AddIcon } from "./AddIcon";
-import { OrderIcon } from "./OrderIcon";
-import { RestaurantIcon } from "./RestaurantIcon";
+import { RestaurantIcon, OrderIcon, AddIcon } from '../Icons';
 
-
-export const CenterButton = ({ isCartPage, isExpanded, handleAddToCart, toggleExpanded, handleOrderClick}) => (
+export const CenterButton = ({
+  isCartPage,
+  isExpanded,
+  handleAddToCart,
+  toggleExpanded,
+  handleOrderClick,
+}) => (
   <div className="bg-dark-cocoa p-2 rounded-full shadow-lg border border-white">
     <div className="bg-dark-cocoa w-[4.7rem] h-[3rem] -z-20 absolute -top-2 left-1/2 transform -translate-x-1/2 rounded-t-full" />
     {isCartPage ? (
@@ -26,3 +29,5 @@ export const CenterButton = ({ isCartPage, isExpanded, handleAddToCart, toggleEx
     )}
   </div>
 );
+
+export default CenterButton;
