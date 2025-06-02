@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-export const useSearchInput = (onSearch) => {
-  const [query, setQuery] = useState("");
+export const useSearchInput = onSearch => {
+  const [query, setQuery] = useState('');
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -21,6 +21,6 @@ export const useSearchInput = (onSearch) => {
   return {
     query,
     setQuery,
-    inputRef
+    inputRef,
   };
 };

@@ -10,7 +10,7 @@ export function useDebounce(callback, delay = 500) {
 
     setIsProcessing(true);
     lastCallTime.current = now;
-    
+
     try {
       await callback(...args);
     } finally {

@@ -1,39 +1,48 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import debounce from 'lodash/debounce';
-import api from '../services/axios';
+import { searchService } from '../services/searchService';
 
 export const useProductSearch = () => {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const searchProducts = useCallback(
-    debounce(async (searchQuery) => {
-      if (!searchQuery.trim()) {
+  useEffect(() => {
+    const debouncedSearch = debounce(async () => {
+      if (!searchTerm.trim()) {
         setResults([]);
         return;
       }
 
       setIsLoading(true);
       try {
-        const response = await api.get(`/products/search?query=${searchQuery}`);
-        const formattedResults = response.data.products.map(product => ({
-          ...product,
-          price: Number(product.price)
-        }));
-        setResults(formattedResults);
+        const data = await searchService.searchProducts(searchTerm);
+        setResults(data);
       } catch (error) {
-        // console.log("Search error:", error);
+        setResults([]);
       } finally {
         setIsLoading(false);
       }
-    }, 500),
-    []
-  );
+    }, 500);
+
+    debouncedSearch();
+
+    return () => debouncedSearch.cancel();
+  }, [searchTerm]);
+
+  const searchProducts = useCallback(query => {
+    setSearchTerm(query);
+  }, []);
+
+  const clearResults = useCallback(() => {
+    setSearchTerm('');
+    setResults([]);
+  }, []);
 
   return {
     results,
     isLoading,
     searchProducts,
-    setResults
+    setResults: clearResults,
   };
 };

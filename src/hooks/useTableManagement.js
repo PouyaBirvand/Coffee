@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { cartService } from "../services/cartService";
-import { useAppContext } from "../context/AppContext";
+import { useState, useEffect } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { cartService } from '../services/cartService';
+import { useAppContext } from '../context/AppContext';
 
 export function useTableManagement() {
   const [showForm, setShowForm] = useState(
-    () => !sessionStorage.getItem("tableNumber")
+    () => !sessionStorage.getItem('tableNumber')
   );
-  const [tableNumber, setTableNumber] = useState("");
+  const [tableNumber, setTableNumber] = useState('');
   const { setCartId } = useAppContext();
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handleBeforeUnload = () => {
-      sessionStorage.removeItem("cartId");
-      sessionStorage.removeItem("tableNumber");
-      sessionStorage.removeItem("formSubmittedAt");
+      sessionStorage.removeItem('cartId');
+      sessionStorage.removeItem('tableNumber');
+      sessionStorage.removeItem('formSubmittedAt');
     };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener('beforeunload', handleBeforeUnload);
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
 
@@ -30,23 +30,23 @@ export function useTableManagement() {
     mutationFn: () =>
       cartService.create({
         table_number: tableNumber,
-        status: "active",
+        status: 'active',
       }),
-    onSuccess: (response) => {
+    onSuccess: response => {
       setShowForm(false);
       const cartId = response.data.id;
-      sessionStorage.setItem("cartId", cartId);
-      sessionStorage.setItem("tableNumber", tableNumber);
-      sessionStorage.setItem("formSubmittedAt", Date.now().toString());
+      sessionStorage.setItem('cartId', cartId);
+      sessionStorage.setItem('tableNumber', tableNumber);
+      sessionStorage.setItem('formSubmittedAt', Date.now().toString());
 
       setCartId(cartId);
-      queryClient.invalidateQueries(["cart", cartId]);
+      queryClient.invalidateQueries(['cart', cartId]);
     },
   });
 
   useEffect(() => {
-    const formSubmittedAt = sessionStorage.getItem("formSubmittedAt");
-    const tableNumber = sessionStorage.getItem("tableNumber");
+    const formSubmittedAt = sessionStorage.getItem('formSubmittedAt');
+    const tableNumber = sessionStorage.getItem('tableNumber');
 
     if (formSubmittedAt && tableNumber) {
       setShowForm(false);

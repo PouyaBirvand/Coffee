@@ -7,7 +7,7 @@ export const useBackButton = () => {
   const { setShowOrderModal } = useModal();
 
   useEffect(() => {
-    const handleBackButton = (e) => {
+    const handleBackButton = e => {
       if (orderDetails?.success) {
         e.preventDefault();
         setShowOrderModal(true);

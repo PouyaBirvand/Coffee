@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 
-export const useImagePreload = (src) => {
+export const useImagePreload = src => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleLoad = useCallback(() => {
@@ -9,10 +9,10 @@ export const useImagePreload = (src) => {
 
   useEffect(() => {
     const img = new Image();
-    
+
     // Reset state when src changes
     setIsLoaded(false);
-    
+
     if (src) {
       img.src = src;
       // Check if image is already cached
