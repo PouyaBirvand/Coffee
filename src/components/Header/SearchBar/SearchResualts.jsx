@@ -16,7 +16,7 @@ const itemAnimation = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: 'spring',
       bounce: 0.4,
     },
   },
@@ -29,20 +29,20 @@ export const SearchResults = ({ results, onProductClick }) => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          className="absolute w-full mt-2 bg-soft-cream rounded-2xl shadow-xl max-h-96 overflow-auto z-50"
+          className="absolute w-full overflow-hidden mt-2 bg-soft-cream rounded-2xl shadow-xl max-h-96  z-50"
         >
           <motion.div
             variants={containerAnimation}
             initial="hidden"
             animate="show"
           >
-            {results.map((product) => (
+            {results.map(product => (
               <motion.div
                 key={product.id}
                 variants={itemAnimation}
                 onClick={() => onProductClick(product)}
                 whileHover={{
-                  backgroundColor: "rgba(131, 90, 54, 0.1)",
+                  backgroundColor: 'rgba(131, 90, 54, 0.1)',
                   scale: 1.02,
                   transition: { duration: 0.2 },
                 }}
@@ -50,7 +50,7 @@ export const SearchResults = ({ results, onProductClick }) => {
               >
                 <div className="flex items-center gap-4">
                   <img
-                    src={`https://bittercaffeine.ir/CafeApi/public/storage/${product.image}`}
+                    src={`/coffee.png`}
                     alt={product.title}
                     className="w-16 h-16 object-contain rounded-lg"
                   />
@@ -59,7 +59,7 @@ export const SearchResults = ({ results, onProductClick }) => {
                       {product.title}
                     </h3>
                     <p className="text-sm text-deep-mahogany">
-                      ${parseFloat(product.price).toLocaleString()}
+                      {parseFloat(product.price).toLocaleString()} تومان
                     </p>
                   </div>
                 </div>

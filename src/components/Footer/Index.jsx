@@ -1,12 +1,17 @@
-import { useLocation } from "react-router-dom";
-import { useAppContext } from "../../context/AppContext";
-import { useQueryClient } from "@tanstack/react-query";
-import { OrderIcon } from "./BottomIcons/OrderIcon";
-import { AddIcon } from "./BottomIcons/AddIcon";
-import { RestaurantIcon } from "./BottomIcons/RestaurantIcon";
+import { useLocation } from 'react-router-dom';
+import { useAppContext } from '../../context/AppContext';
+import { useQueryClient } from '@tanstack/react-query';
+import { RestaurantIcon, AddIcon, OrderIcon } from '../Icons/RestaurantIcon';
 
 function BottomNavigation({ onOrderClick }) {
-  const { isExpanded, toggleExpanded, addToCart, currentItem, cartId } = useAppContext();
+  const {
+    isExpanded,
+    toggleExpanded,
+    addToCart,
+    currentItem,
+    cartId,
+    setToastVisible,
+  } = useAppContext();
   const location = useLocation();
   const queryClient = useQueryClient();
 
@@ -14,15 +19,17 @@ function BottomNavigation({ onOrderClick }) {
     if (currentItem) {
       try {
         await addToCart(currentItem);
-        queryClient.invalidateQueries(["cart", cartId]);
+        setToastVisible(true);
+        setTimeout(() => setToastVisible(false), 2000);
+        queryClient.invalidateQueries(['cart', cartId]);
         toggleExpanded();
       } catch (error) {
-        // console.log("Add to cart failed:", error);
+        console.log('Add to cart failed:', error);
       }
     }
   };
 
-  const isCartPage = location.pathname === "/cart";
+  const isCartPage = location.pathname === '/cart';
 
   return (
     <>

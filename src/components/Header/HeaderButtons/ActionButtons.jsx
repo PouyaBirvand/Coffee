@@ -1,13 +1,10 @@
-import CartButton from "./CartButton";
-import SearchButton from "../SearchBar/SearchButton";
+import CartButton from './CartButton';
+import SearchButton from '../SearchBar/SearchButton';
 
-const ActionButtons = ({ isCartPage, isExpanded, toggleSearch, goToCart, totalItems,
-}) => {
+const ActionButtons = ({ toggleSearch, goToCart, totalItems }) => {
   return (
-    <div className="flex space-x-4 items-center z-10">
-      {!isCartPage && !isExpanded && (
-        <SearchButton toggleSearch={toggleSearch} />
-      )}
+    <div className="flex gap-4 items-center z-10">
+      <SearchButton toggleSearch={toggleSearch} />
       <CartButton goToCart={goToCart} totalItems={totalItems} />
     </div>
   );

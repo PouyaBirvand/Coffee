@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import MenuHeader from "./MenuHeader";
-import QuickAccess from "./QuickAccess";
-import SocialMedia from "./SocialMedia";
-import Others from "./Other";
+import { motion } from 'framer-motion';
+import MenuHeader from './MenuHeader';
+import QuickAccess from './QuickAccess';
+import SocialMedia from './SocialMedia';
+import Others from './Other';
 
 const Menu = ({ closeMenu }) => (
   <>
@@ -15,14 +15,15 @@ const Menu = ({ closeMenu }) => (
       onClick={closeMenu}
     />
     <motion.div
-      initial={{ transform: "translateX(-100%)" }}
-      animate={{ transform: "translateX(-6%)" }}
-      exit={{ transform: "translateX(-100%)" }}
+      initial={{ transform: 'translateX(100%)' }}
+      animate={{ transform: 'translateX(0%)' }}
+      exit={{ transform: 'translateX(100%)' }}
       transition={{
         duration: 0.3,
-        ease: "easeInOut",
+        ease: 'easeInOut',
       }}
-      className="fixed top-0 w-[21rem] h-full bg-body shadow-md z-[3000] rounded-r-[2.8rem] transform-gpu"
+      className="fixed overflow-auto top-0 right-0 w-full h-full bg-body shadow-md z-[3000] transform-gpu"
+      dir="rtl"
     >
       <nav className="p-5 -mt-2">
         <MenuHeader closeMenu={closeMenu} />

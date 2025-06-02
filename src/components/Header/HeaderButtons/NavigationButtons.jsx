@@ -1,7 +1,13 @@
-import BackButton from "./BackButton";
-import MenuButton from "./MenuButton";
-const NavigationButtons = ({ isCartPage , isExpanded , toggleMenu , navigate , setIsExpanded }) => {
-  return isCartPage || isExpanded ? (
+import BackButton from './BackButton';
+import MenuButton from './MenuButton';
+const NavigationButtons = ({
+  isCartPage,
+  isExpanded,
+  toggleMenu,
+  navigate,
+  setIsExpanded,
+}) => {
+  return isCartPage ? (
     <BackButton
       isCartPage={isCartPage}
       navigate={navigate}

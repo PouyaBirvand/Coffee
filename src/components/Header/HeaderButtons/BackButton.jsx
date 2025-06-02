@@ -10,7 +10,7 @@ const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => {
       const isInCompletedView = Boolean(orderDetails?.success);
       handleBackClick(isInCompletedView);
       if (!isInCompletedView) {
-        navigate('/' , {replace: true});
+        navigate('/', { replace: true });
       }
     } else {
       setIsExpanded(!isExpanded);
@@ -26,12 +26,12 @@ const BackButton = ({ isCartPage, navigate, isExpanded, setIsExpanded }) => {
       <lord-icon
         src="https://cdn.lordicon.com/vduvxizq.json"
         trigger="loop"
-        delay="0"
+        delay="1000"
         colors="primary:#412f26"
         style={{
-          width: "35px",
-          height: "35px",
-          transform: "rotate(180deg)",
+          width: '35px',
+          height: '35px',
+          transform: 'rotate(180deg)',
         }}
       />
     </button>

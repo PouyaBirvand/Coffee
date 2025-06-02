@@ -1,28 +1,33 @@
-import { register } from "swiper/element/bundle";
+import { register } from 'swiper/element/bundle';
 register();
 
-import "swiper/css/bundle";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import { useProducts } from "../../../hooks/useProduct";
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import { useAppContext } from "../../../context/AppContext";
-import { ProductImage } from "./ProductImage";
-import { ProductInfo } from "./ProductInfo";
-import { LoadingSpinner } from "../../../ui/Loader/LoadingSpinner";
-import { CATEGORIES } from "../../../utils/categoryMapping";
-import { PersonalFoodsList } from "./PersonalFoodList";
+import 'swiper/css/bundle';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import { useProducts } from '../../../hooks/useProduct';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useAppContext } from '../../../context/AppContext';
+import { ProductImage } from './ProductImage';
+import { ProductInfo } from './ProductInfo';
+import { LoadingSpinner } from '../../../ui/Loader/LoadingSpinner';
+import { CATEGORIES } from '../../../utils/categoryMapping';
+import { PersonalFoodsList } from './PersonalFoodList';
 
 function Products({ categoryId, isExpanded, searchResults }) {
   const { data: items = [], isLoading } = useProducts(categoryId);
   const activeIndexRef = useRef(0);
-  const { setCurrentItem, currentItem, selectionSource, setSelectionSource } =
-    useAppContext();
+  const {
+    setCurrentItem,
+    currentItem,
+    selectionSource,
+    setSelectionSource,
+    setIsExpanded,
+  } = useAppContext();
   const swiperRef = useRef(null);
 
   const displayItems = useMemo(
@@ -31,10 +36,10 @@ function Products({ categoryId, isExpanded, searchResults }) {
   );
 
   const memoizedItems = useMemo(() => {
-    if (!isExpanded && selectionSource === "search") {
+    if (!isExpanded && selectionSource === 'search') {
       return displayItems.slice(0, 10);
     }
-    if (isExpanded && currentItem && selectionSource === "search") {
+    if (isExpanded && currentItem && selectionSource === 'search') {
       return [currentItem];
     }
     if (isExpanded) {
@@ -44,24 +49,24 @@ function Products({ categoryId, isExpanded, searchResults }) {
   }, [isExpanded, items, currentItem, displayItems, selectionSource]);
 
   const handleSlideChange = useCallback(
-    (swiper) => {
+    swiper => {
       const newIndex = swiper.activeIndex;
       activeIndexRef.current = newIndex;
       if (items[newIndex]) {
         const newItem = items[newIndex];
         setCurrentItem(newItem);
-        setSelectionSource("products");
+        setSelectionSource('products');
       }
     },
     [items, setCurrentItem, setSelectionSource]
   );
 
   const handleSwiperInit = useCallback(
-    (swiper) => {
+    swiper => {
       swiperRef.current = swiper;
       if (items[0]) {
         setCurrentItem(items[0]);
-        setSelectionSource("products");
+        setSelectionSource('products');
       }
     },
     [items, setCurrentItem, setSelectionSource]
@@ -75,19 +80,26 @@ function Products({ categoryId, isExpanded, searchResults }) {
   }, [categoryId]);
 
   const renderSlide = useCallback(
-    (item) => (
+    item => (
       <SwiperSlide
         key={item.id}
         virtualIndex={item.id}
-        className={`pt-12 sm:pt-16 z-0 mb-[3rem] ${
-          isExpanded ? "pt-[3rem] sm:pt-[9rem]" : ""
+        className={`pt-12 sm:pt-16 z-0 mb-[3rem] cursor-pointer ${
+          isExpanded ? 'pt-[3rem] sm:pt-[9rem]' : ''
         }`}
+        onClick={() => {
+          if (!isExpanded) {
+            setCurrentItem(item);
+            setSelectionSource('products');
+            setIsExpanded(true);
+          }
+        }}
       >
         <div
           className={`relative ${
             !isExpanded
-              ? "shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3"
-              : ""
+              ? 'shadow-md bg-[#835a36] bg-opacity-50 rounded-2xl p-3'
+              : ''
           } mx-auto`}
         >
           <ProductImage item={item} isExpanded={isExpanded} />
@@ -95,7 +107,7 @@ function Products({ categoryId, isExpanded, searchResults }) {
         </div>
       </SwiperSlide>
     ),
-    [isExpanded]
+    [isExpanded, setCurrentItem, setSelectionSource, setIsExpanded]
   );
 
   if (isLoading) return <LoadingSpinner />;

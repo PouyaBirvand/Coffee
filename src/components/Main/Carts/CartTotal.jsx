@@ -1,6 +1,6 @@
-import { memo } from "react";
-import { motion } from "framer-motion";
-import { CartIcons } from "./CartIcons";
+import { memo } from 'react';
+import { motion } from 'framer-motion';
+import { CartIcons } from './CartIcons';
 
 const CartTotal = memo(function CartTotal({ totalPrice, formatPrice }) {
   return (
@@ -13,7 +13,7 @@ const CartTotal = memo(function CartTotal({ totalPrice, formatPrice }) {
         <div className="flex justify-between items-center text-deep-mahogany text-lg font-bold pt-2">
           <div className="flex items-center gap-1">
             {CartIcons.totalAmountIcon}
-            <span className="text-[18px] xs:text-[16px]">Total Amount:</span>
+            <span className="text-[18px] xs:text-[16px]">مبلغ نهایی:</span>
           </div>
           <motion.span
             key={totalPrice}
@@ -21,7 +21,7 @@ const CartTotal = memo(function CartTotal({ totalPrice, formatPrice }) {
             animate={{ scale: 1 }}
             className="text-[20px] xs:text-[19px]"
           >
-            ${formatPrice(totalPrice)}
+            {formatPrice(totalPrice)} تومان
           </motion.span>
         </div>
       </div>

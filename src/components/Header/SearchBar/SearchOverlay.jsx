@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from 'framer-motion';
 
- const SearchOverlay = ({ isSearchOpen }) => (
+const SearchOverlay = ({ isSearchOpen }) => (
   <AnimatePresence>
     {isSearchOpen && (
       <motion.div

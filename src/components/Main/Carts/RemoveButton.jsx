@@ -1,6 +1,6 @@
-import { memo } from "react";
-import { motion } from "framer-motion";
-import { CartIcons } from "./CartIcons";
+import { memo } from 'react';
+import { motion } from 'framer-motion';
+import { CartIcons } from './CartIcons';
 import { useDebounce } from '../../../hooks/useDebounce';
 
 const RemoveButton = memo(function RemoveButton({ onRemove }) {
@@ -16,7 +16,7 @@ const RemoveButton = memo(function RemoveButton({ onRemove }) {
       {isRemoving ? (
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
           className="w-4 h-4 border-2 border-dark-cocoa border-t-transparent rounded-full"
         />
       ) : (

@@ -1,22 +1,33 @@
-import { categoryIcons } from "./categoryIcons";
-import { CategoryIcon } from "./CategoryIcon";
-import { useCategories } from "../../../hooks/useCategories";
-import { memo } from "react";
+import { memo } from 'react';
+import { CategoryIcon } from './CategoryIcon';
+import { useCategories } from '../../../hooks/useCategories';
+import { useCategoryData } from '../../../hooks/useCategoryData';
+import { useDynamicRouting } from '../../../hooks/useDynamicRouting';
+import { getCategoryIcon } from './categoryIcons';
 
 const Categories = memo(function Categories() {
   const { selectedCategory, handleCategoryChange } = useCategories();
+  const { data: categories = [] } = useCategoryData();
+  const { navigateToCategory } = useDynamicRouting();
+
+  const handleClick = category => {
+    handleCategoryChange(category.id);
+    navigateToCategory(category);
+  };
 
   return (
-    <div className="mx-auto md:w-min w-[70%]">
-      <div className="bg-warm-wood bg-opacity-60 rounded-full sm:scale-[0.9] scale-[0.95] flex py-1 px-1 gap-1 justify-between xs:gap-[0.5rem]">
-        {categoryIcons.map((category) => (
-          <CategoryIcon
-            key={category.categoryId}
-            icon={category.icon}
-            isSelected={selectedCategory === category.categoryId}
-            onClick={() => handleCategoryChange(category.categoryId)}
-          />
-        ))}
+    <div className="w-full max-w-full mx-auto">
+      <div className="overflow-x-auto scrollbar-hide">
+        <div className="flex items-center gap-3 scale-[0.8] bg-warm-wood bg-opacity-60 rounded-full py-1 px-2 w-max mx-auto">
+          {categories.map(category => (
+            <CategoryIcon
+              key={category.id}
+              icon={getCategoryIcon(category.name)}
+              isSelected={selectedCategory === category.id}
+              onClick={() => handleClick(category)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
