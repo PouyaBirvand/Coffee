@@ -1,43 +1,54 @@
-import { createContext, useState, useContext, useEffect, useMemo, useCallback } from "react";
-import { cartService } from "../services/cartService";
-import { useCart } from "../hooks/useCart";
+import {
+  createContext,
+  useState,
+  useContext,
+  useMemo,
+  useCallback,
+} from 'react';
+import { useCart } from '../hooks/useCart';
+import { Toast } from '../ui/Toast';
 
 const AppContext = createContext();
 
 export function AppProvider({ children }) {
-  // State Management
+  const [toastVisible, setToastVisible] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(4);
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
   const [orderDetails, setOrderDetails] = useState(null);
-  const [selectionSource, setSelectionSource] = useState(null); // 'search' یا 'products'
+  const [selectionSource, setSelectionSource] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
 
-  const [cartId, setCartId] = useState(() => sessionStorage.getItem("cartId"));
+  const [cartId, setCartId] = useState(() => sessionStorage.getItem('cartId'));
   const [tableNumber, setTableNumber] = useState(() => {
-    return sessionStorage.getItem("tableNumber") || null;
+    return sessionStorage.getItem('tableNumber') || null;
   });
 
-  // Cart Hook
   const { cart, isLoading, addItem, updateQuantity, removeItem, deleteCart } =
     useCart(cartId);
 
-  // Cart Initialization
   const totalItems = useMemo(() => cart?.items?.length || 0, [cart?.items]);
   const totalAmount = useMemo(() => cart?.total || 0, [cart?.total]);
 
-  // Cart Operations
-  const addToCart = useCallback(async (product) => {
-    if (!cartId) throw new Error("Please select a table first");
-    return addItem(product);
-  }, [cartId, addItem]);
-  // UI Operations
+  const addToCart = useCallback(
+    async product => {
+      if (!cartId) throw new Error('Please select a table first');
+
+      try {
+        await addItem(product);
+        setToastVisible(true);
+        setTimeout(() => setToastVisible(false), 2000);
+      } catch (error) {
+        // handle error
+      }
+    },
+    [cartId, addItem]
+  );
   const toggleExpanded = () => {
-    setIsExpanded((prev) => !prev);
+    setIsExpanded(prev => !prev);
   };
 
-  // Context Value
   const contextValue = {
     currentItem,
     setCurrentItem,
@@ -66,10 +77,19 @@ export function AppProvider({ children }) {
     orderDetails,
     setOrderDetails,
     setTableNumber,
+    toastVisible,
+    setToastVisible,
   };
 
   return (
-    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
+    <AppContext.Provider value={contextValue}>
+      <Toast
+        message="!با موفقیت به سبد خرید اضافه شد"
+        isVisible={toastVisible}
+        onClose={() => setToastVisible(false)}
+      />
+      {children}
+    </AppContext.Provider>
   );
 }
 
