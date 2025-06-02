@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 const Welcome = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -24,19 +24,19 @@ const Welcome = ({ onComplete }) => {
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#CBB89D]"
         >
-          <motion.div 
+          <motion.div
             className="absolute inset-0 overflow-hidden opacity-20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.2 }}
           >
-            <motion.div 
+            <motion.div
               className="absolute left-0 top-0 h-full w-1.5 bg-warm-wood"
-              animate={{ height: ["0%", "100%"] }}
+              animate={{ height: ['0%', '100%'] }}
               transition={{ duration: 1 }}
             />
-            <motion.div 
+            <motion.div
               className="absolute right-0 top-0 h-full w-1.5 bg-warm-wood"
-              animate={{ height: ["0%", "100%"] }}
+              animate={{ height: ['0%', '100%'] }}
               transition={{ duration: 1 }}
             />
           </motion.div>
@@ -60,10 +60,10 @@ const Welcome = ({ onComplete }) => {
                   transition={{
                     duration: 3,
                     repeat: Infinity,
-                    repeatType: "reverse",
+                    repeatType: 'reverse',
                   }}
                 />
-                
+
                 {[...Array(2)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -89,21 +89,14 @@ const Welcome = ({ onComplete }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <motion.h1 
-                className="text-2xl font-medium text-dark-cocoa md:text-3xl xl:text-4xl"
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                Welcome to
-              </motion.h1>
               <motion.div
                 className="mt-3 bg-gradient-to-r from-deep-mahogany via-warm-wood to-deep-mahogany bg-clip-text text-4xl font-bold text-transparent md:text-5xl xl:text-4xl"
                 animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                Frisky Coffee
+                کافه کهن
               </motion.div>
 
               <motion.div

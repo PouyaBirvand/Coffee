@@ -1,5 +1,5 @@
 .cafe-loader {
-  background: linear-gradient(135deg, #CBB89D, #8B7355);
+  background: linear-gradient(135deg, #cbb89d, #8b7355);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,11 @@
   position: absolute;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 60%
+  );
   animation: ambientLight 15s infinite linear;
 }
 
@@ -31,12 +35,12 @@
 .cup-body {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #EDE1D2, #F5EEE6, #EDE1D2);
+  background: linear-gradient(135deg, #ede1d2, #f5eee6, #ede1d2);
   border: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: 15px 15px 60px 60px;
   position: relative;
   overflow: hidden;
-  box-shadow: 
+  box-shadow:
     inset 0 0 30px rgba(65, 47, 38, 0.3),
     0 15px 25px rgba(65, 47, 38, 0.4),
     0 5px 10px rgba(65, 47, 38, 0.2);
@@ -46,7 +50,8 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(to bottom, 
+  background: linear-gradient(
+    to bottom,
     rgba(131, 90, 54, 0.9),
     rgba(65, 47, 38, 0.95)
   );
@@ -71,10 +76,10 @@
   top: 25%;
   width: 45px;
   height: 60px;
-  background: linear-gradient(45deg, #EDE1D2, #F5EEE6);
-  border: 10px solid #EDE1D2;
+  background: linear-gradient(45deg, #ede1d2, #f5eee6);
+  border: 10px solid #ede1d2;
   border-radius: 0 25px 25px 0;
-  box-shadow: 
+  box-shadow:
     0 5px 15px rgba(65, 47, 38, 0.3),
     inset 0 0 15px rgba(65, 47, 38, 0.2);
   transform-origin: left center;
@@ -118,7 +123,14 @@
   font-family: 'Vazirmatn', sans-serif;
   font-size: 2rem;
   font-weight: bold;
-  background: linear-gradient(90deg, #412F26, #835A36, #CBB89D, #835A36, #412F26);
+  background: linear-gradient(
+    90deg,
+    #412f26,
+    #835a36,
+    #cbb89d,
+    #835a36,
+    #412f26
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -126,14 +138,24 @@
 }
 
 @keyframes handleShine {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  50% { transform: translateX(100%) rotate(45deg); }
-  100% { transform: translateX(-100%) rotate(45deg); }
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(-100%) rotate(45deg);
+  }
 }
 
 @keyframes ambientLight {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {
@@ -141,7 +163,7 @@
     width: 120px;
     height: 140px;
   }
-  
+
   .magical-text {
     font-size: 1.5rem;
   }

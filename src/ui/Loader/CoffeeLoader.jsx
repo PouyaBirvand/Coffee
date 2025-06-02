@@ -14,75 +14,75 @@ const CoffeeLoader = () => {
 
   return (
     <AnimatePresence>
-      <motion.div 
+      <motion.div
         className="cafe-loader"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <motion.div 
+        <motion.div
           className="coffee-cup"
           initial={{ scale: 0 }}
-          animate={{ 
+          animate={{
             scale: 1,
             rotateY: [0, 5, -5, 0],
           }}
-          transition={{ 
+          transition={{
             duration: 0.3,
             rotateY: {
               duration: 8,
               repeat: Infinity,
-              ease: "easeInOut"
-            }
+              ease: 'easeInOut',
+            },
           }}
         >
           <div className="cup-body">
-            <motion.div 
+            <motion.div
               className="coffee"
               animate={{
                 height: ['20%', '80%'],
-                background: ['#835A36', '#412F26']
+                background: ['#835A36', '#412F26'],
               }}
               transition={{
                 duration: 2.5,
                 repeat: Infinity,
-                repeatType: "reverse"
+                repeatType: 'reverse',
               }}
             />
-            
+
             {[...Array(PARTICLES)].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
                 className="coffee-particle"
-                initial={{ 
+                initial={{
                   x: Math.random() * 60 - 30,
                   y: 50,
-                  opacity: 0 
+                  opacity: 0,
                 }}
                 animate={{
                   y: [50, 20],
-                  opacity: [0, 0.8, 0]
+                  opacity: [0, 0.8, 0],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
                   delay: i * 0.3,
-                  repeatDelay: 0.5
+                  repeatDelay: 0.5,
                 }}
               />
             ))}
           </div>
 
-          <motion.div 
+          <motion.div
             className="cup-handle"
             animate={{
               rotateY: [0, 5, 0],
-              rotateZ: [-1, 1, -1]
+              rotateZ: [-1, 1, -1],
             }}
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: 'easeInOut',
             }}
           />
 
@@ -94,36 +94,35 @@ const CoffeeLoader = () => {
                 animate={{
                   y: [-20, -80],
                   x: [0, Math.sin(i) * 20],
-                  opacity: [0, 0.6, 0]
+                  opacity: [0, 0.6, 0],
                 }}
                 transition={{
                   duration: 2.5,
                   repeat: Infinity,
                   delay: i * 0.3,
-                  repeatDelay: 0.2
+                  repeatDelay: 0.2,
                 }}
               />
             ))}
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="magical-text"
           animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
           }}
           transition={{
             duration: 4,
             repeat: Infinity,
-            ease: "linear"
+            ease: 'linear',
           }}
         >
-          BREWING MAGIC
+          در حال اماده سازی
         </motion.div>
       </motion.div>
     </AnimatePresence>
   );
 };
-
 
 export default CoffeeLoader;

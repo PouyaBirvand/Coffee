@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
-import "./NotFound.css";
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import './NotFound.css';
 
 const NotFound = () => {
   const PARTICLES = 8;
@@ -25,7 +25,7 @@ const NotFound = () => {
             rotateY: {
               duration: 8,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             },
           }}
         >
@@ -33,13 +33,13 @@ const NotFound = () => {
             <motion.div
               className="coffee"
               animate={{
-                height: ["60%", "80%"],
-                background: ["#835A36", "#412F26"],
+                height: ['60%', '80%'],
+                background: ['#835A36', '#412F26'],
               }}
               transition={{
                 duration: 2.5,
                 repeat: Infinity,
-                repeatType: "reverse",
+                repeatType: 'reverse',
               }}
             />
 
@@ -75,7 +75,7 @@ const NotFound = () => {
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             }}
           />
 
@@ -109,12 +109,12 @@ const NotFound = () => {
           <motion.h1
             className="magical-text text-4xl"
             animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
             }}
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "linear",
+              ease: 'linear',
             }}
           >
             404
@@ -129,7 +129,7 @@ const NotFound = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Back to Brewing
+              برگرشت به منوی دیجیتال
             </motion.button>
           </Link>
         </motion.div>

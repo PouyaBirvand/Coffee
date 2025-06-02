@@ -1,35 +1,34 @@
 .error-content {
-    margin-top: 2rem;
-    text-align: center;
-  }
-  
-  .subtitle {
-    font-size: 2rem;
-    color: #412F26;
-    margin: 1rem 0;
-    font-weight: 500;
-  }
-  
-  .description {
-    font-size: 1.2rem;
-    color: #835A36;
-    margin-bottom: 2rem;
-  }
-  
-  .home-button {
-    background: linear-gradient(135deg, #412F26, #835A36);
-    color: #EDE1D2;
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(65, 47, 38, 0.3);
-    transition: all 0.3s ease;
-  }
-  
-  .home-button:hover {
-    background: linear-gradient(135deg, #835A36, #412F26);
-    box-shadow: 0 6px 20px rgba(65, 47, 38, 0.4);
-  }
-  
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 2rem;
+  color: #412f26;
+  margin: 1rem 0;
+  font-weight: 500;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #835a36;
+  margin-bottom: 2rem;
+}
+
+.home-button {
+  background: linear-gradient(135deg, #412f26, #835a36);
+  color: #ede1d2;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(65, 47, 38, 0.3);
+  transition: all 0.3s ease;
+}
+
+.home-button:hover {
+  background: linear-gradient(135deg, #835a36, #412f26);
+  box-shadow: 0 6px 20px rgba(65, 47, 38, 0.4);
+}
