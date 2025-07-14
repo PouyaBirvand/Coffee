@@ -56,23 +56,25 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
 
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <ModalProvider>
-          <AppProvider>
-            <BrowserRouter>
-              {showWelcome && (
-                <Welcome onComplete={() => setShowWelcome(false)} />
-              )}
-              <Suspense fallback={<CoffeeLoader />}>
-                <AppRoutes />
-              </Suspense>
-            </BrowserRouter>
-          </AppProvider>
-        </ModalProvider>
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <div className="">
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
+          <ModalProvider>
+            <AppProvider>
+              <BrowserRouter>
+                {showWelcome && (
+                  <Welcome onComplete={() => setShowWelcome(false)} />
+                )}
+                <Suspense fallback={<CoffeeLoader />}>
+                  <AppRoutes />
+                </Suspense>
+              </BrowserRouter>
+            </AppProvider>
+          </ModalProvider>
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </ErrorBoundary>
+    </div>
   );
 }
 

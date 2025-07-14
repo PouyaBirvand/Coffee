@@ -14,6 +14,12 @@ export default {
       backgroundColor: {
         body: '#CBB89D',
       },
+      backgroundImage: {
+        'coffee-gradient':
+          'linear-gradient(135deg, #CBB89D 0%, #B5A082 50%, #A08968 100%)',
+        'warm-gradient':
+          'linear-gradient(to bottom, #D4C4A8, #CBB89D, #C2B094)',
+      },
       fontFamily: {
         sans: 'Vazirmatn , sans-serif',
       },
@@ -23,7 +29,7 @@ export default {
         md: { max: '450px' },
         lg: { max: '500px' },
         xl: { max: '600px' },
-        '2xl': { min: '601px' }, // اضافه کردن breakpoint برای دسکتاپ
+        '2xl': { min: '601px' },
       },
     },
   },
