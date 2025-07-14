@@ -10,7 +10,7 @@ function ProductInfoComponent({ item, isExpanded, isSearchResult }) {
   const containerClasses = useMemo(
     () =>
       isExpanded
-        ? 'fixed left-0 right-0 bottom-14 backdrop-blur-sm bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] max-w-[75%] mx-auto h-[17rem] sm:h-[15rem]'
+        ? 'fixed left-0 right-0 bottom-14 backdrop-blur-sm bg-[#835a36] bg-opacity-50 rounded-2xl p-8 z-[1000] mx-auto w-[27rem] md:w-[80%] max-w-[75%] mx-auto h-[17rem] sm:h-[15rem]'
         : '',
     [isExpanded]
   );

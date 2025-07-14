@@ -159,11 +159,11 @@ function Products({ categoryId, isExpanded, searchResults }) {
           spaceBetween: 40,
         },
         600: {
-          slidesPerView: 1.7,
+          slidesPerView: 1.26,
           spaceBetween: 50,
         },
         1024: {
-          slidesPerView: 2.5,
+          slidesPerView: 1.26,
           spaceBetween: 80,
         },
       }}
