@@ -9,7 +9,7 @@ function CompletedOrderView({ items, formatPrice }) {
   );
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       <div className="text-center mt-2 mb-8 sm:mt-8 sm:mb-2">
         <h2 className="text-lg font-bold text-dark-cocoa sm:text-base xs:text-sm">
           سفارش شما با موفقیت ثبت شد
@@ -19,7 +19,7 @@ function CompletedOrderView({ items, formatPrice }) {
         </p>
       </div>
 
-      <motion.div className="-mt-[2rem] scale-[1.02] w-[92%] mx-auto sm:mt-[1rem] h-[22rem] overflow-y-auto relative z-[1]">
+      <motion.div className="-mt-[2rem] scale-[1.02] w-[92%] mx-auto sm:mt-[1rem] h-[22rem] overflow-y-auto relative z-[1] custom-scrollbar">
         {items.map(item => (
           <motion.div
             key={item.id}
@@ -77,7 +77,7 @@ function CompletedOrderView({ items, formatPrice }) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="fixed bottom-[2.5rem] left-0 right-0 bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl mx-auto w-[80%] z-[1] sm:bottom-[5.5rem]"
+        className="fixed bottom-[2.5rem] !mx-auto w-[27rem] md:w-[80%] z-[1] bg-translucent-coffee bg-opacity-40 shadow-md p-4 rounded-2xl sm:bottom-[5.5rem]"
       >
         <div className="w-[95%] mx-auto">
           <div className="flex justify-between items-center text-deep-mahogany font-bold">

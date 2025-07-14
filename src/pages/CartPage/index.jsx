@@ -111,7 +111,7 @@ function CartPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="bg-body min-h-screen w-full px-10 md:px-6 pt-6"
+        className="bg-warm-gradient min-h-screen px-10 md:px-6 pt-6 lg:w-full w-[30rem] mx-auto"
       >
         <Header />
         <ProductTitle />
