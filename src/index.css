@@ -30,18 +30,15 @@ body {
   border-radius: 20px;
 }
 
-
-
 @media (min-width: 601px) {
   body {
-    background: #CBB89D;
-    background-image: 
-      repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 2px,
-        rgba(109, 111, 76, 0.05) 2px,
-        rgba(109, 111, 76, 0.05) 4px
-      );
+    background: #cbb89d;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(109, 111, 76, 0.05) 2px,
+      rgba(109, 111, 76, 0.05) 4px
+    );
   }
 }
