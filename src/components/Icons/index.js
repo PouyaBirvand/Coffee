@@ -2,7 +2,7 @@ export { default as GiftIcon } from './GiftIcon';
 export { default as CheckMarkIcon } from './CheckMarkIcon';
 export { default as HashIcon } from './HashIcon';
 export { default as InfoIcon } from './InfoIcon';
-export { default as DeleteIcon } from './deleteIcon';
+export { default as DeleteIcon } from './DeleteIcon';
 export { default as EmptyCartIcon } from './EmptyCartIcon';
 export { default as TableIcon } from './TableIcon';
 export { default as TotalAmountIcon } from './TotalAmountIcon';
