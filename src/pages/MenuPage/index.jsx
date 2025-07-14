@@ -35,7 +35,7 @@ function MenuPage() {
   }, [categoryId, categories, setSelectedCategory]);
 
   return (
-    <div className="bg-body min-h-screen overflow-x-hidden w-full px-4 md:px-6 pt-6 flex flex-col">
+    <div className="bg-warm-gradient min-h-screen overflow-x-hidden lg:w-full w-[30rem] mx-auto px-4 md:px-6 pt-6 flex flex-col">
       <div className="flex-shrink-0 mb-4">
         <Header isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
         <ProductTitle

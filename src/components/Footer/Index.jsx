@@ -1,7 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 import { useQueryClient } from '@tanstack/react-query';
-import { RestaurantIcon, AddIcon, OrderIcon } from '../Icons/RestaurantIcon';
+import OrderIcon from '../Icons/OrderIcon';
+import AddIcon from '../Icons/AddIcon';
+import RestaurantIcon from '../Icons/RestaurantIcon';
 
 function BottomNavigation({ onOrderClick }) {
   const {
@@ -36,7 +38,7 @@ function BottomNavigation({ onOrderClick }) {
       {isExpanded && (
         <div className="fixed bottom-[3.2rem] left-1/2 transform -translate-x-1/2 w-[5rem] h-[2.3rem] bg-body rounded-t-full z-[1999]" />
       )}
-      <nav className="fixed bottom-0 left-0 right-0 bg-dark-cocoa z-[2000]">
+      <nav className="fixed bottom-0 left-0 right-0 bg-dark-cocoa z-[2000] lg:w-full w-[30rem] mx-auto">
         <div className="flex justify-around items-center h-[3.2rem] relative">
           <div className="relative w-[100px] h-[52px] bg-dark-cocoa rounded-t-[2.6rem] bottom-[0.7rem] -z-50" />
           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
