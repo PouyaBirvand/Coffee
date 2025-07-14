@@ -1,4 +1,4 @@
-const OrderIcon = ({ onClick }) => (
+export const OrderIcon = ({ onClick }) => (
   <svg
     onClick={onClick}
     width="32"

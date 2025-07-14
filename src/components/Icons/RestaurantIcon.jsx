@@ -1,4 +1,4 @@
-const RestaurantIcon = ({ onClick }) => (
+export const RestaurantIcon = ({ onClick }) => (
   <svg
     version="1.1"
     id="_x32_"
