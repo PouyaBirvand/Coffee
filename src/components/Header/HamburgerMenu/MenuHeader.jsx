@@ -1,5 +1,5 @@
 const MenuHeader = ({ closeMenu }) => (
-  <div className="flex items-center space-x-1 border-b border-opacity-30 border-dark-cocoa pb-3 mt-2">
+  <div className="flex items-center space-x-1 border-b border-opacity-30 border-dark-cocoa pb-3">
     <img
       className="w-[4rem] object-cover"
       src="./icon.jpg"

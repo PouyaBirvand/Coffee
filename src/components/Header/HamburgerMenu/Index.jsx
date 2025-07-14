@@ -22,10 +22,9 @@ const Menu = ({ closeMenu }) => (
         duration: 0.3,
         ease: 'easeInOut',
       }}
-      className="fixed overflow-auto top-0 right-0 w-full h-full bg-body shadow-md z-[3000] transform-gpu"
-      dir="rtl"
+      className="fixed right-0 top-0 w-full h-full bg-warm-gradient shadow-md z-[3000] transform-gpu"
     >
-      <nav className="p-5 -mt-2">
+      <nav className="p-5 pt-8 h-full flex flex-col">
         <MenuHeader closeMenu={closeMenu} />
         <QuickAccess closeMenu={closeMenu} />
         <SocialMedia />
